@@ -9,7 +9,7 @@
 Node と pnpm は `mise.toml` で固定しています。
 
 ```powershell
-cd C:\Users\kawau\dev\RYUEI
+cd C:\Users\kawau\dev\Game\RYUEI
 mise trust
 mise install
 pnpm install --frozen-lockfile
