@@ -247,3 +247,12 @@ built-in image_gen を使用。採用: `public/images/mechanisms/transport/cabin
 背景指示: 各既存の部屋写真から旧送り装置（展示廊下の真鍮パネル、裏室の二本レバー付き装置、修整室の机上の模型）だけを取り除き、周囲の漆喰・羽目板・机の木目を連続して復元。カメラ、他の物体、照明、画角を維持。新筐体は全景・拡大で同じレイヤーとして設置する。
 
 旧装置の専用状態写真と旧見本の図は採用台帳・配信フォルダから除去。過去の生成指示は履歴として本書に残す。
+
+
+## 2026-09-19 送り装置の設置写真への置換
+
+built-in image_gen で採用画像を生成。`public/images/rooms/gallery/states/transport-mounted.webp` と `transport-open.webp`、`public/images/rooms/backroom/states/transport-mounted.webp` と `transport-open.webp`、`public/images/rooms/retouch/states/transport-mounted.webp`。可動部は `public/images/mechanisms/transport/knob.webp` と `crank.webp`（透過）。不採用候補はリポジトリ外に保持。
+
+共通指示: 元の部屋写真を編集対象とし、共通筐体はデザイン参照として使用。壁掛けは壁に密着し、周囲の照明と柔らかさ、接触影、金具、遠近に合わせる。見本は既存の額を覆わない小さい机上機器とし、机に接地した台座と影を含める。空の左右の四段溝・四角い軸受け・復帰ボタン・目印を維持。視点と他の物は維持する。開状態は上部の収納だけを開き、操作板の座標を維持。つまみは傷のある暗い木と真鍮、ハンドルは既存持ち物と同じ四角軸の木製握りを、真の透明背景で生成。
+
+実装では部屋の写真と同じ写真の同じ範囲を装置部分へ参照し、黒い切り抜き輪郭を廃止。可動部の位置は各設置写真の溝から校正。平面色のつまみ・ハンドル・浮いたダイヤルを廃止。内部隔壁には写真の真鍮の質感と支持部を使用。

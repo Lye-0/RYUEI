@@ -94,7 +94,11 @@
   "studio-light-top:0": "rooms/studio/states/light-top.webp",
   "studio-light-right:0": "rooms/studio/states/light-right.webp",
   "transport-cabinet:0": "mechanisms/transport/cabinet.webp",
-  "transport-clean-gallery:0": "rooms/gallery/states/transport-clean.webp",
-  "transport-clean-backroom:0": "rooms/backroom/states/transport-clean.webp",
-  "transport-clean-retouch:0": "rooms/retouch/states/transport-clean.webp"
+  "gallery-transport-mounted:0": "rooms/gallery/states/transport-mounted.webp",
+  "gallery-transport-open:0": "rooms/gallery/states/transport-open.webp",
+  "backroom-transport-mounted:0": "rooms/backroom/states/transport-mounted.webp",
+  "backroom-transport-open:0": "rooms/backroom/states/transport-open.webp",
+  "retouch-transport-mounted:0": "rooms/retouch/states/transport-mounted.webp",
+  "transport-knob:0": "mechanisms/transport/knob.webp",
+  "transport-crank:0": "mechanisms/transport/crank.webp"
 }

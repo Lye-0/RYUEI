@@ -1,6 +1,6 @@
 import { useState, useId, useEffect } from "react";
 import { Photo } from "./Photo";
-import { photo, ITEMS } from "./data";
+import { photo, ITEMS, type Photo as PhotoSpec } from "./data";
 const itemPortrait = (id: string) => ({
   ...photo(id === "lens" ? "inventory-b" : "inventory-c"),
   crop:
@@ -11,6 +11,16 @@ const itemPortrait = (id: string) => ({
 import { transportRoute, transportProgress } from "./transport";
 
 type Props = {
+  skin?: PhotoSpec;
+  calibration?: {
+    left: number;
+    right: number;
+    bottom: number;
+    step: number;
+    socket: number;
+    reset: number;
+    lid: number;
+  };
   values: number[];
   reverse?: boolean;
   model?: boolean;
@@ -28,6 +38,15 @@ type Props = {
 };
 export function Transport(props: Props) {
   const { values: v, model = false, active, installed, opened = false } = props;
+  const calibration = props.calibration ?? {
+    left: 24,
+    right: 76,
+    bottom: 72.3,
+    step: 5.4,
+    socket: 66,
+    reset: 81,
+    lid: 43,
+  };
   const [fromBack, setFromBack] = useState(!!props.reverse);
   const [turnTick, setTurnTick] = useState<number | null>(null);
   useEffect(() => {
@@ -61,16 +80,18 @@ export function Transport(props: Props) {
   };
   return (
     <div
-      className="transport"
+      className={"transport" + (props.skin ? " integrated" : "")}
       data-transport={model ? "model" : reverse ? "reverse" : "forward"}
     >
       <Photo
-        asset={{
-          ...photo("transport-cabinet"),
-          crop: [((opened ? 2 : model ? 1 : 0) * 100) / 3, 0, 100 / 3, 100],
-        }}
+        asset={
+          props.skin ?? {
+            ...photo("transport-cabinet"),
+            crop: [((opened ? 2 : model ? 1 : 0) * 100) / 3, 0, 100 / 3, 100],
+          }
+        }
         className="transport-case"
-        style={{ transform: reverse ? "scaleX(-1)" : undefined }}
+        style={{ transform: reverse && !props.skin ? "scaleX(-1)" : undefined }}
       />
       {model && (
         <svg
@@ -123,6 +144,15 @@ export function Transport(props: Props) {
                 stroke="#332b1f"
                 strokeWidth="4"
               />
+              <foreignObject x="2" y="2" width="81" height="154">
+                <Photo
+                  asset={{
+                    ...photo("transport-cabinet"),
+                    crop: [5 + i * 2, 12, 20, 30],
+                  }}
+                  className="partition-metal"
+                />
+              </foreignObject>
               {pair.map((height, side) => (
                 <rect
                   key={side}
@@ -137,6 +167,14 @@ export function Transport(props: Props) {
               ))}
               <circle cx="7" cy="8" r="3" fill="#28251d" />
               <circle cx="78" cy="150" r="3" fill="#28251d" />
+            </g>
+          ))}
+          <path d="M8 23H292" stroke="#8f7d56" strokeWidth="5" />
+          {[0, 1, 2].map((i) => (
+            <g key={"mount" + i} stroke="#817453" strokeWidth="4">
+              <path d={`M${26 + i * 96} 188V245M${80 + i * 96} 188V245`} />
+              <circle cx={26 + i * 96} cy="240" r="4" fill="#b2a07b" />
+              <circle cx={80 + i * 96} cy="240" r="4" fill="#b2a07b" />
             </g>
           ))}
           <g
@@ -201,7 +239,10 @@ export function Transport(props: Props) {
       {model && active && (
         <>
           <button
-            className={"transport-end " + (reverse ? "end-back" : "end-front")}
+            className={
+              "transport-end " +
+              (reverse && !props.skin ? "end-back" : "end-front")
+            }
             aria-label="三日月の端から見本を送る"
             onClick={() => {
               setFromBack(false);
@@ -209,7 +250,10 @@ export function Transport(props: Props) {
             }}
           />
           <button
-            className={"transport-end " + (reverse ? "end-front" : "end-back")}
+            className={
+              "transport-end " +
+              (reverse && !props.skin ? "end-front" : "end-back")
+            }
             aria-label="三つの鋲の端から見本を送る"
             onClick={() => {
               setFromBack(true);
@@ -223,11 +267,14 @@ export function Transport(props: Props) {
           key={i}
           className="transport-slider"
           style={{
-            left: (i ? 76 : 24) + "%",
-            top: 72.3 - current[i] * 5.4 + "%",
+            left: (i ? calibration.right : calibration.left) + "%",
+            top: calibration.bottom - current[i] * calibration.step + "%",
           }}
         >
-          <div className="transport-lever" />
+          <Photo
+            className="transport-lever-photo"
+            asset={photo("transport-knob")}
+          />
           {active && (
             <button
               aria-label={(i ? "右" : "左") + "の案内軸"}
@@ -236,23 +283,19 @@ export function Transport(props: Props) {
           )}
         </div>
       ))}
-      <div
-        className="transport-ratchet"
-        style={{ transform: `rotate(${attempts.length * 90}deg)` }}
-        aria-hidden="true"
-      >
-        <i />
-        <i />
-        <i />
-      </div>
       {(model || installed) && (
-        <div className="transport-crank">
+        <div
+          className="transport-crank"
+          style={{ top: calibration.socket - 1 + "%" }}
+        >
           <span
             key={turnTick}
             className={"crank-motion" + (turnTick !== null ? " turning" : "")}
           >
-            <span className="crank-arm" />
-            <span className="crank-grip" />
+            <Photo
+              className="transport-crank-photo"
+              asset={photo("transport-crank")}
+            />
           </span>
           {active && <button aria-label="送りハンドルを回す" onClick={send} />}
         </div>
@@ -260,6 +303,7 @@ export function Transport(props: Props) {
       {active && !model && !installed && (
         <button
           className="transport-socket"
+          style={{ top: calibration.socket - 3 + "%" }}
           aria-label="送りハンドルを取り付ける"
           onClick={props.onInstall}
         />
@@ -267,6 +311,7 @@ export function Transport(props: Props) {
       {active && installed && !model && (
         <button
           className="transport-detach"
+          style={{ top: calibration.socket - 2 + "%" }}
           aria-label="送りハンドルを外す"
           onClick={props.onDetach}
         />
@@ -274,6 +319,7 @@ export function Transport(props: Props) {
       {active && (
         <button
           className="transport-reset"
+          style={{ top: calibration.reset - 4 + "%" }}
           aria-label="送り装置を復帰させる"
           onClick={() => (model ? setDemo([0, 0]) : props.onReset())}
         />
@@ -281,12 +327,18 @@ export function Transport(props: Props) {
       {!model && !opened && active && (
         <button
           className="transport-lid"
+          style={{ top: calibration.lid - 4 + "%" }}
           aria-label="取っ手を引く"
           onClick={props.onOpen}
         />
       )}
       {!model && opened && props.reward && (
-        <div className="transport-reward">
+        <div
+          className={
+            "transport-reward" +
+            (props.reward === "paper" ? " reward-paper" : "")
+          }
+        >
           <Photo asset={itemPortrait(props.reward)} />
           {active && (
             <button

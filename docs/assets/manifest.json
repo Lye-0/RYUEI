@@ -760,27 +760,59 @@
     "sha256": "e41c5ffc488780ed857c1ecf866b2c1c9071b081f226d3d2a07e22897e005a04"
   },
   {
-    "id": "transport-clean-gallery:0",
-    "path": "public/images/rooms/gallery/states/transport-clean.webp",
-    "bytes": 214682,
+    "id": "gallery-transport-mounted:0",
+    "path": "public/images/rooms/gallery/states/transport-mounted.webp",
+    "bytes": 230860,
     "width": 1254,
     "height": 1254,
-    "sha256": "cf936eb60bad008df2e7bc094d3fb3ab5cc92a57a5ff624de0ba6e5360afef3c"
+    "sha256": "989627e53e5dde78fd91a08503706da480c3787d12586e6ba53c79f7b942d6b1"
   },
   {
-    "id": "transport-clean-backroom:0",
-    "path": "public/images/rooms/backroom/states/transport-clean.webp",
-    "bytes": 260230,
+    "id": "gallery-transport-open:0",
+    "path": "public/images/rooms/gallery/states/transport-open.webp",
+    "bytes": 225984,
     "width": 1254,
     "height": 1254,
-    "sha256": "10c470d5505e85673f4731700bea854854c769bf50f93b3eae590ceb52dffefb"
+    "sha256": "e650993cd4c0598317ec566d954e4e4af02f1a7b59184dc4989ac66d3147a3de"
   },
   {
-    "id": "transport-clean-retouch:0",
-    "path": "public/images/rooms/retouch/states/transport-clean.webp",
-    "bytes": 226060,
+    "id": "backroom-transport-mounted:0",
+    "path": "public/images/rooms/backroom/states/transport-mounted.webp",
+    "bytes": 263804,
     "width": 1254,
     "height": 1254,
-    "sha256": "901491bdacbab73a5e859fa553204a33499a20f6130c6f218693974a86237578"
+    "sha256": "7e503b1affa204dc199d83c5e069ece21fc02ff17159372c90b2ff5a9c194826"
+  },
+  {
+    "id": "backroom-transport-open:0",
+    "path": "public/images/rooms/backroom/states/transport-open.webp",
+    "bytes": 238342,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "4f9a892ea828bba0881375d4fa92bb7ca551d9f61ed83a21fbc0d43854c7d36c"
+  },
+  {
+    "id": "retouch-transport-mounted:0",
+    "path": "public/images/rooms/retouch/states/transport-mounted.webp",
+    "bytes": 236930,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "02a954b91e3194317fbf9c52924e321af5b67ca2374f88e4ff98adbd029ed87c"
+  },
+  {
+    "id": "transport-knob:0",
+    "path": "public/images/mechanisms/transport/knob.webp",
+    "bytes": 457130,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "53d9a3492052590684d3c819ccd6228b486c6cca290683de95920ddae38a6cfb"
+  },
+  {
+    "id": "transport-crank:0",
+    "path": "public/images/mechanisms/transport/crank.webp",
+    "bytes": 245222,
+    "width": 1942,
+    "height": 809,
+    "sha256": "e933bc984734931805b1f480c8c3a44b13e29af683fb8c454a82283f541a70da"
   }
 ]

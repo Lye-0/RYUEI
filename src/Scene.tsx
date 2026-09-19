@@ -227,9 +227,11 @@ export function Scene({
   const crop = mech
     ? focusRect(mech.focus)
     : focused
-      ? focused.target === "old"
-        ? [45, 0, 24, 24]
-        : focusRect(focused.rect, focused.type === "clue" ? 28 : 0)
+      ? focused.target === "model"
+        ? [48.8, 31.5, 25, 25]
+        : focused.target === "old"
+          ? [45, 0, 24, 24]
+          : focusRect(focused.rect, focused.type === "clue" ? 28 : 0)
       : [0, 0, 100, 100];
   const key = `${s.room}:${s.face}`,
     master = MASTER[key];
@@ -410,13 +412,24 @@ export function Scene({
         )}
         {key === "1:1" && documents}
         {key === "1:3" && (
-          <Patch id="transport-clean-gallery" area={[69, 27, 28, 32]} />
+          <Patch
+            id={
+              s.opened.includes("feed")
+                ? "gallery-transport-open"
+                : "gallery-transport-mounted"
+            }
+            area={[68, 22, 28, 37]}
+          />
         )}
         {key === "5:0" && (
-          <Patch id="transport-clean-backroom" area={[85, 11, 14, 33]} />
-        )}
-        {key === "2:0" && (
-          <Patch id="transport-clean-retouch" area={[49, 32, 21, 23]} />
+          <Patch
+            id={
+              s.opened.includes("backfeed")
+                ? "backroom-transport-open"
+                : "backroom-transport-mounted"
+            }
+            area={[83, 12, 15, 38]}
+          />
         )}
         {active.map(([id, m]) => {
           const p = PUZZLES[id],
@@ -429,6 +442,34 @@ export function Scene({
               <div key={id} className="mechanism-layer" data-mechanism={id}>
                 <div style={{ position: "absolute", ...box(m.bounds) }}>
                   <Transport
+                    skin={{
+                      ...photo(
+                        (id === "feed" ? "gallery" : "backroom") +
+                          (opened ? "-transport-open" : "-transport-mounted"),
+                      ),
+                      crop: m.bounds,
+                    }}
+                    calibration={
+                      id === "feed"
+                        ? {
+                            left: 26.5,
+                            right: 76.5,
+                            bottom: 77,
+                            step: 5.5,
+                            socket: 70.5,
+                            reset: 87,
+                            lid: 44.5,
+                          }
+                        : {
+                            left: 23,
+                            right: 78,
+                            bottom: 81.7,
+                            step: 6.2,
+                            socket: 74.4,
+                            reset: 92.3,
+                            lid: 46.8,
+                          }
+                    }
                     values={v}
                     active={zoom}
                     reverse={id === "backfeed"}
@@ -804,8 +845,26 @@ export function Scene({
             </Surface>
           ))}
         {key === "2:0" && (
-          <div style={{ position: "absolute", ...box([49, 23, 24, 31]) }}>
+          <Patch id="retouch-transport-mounted" area={[47.5, 30.5, 24, 25]} />
+        )}
+        {key === "2:0" && (
+          <div
+            style={{ position: "absolute", ...box([54.5, 32.8, 13.3, 21.6]) }}
+          >
             <Transport
+              skin={{
+                ...photo("retouch-transport-mounted"),
+                crop: [54.5, 32.8, 13.3, 21.6],
+              }}
+              calibration={{
+                left: 23,
+                right: 77,
+                bottom: 82,
+                step: 7,
+                socket: 68,
+                reset: 81,
+                lid: 43,
+              }}
               model
               values={[0, 0]}
               active={focus?.id === "model"}

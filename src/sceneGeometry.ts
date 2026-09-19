@@ -91,8 +91,8 @@ export const MECHANISMS: Record<string, Mechanism> = {
   feed: {
     room: 1,
     face: 3,
-    bounds: [73, 27, 21, 48],
-    focus: [59, 25, 50, 50],
+    bounds: [72.8, 24.1, 16.5, 31.1],
+    focus: [65, 22, 36, 36],
     controls: [
       [73, 43, 7, 10],
       [87, 43, 7, 10],
@@ -242,7 +242,7 @@ export const MECHANISMS: Record<string, Mechanism> = {
   backfeed: {
     room: 5,
     face: 0,
-    bounds: [84, 11, 15, 37],
+    bounds: [84.5, 12, 11.8, 36.5],
     focus: [71, 10, 39, 39],
     controls: [
       [87.5, 13.5, 3, 12],
@@ -310,7 +310,7 @@ export const CLUE_PLACEMENTS: Record<string, Record<string, Rect>> = {
     shadows: [28.3, 53.4, 10.8, 13.4],
     history: [41.5, 53.4, 10.8, 13.4],
   },
-  "2:0": { model: [49, 23, 24, 31], cut: [18.7, 53.5, 11.5, 2.3] },
+  "2:0": { model: [54.5, 32.8, 13.3, 21.6], cut: [18.7, 53.5, 11.5, 2.3] },
   "2:1": { mirror: [5.3, 29.5, 4.3, 13], architecture: [66, 5, 10, 12] },
   "3:0": { bath: [23.5, 29.5, 53, 12] },
   "4:0": { memory: [46.5, 52, 15, 26] },
