@@ -43,3 +43,31 @@ export function tick(solved = false) {
   o.start();
   o.stop(context.currentTime + 0.18);
 }
+
+// A short wooden landing sound; never starts audio when sound is disabled.
+export function caseLanding() {
+  if (!requested || !context || !level || level.gain.value === 0) return;
+  const now = context.currentTime;
+  for (const [delay, hz, gain] of [
+    [0, 170, 0.1],
+    [0.065, 95, 0.055],
+  ]) {
+    const oscillator = context.createOscillator(),
+      envelope = context.createGain();
+    oscillator.type = "triangle";
+    oscillator.frequency.setValueAtTime(hz, now + delay);
+    oscillator.frequency.exponentialRampToValueAtTime(
+      hz * 0.45,
+      now + delay + 0.09,
+    );
+    envelope.gain.setValueAtTime(gain, now + delay);
+    envelope.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.13);
+    oscillator.connect(envelope).connect(context.destination);
+    oscillator.start(now + delay);
+    oscillator.stop(now + delay + 0.15);
+    oscillator.onended = () => {
+      oscillator.disconnect();
+      envelope.disconnect();
+    };
+  }
+}

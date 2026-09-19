@@ -43,3 +43,24 @@ it("旧版で解いた収納の取得状況を維持する", () => {
   expect(loaded.opened).toContain("feed");
   expect(loaded.collected).toContain("lens");
 });
+
+it("見本の到着状態は保存しても実機の成立条件にならない", () => {
+  const s = {
+    ...E.fresh(),
+    room: 1,
+    visited: [0, 1],
+    model: { reverse: true, values: [3, 0, ...transportRoute(true).flat()] },
+  };
+  const restored = E.parse(JSON.stringify(s))!;
+  expect(restored.model).toEqual(s.model);
+  expect(restored.solved).toEqual([]);
+  expect(E.correct(restored, "feed")).toBe(false);
+  expect(E.input(restored, "feed", [2, 3]).values.feed).toEqual([2, 3]);
+});
+it("不正な見本データは破棄して本編の保存を読み込める", () => {
+  const restored = E.parse(
+    JSON.stringify({ ...E.fresh(), model: { reverse: false, values: [99] } }),
+  )!;
+  expect(restored).not.toBeNull();
+  expect(restored.model).toBeUndefined();
+});

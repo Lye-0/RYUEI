@@ -2,6 +2,7 @@ import { CLUES, ITEMS, PUZZLES, ROOMS } from "./data";
 export const SAVE_KEY = "ryuei:save:v1";
 export type State = {
   version: 1;
+  model?: { reverse: boolean; values: number[] };
   started: boolean;
   room: number;
   face: number;
@@ -349,6 +350,12 @@ export function parse(raw: string | null): State | null {
           : a.installed.lamp?.includes("bulb") && input?.[0] === 2;
       if (ready && !a.solved.includes(id)) a.solved = [...a.solved, id];
     }
+    if (
+      a.model &&
+      (typeof a.model.reverse !== "boolean" ||
+        !validValues("feed", a.model.values))
+    )
+      delete a.model;
     // Earlier saves kept the reusable crank in inventory and in several devices.
     const attached = ["feed", "backfeed"].filter(
       (id) => a.installed[id]?.includes("crank") && !a.opened.includes(id),

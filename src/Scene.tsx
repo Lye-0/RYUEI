@@ -866,6 +866,9 @@ export function Scene({
                 lid: 43,
               }}
               model
+              motion={s.motion}
+              demonstration={s.model}
+              onDemonstration={(model) => update({ ...s, model })}
               values={[0, 0]}
               active={focus?.id === "model"}
               installed
