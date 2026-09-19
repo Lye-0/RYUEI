@@ -1639,3 +1639,10 @@ button,
   font-size: 11px;
   letter-spacing: 0.08em;
 }
+
+/* Turning belongs to the edge of the view, not to a photographed doorway. */
+.direction.left,
+.direction.right {
+  top: auto;
+  bottom: 0;
+}

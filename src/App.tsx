@@ -266,6 +266,10 @@ export default function App() {
         setPanel({ type: "puzzle", id: node.requires });
         return;
       }
+      if (E.doorIsOpen(s, Number(node.target))) {
+        travel(Number(node.target));
+        return;
+      }
       setPanel({ type: "door", to: Number(node.target), label: node.label });
     } else if (node.type === "detail")
       setPanel({ type: "detail", text: node.target });

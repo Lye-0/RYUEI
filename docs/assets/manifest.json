@@ -774,5 +774,13 @@
     "width": 1254,
     "height": 1254,
     "sha256": "455a7a95ac4e05e02209ce79e8c3c1399d593d0e9ccf01134093e6b75fbee0ac"
+  },
+  {
+    "id": "gallery-retouch-entry:0",
+    "path": "public/images/rooms/gallery/states/retouch-entry.webp",
+    "bytes": 348192,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "98d69b50fd5863a18719c673232e1780a7b056fba3d80b87833c506efb56e47a"
   }
 ]

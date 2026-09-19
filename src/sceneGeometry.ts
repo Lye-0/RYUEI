@@ -350,7 +350,7 @@ export function sceneNodes(room: number, face: number) {
   for (const n of result) {
     if (n.type === "door") {
       if (room === 0 && face === 0) n.rect = [66, 4, 31, 70];
-      if (room === 1 && face === 1) n.rect = [83, 4, 15, 83];
+      if (room === 1 && face === 1) n.rect = [82, 3, 17, 83];
       if (room === 1 && face === 3) n.rect = [9, 8, 30, 77];
       if (room === 1 && face === 0) n.rect = [25, 5, 55, 76];
       if (room === 1 && face === 2) n.rect = [30, 5, 42, 81];

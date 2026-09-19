@@ -372,6 +372,9 @@ export function Scene({
         {s.room === 1 && s.face === 3 && s.openDoors.includes("darkroom") && (
           <Patch id="gallery-door-open" area={[5, 4, 36, 83]} />
         )}
+        {key === "1:1" && (
+          <Patch id="gallery-retouch-entry" area={[75, 0, 25, 100]} />
+        )}
         {key === "1:1" && documents}
         {active.map(([id, m]) => {
           const p = PUZZLES[id],

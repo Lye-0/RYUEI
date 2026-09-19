@@ -95,5 +95,6 @@
   "history-framed:0": "clues/a/framed-history.webp",
   "inventory-a:0": "items/keys-and-case.webp",
   "inventory-b:0": "items/optics-and-tools.webp",
-  "inventory-c:0": "items/wheel-and-paper.webp"
+  "inventory-c:0": "items/wheel-and-paper.webp",
+  "gallery-retouch-entry:0": "rooms/gallery/states/retouch-entry.webp"
 }
