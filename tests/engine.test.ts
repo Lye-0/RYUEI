@@ -31,7 +31,12 @@ describe("写真館の状態と進行", () => {
     let s = solved(E.fresh(), "panel");
     expect(E.move(s, 1, null)).toBe(s);
     expect(E.move(s, 1, "lens")).toBe(s);
-    s = E.move(s, 1, "brassKey");
+    s = E.unlockDoor(s, 1, "brassKey");
+    expect(s.room).toBe(0);
+    expect(E.move(s, 1, null)).toBe(s);
+    s = E.openDoor(s, 1);
+    expect(s.room).toBe(0);
+    s = E.move(s, 1, null);
     expect(s.room).toBe(1);
     expect(s.inventory).not.toContain("brassKey");
     expect(s.doors).toContain("gallery");

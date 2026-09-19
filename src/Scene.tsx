@@ -1,0 +1,839 @@
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
+import {
+  CLUES,
+  ITEMS,
+  PUZZLES,
+  ROOMS,
+  photo,
+  type Node,
+  type Photo as PhotoSpec,
+  type Rect,
+} from "./data";
+import * as E from "./engine";
+import { Photo } from "./Photo";
+import { SceneDocument } from "./SceneDocument";
+import catalog from "./assets.json";
+import {
+  MASTER,
+  MECHANISMS,
+  CLUE_PLACEMENTS,
+  focusRect,
+  quad,
+  sceneNodes,
+  type Quad,
+} from "./sceneGeometry";
+
+const box = ([x, y, w, h]: Rect): CSSProperties => ({
+  left: x + "%",
+  top: y + "%",
+  width: w + "%",
+  height: h + "%",
+});
+const has = (id: string) => (catalog as Record<string, string>)[id + ":0"];
+function Patch({ id, area }: { id: string; area: Rect }) {
+  return has(id) ? (
+    <Photo
+      asset={photo(id)}
+      className="world-photo state-patch"
+      style={{
+        maskImage: id.includes("lamp")
+          ? "linear-gradient(to right,transparent " +
+            area[0] +
+            "%,black " +
+            (area[0] + 1.5) +
+            "%,black " +
+            (area[0] + area[2] - 1.5) +
+            "%,transparent " +
+            (area[0] + area[2]) +
+            "%),linear-gradient(to bottom,transparent " +
+            area[1] +
+            "%,black " +
+            (area[1] + 1.5) +
+            "%,black " +
+            (area[1] + area[3] - 1.5) +
+            "%,transparent " +
+            (area[1] + area[3]) +
+            "%)"
+          : undefined,
+        maskComposite: "intersect",
+        clipPath: `inset(${area[1]}% ${100 - area[0] - area[2]}% ${100 - area[1] - area[3]}% ${area[0]}%)`,
+      }}
+    />
+  ) : null;
+}
+function Surface({
+  q,
+  width,
+  children,
+}: {
+  q: Quad;
+  width: number;
+  children: ReactNode;
+}) {
+  const [p0, p1, p2, p3] = q.map((p) => p.map((n) => n / 100));
+  const dx1 = p1[0] - p2[0],
+    dx2 = p3[0] - p2[0],
+    dx3 = p0[0] - p1[0] + p2[0] - p3[0];
+  const dy1 = p1[1] - p2[1],
+    dy2 = p3[1] - p2[1],
+    dy3 = p0[1] - p1[1] + p2[1] - p3[1];
+  const det = dx1 * dy2 - dx2 * dy1;
+  const g = det ? (dx3 * dy2 - dx2 * dy3) / det : 0,
+    h = det ? (dx1 * dy3 - dx3 * dy1) / det : 0;
+  const a = p1[0] - p0[0] + g * p1[0],
+    b = p3[0] - p0[0] + h * p3[0],
+    d = p1[1] - p0[1] + g * p1[1],
+    e = p3[1] - p0[1] + h * p3[1];
+  return (
+    <div
+      className="world-surface"
+      style={{
+        transform: `matrix3d(${a},${d},0,${g / width},${b},${e},0,${h / width},0,0,1,0,${width * p0[0]},${width * p0[1]},0,1)`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+function Target({
+  r,
+  label,
+  click,
+  pressed = false,
+  kind = "object",
+}: {
+  r: Rect;
+  label: string;
+  click: () => void;
+  pressed?: boolean;
+  kind?: string;
+}) {
+  return (
+    <button
+      className={"world-target " + kind + (pressed ? " engaged" : "")}
+      style={box(r)}
+      aria-label={label}
+      aria-pressed={pressed || undefined}
+      onClick={click}
+    >
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M1 1H99V99H1Z" vectorEffect="non-scaling-stroke" />
+      </svg>
+    </button>
+  );
+}
+function Lever({
+  asset,
+  r,
+  pivot,
+  angle,
+}: {
+  asset: PhotoSpec;
+  r: Rect;
+  pivot: [number, number];
+  angle: number;
+}) {
+  const id = "lever-" + asset.sheet + "-" + r[0];
+  const down = asset.sheet === "gallery-west";
+  return (
+    <div
+      className="lever-sprite"
+      style={{
+        ...box(r),
+        transformOrigin: pivot[0] + "% " + pivot[1] + "%",
+        transform: "rotate(" + angle + "deg)",
+      }}
+    >
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <clipPath id={id}>
+            {down ? (
+              <>
+                <ellipse cx="40" cy="20" rx="30" ry="15" />
+                <polygon points="34,23 44,20 77,83 64,85" />
+                <ellipse cx="70" cy="84" rx="24" ry="13" />
+              </>
+            ) : (
+              <>
+                <ellipse cx="50" cy="11" rx="43" ry="10" />
+                <rect x="42" y="15" width="16" height="79" />
+                <ellipse cx="50" cy="94" rx="32" ry="6" />
+              </>
+            )}
+          </clipPath>
+        </defs>
+        <foreignObject width="100" height="100" clipPath={"url(#" + id + ")"}>
+          <Photo
+            asset={{ ...asset, crop: r }}
+            style={{ height: "100%", width: "100%" }}
+          />
+        </foreignObject>
+      </svg>
+    </div>
+  );
+}
+export type SceneFocus = {
+  type: "puzzle" | "clue" | "door" | "detail";
+  id?: string;
+  to?: number;
+  text?: string;
+} | null;
+export function Scene({
+  s,
+  focus,
+  selected,
+  marks,
+  touch,
+  update,
+  notify,
+  travel,
+}: {
+  s: E.State;
+  focus: SceneFocus;
+  selected: string | null;
+  marks: boolean;
+  touch: (n: Node) => void;
+  update: (next: E.State) => void;
+  notify: (text: string) => void;
+  travel: (to: number) => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null),
+    [width, setWidth] = useState(800),
+    [swap, setSwap] = useState<number | null>(null),
+    [demo, setDemo] = useState([0, 0]);
+  useLayoutEffect(() => {
+    if (!ref.current) return;
+    const observer = new ResizeObserver(([e]) => setWidth(e.contentRect.width));
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+  const nodes = sceneNodes(s.room, s.face),
+    focused = nodes.find(
+      (n) =>
+        focus?.type === n.type &&
+        (n.target === focus.id ||
+          (n.type === "door" && Number(n.target) === focus.to)),
+    );
+  const mech = focus?.type === "puzzle" ? MECHANISMS[focus.id!] : null;
+  const crop = mech
+    ? focusRect(mech.focus)
+    : focused
+      ? focusRect(focused.rect)
+      : [0, 0, 100, 100];
+  const key = `${s.room}:${s.face}`,
+    master = MASTER[key];
+  const active = Object.entries(MECHANISMS).filter(
+    ([, m]) => m.room === s.room && m.face === s.face,
+  );
+  useEffect(() => {
+    const prefix = ROOMS[s.room].id;
+    for (const [id, file] of Object.entries(catalog)) {
+      if (
+        id.startsWith(prefix + "-") ||
+        (s.room === 2 && id.startsWith("lamp-pose")) ||
+        (s.room === 4 && id.startsWith("camera-view"))
+      ) {
+        const image = new Image();
+        image.src = import.meta.env.BASE_URL + "images/" + file;
+      }
+    }
+  }, [s.room]);
+  function change(id: string, v: number[]) {
+    const next = E.input(s, id, v);
+    let solved = E.solve(next, id);
+    if (
+      ["develop", "print", "cut", "masks"].includes(id) &&
+      solved.solved.includes(id)
+    )
+      solved = E.open(solved, id);
+    update(solved);
+    if (solved.solved.length > next.solved.length) notify("カチリ。");
+  }
+  function act(id: string, i: number) {
+    const p = PUZZLES[id],
+      v = E.values(s, id);
+    if (!E.available(s, id)) {
+      notify("動かない。");
+      return;
+    }
+    if (p.kind === "order") {
+      if (swap === null) setSwap(i);
+      else {
+        const n = [...v];
+        [n[swap], n[i]] = [n[i], n[swap]];
+        setSwap(null);
+        change(id, n);
+      }
+      return;
+    }
+    if (p.kind === "select")
+      change(id, v.includes(i) ? v.filter((x) => x !== i) : [...v, i]);
+    else if (p.kind === "feed") change(id, E.feedStep(s, id, i));
+    else if (p.kind === "sequence" || p.kind === "develop")
+      change(id, v.length >= p.answer.length ? [i] : [...v, i]);
+    else if (p.kind === "map") {
+      notify("巻き上げ軸は、まだ固定されている。");
+    } else
+      change(
+        id,
+        v.map((n, j) => (j === i ? (n + 1) % (p.size ?? 4) : n)),
+      );
+  }
+  function open(id: string) {
+    if (id === "wall") {
+      const next = E.solve(E.input(s, id, [1]), id);
+      if (next.solved.includes(id)) update(E.open(next, id));
+      else
+        notify(
+          s.installed.wall?.includes("handle")
+            ? "軸がまだ動かない。"
+            : "軸の先に、六角形の穴がある。",
+        );
+      return;
+    }
+    if (id === "beyond" && s.opened.includes(id)) {
+      update(E.finish(s));
+      return;
+    }
+    if (!s.solved.includes(id) && id !== "lamp") {
+      notify("留まっている。");
+      return;
+    }
+    update(E.open(s, id));
+  }
+  function install(id: string, item: string) {
+    if (selected && PUZZLES[id].items?.includes(selected)) item = selected;
+    if (selected !== item) {
+      notify("ここに何か取り付けられそうだ。");
+      return;
+    }
+    const next = E.install(s, id, item);
+    update(next);
+    notify(ITEMS[item].reusable ? "手応えがあった。" : "取り付いた。");
+  }
+  return (
+    <div ref={ref} className={"scene-camera " + (marks ? "show-targets" : "")}>
+      <div
+        className="scene-world"
+        style={{
+          transform: `scale(${100 / crop[2]}) translate(${-crop[0]}%,${-crop[1]}%)`,
+        }}
+      >
+        <Photo
+          asset={master ? photo(master) : photo(ROOMS[s.room].id, s.face)}
+          className="world-photo"
+        />
+        {s.room === 1 && s.face === 0 && s.openDoors.includes("studio") && (
+          <Patch
+            id={
+              s.opened.includes("wall")
+                ? "gallery-studio-revealed"
+                : "gallery-studio-open-v2"
+            }
+            area={[20, 0, 65, 86]}
+          />
+        )}
+        {s.room === 4 && s.face === 2 && s.openDoors.includes("studio") && (
+          <Patch id="studio-gallery-open" area={[24, 5, 48, 90]} />
+        )}
+        {s.room === 3 && s.face === 2 && s.openDoors.includes("darkroom") && (
+          <Patch id="darkroom-gallery-open-v2" area={[27, 3, 45, 90]} />
+        )}
+        {s.room === 0 && s.face === 0 && s.openDoors.includes("gallery") && (
+          <Patch id="reception-door-open" area={[64, 0, 36, 78]} />
+        )}
+        {s.room === 5 && s.face === 0 && s.opened.includes("beyond") && (
+          <Patch id="backroom-door-open" area={[31, 0, 50, 86]} />
+        )}
+        {s.room === 1 && s.face === 3 && s.openDoors.includes("darkroom") && (
+          <Patch id="gallery-door-open" area={[5, 4, 36, 83]} />
+        )}
+        {active.map(([id, m]) => {
+          const p = PUZZLES[id],
+            v = E.values(s, id),
+            opened = s.opened.includes(id),
+            solved = s.solved.includes(id),
+            zoom = focus?.type === "puzzle" && focus.id === id;
+          return (
+            <div key={id} className="mechanism-layer" data-mechanism={id}>
+              {id === "panel" &&
+                !opened &&
+                v.map((i) => (
+                  <Patch
+                    key={i}
+                    id="reception-unlatched"
+                    area={
+                      [
+                        [23, 44, 12, 13],
+                        [25, 59, 16, 13],
+                        [23, 74, 12, 13],
+                      ][i] as Rect
+                    }
+                  />
+                ))}
+              {id === "lamp" && (
+                <Patch
+                  id={
+                    s.installed.lamp?.includes("bulb")
+                      ? [
+                          "retouch-lamp-on",
+                          "lamp-pose-1-1",
+                          "retouch-lamp-low",
+                        ][v[0]]
+                      : "retouch-lamp-socket"
+                  }
+                  area={[8, 17, 43, 41]}
+                />
+              )}
+              {id === "shutters" && s.installed.shutters?.includes("cable") && (
+                <Patch id="studio-shutters-cable" area={[9, 44, 10, 10]} />
+              )}
+              {id === "wall" && s.installed.wall?.includes("handle") && (
+                <Patch id="studio-wheel" area={[77, 39, 13, 14]} />
+              )}
+              {id === "feed" && (
+                <Patch id="gallery-leverless" area={[71, 39, 28, 15]} />
+              )}
+              {opened && m.state && (
+                <Patch id={m.state + "-open"} area={m.patch!} />
+              )}
+              {opened &&
+                m.state &&
+                p.rewards?.map(
+                  (item, i) =>
+                    s.collected.includes(item) && (
+                      <Patch
+                        key={item}
+                        id={m.state + "-empty"}
+                        area={m.pickups?.[i] ?? m.patch!}
+                      />
+                    ),
+                )}
+              {id === "feed" && (
+                <>
+                  <Lever
+                    asset={photo("gallery-west")}
+                    r={[73, 43, 5, 10]}
+                    pivot={[40, 20]}
+                    angle={v[0] * 90}
+                  />
+                  <Lever
+                    asset={photo("gallery-west")}
+                    r={[87.5, 43.5, 5, 10]}
+                    pivot={[40, 20]}
+                    angle={-v[1] * 90}
+                  />
+                </>
+              )}
+              {id === "backfeed" && (
+                <>
+                  <Patch id="backroom-leverless" area={[86, 12, 11, 14]} />
+                  <Lever
+                    asset={photo("backroom-north")}
+                    r={[87.8, 13.3, 2.8, 11.5]}
+                    pivot={[50, 94]}
+                    angle={-v[0] * 90}
+                  />
+                  <Lever
+                    asset={photo("backroom-north")}
+                    r={[92.3, 13.3, 2.8, 11.5]}
+                    pivot={[50, 94]}
+                    angle={v[1] * 90}
+                  />
+                </>
+              )}
+              {p.kind === "order" &&
+                (!p.items || s.installed[id]?.length) &&
+                m.controls.map((r, i) => (
+                  <Surface key={i} q={quad(r)} width={width}>
+                    <Photo
+                      className={zoom && swap === i ? "held-print" : ""}
+                      asset={
+                        id === "frames"
+                          ? photo("fragments", v[i])
+                          : {
+                              ...CLUES.panorama.image,
+                              crop: [[2, 1, 3, 0][v[i]] * 25, 0, 25, 100],
+                            }
+                      }
+                    />
+                  </Surface>
+                ))}
+              {id === "camera" && s.installed.camera?.includes("lens") && (
+                <Surface q={m.surfaces![0]} width={width}>
+                  <Photo
+                    asset={
+                      s.opened.includes("wall")
+                        ? {
+                            ...photo("studio-curtain-open"),
+                            crop: [43, 20, 25, 63],
+                          }
+                        : photo("camera-view-" + v[0])
+                    }
+                    style={{
+                      filter: `blur(${v[1] === 1 ? 0 : 12}px)`,
+                      transform: `translateY(${v[2] * 5}%)`,
+                    }}
+                  />
+                </Surface>
+              )}
+              {id === "masks" &&
+                s.installed.masks?.includes("mask") &&
+                m.surfaces!.map((q, i) => (
+                  <Surface key={i} q={q} width={width}>
+                    <Photo
+                      asset={{
+                        ...photo("glass-triptych"),
+                        crop: [(i * 100) / 3 + 1, 4, 100 / 3 - 2, 91],
+                      }}
+                      style={{ transform: `rotate(${v[i] * 90}deg)` }}
+                    />
+                  </Surface>
+                ))}
+              {((id === "develop" && !opened) || id === "print") &&
+                s.installed[id]?.length &&
+                !s.collected.includes(
+                  id === "develop" ? "print" : "portrait",
+                ) &&
+                (() => {
+                  const target = v.at(-1) ?? (id === "develop" ? 1 : 0);
+                  const r =
+                    id === "print" && target === 0
+                      ? m.fittings![0]
+                      : m.controls[target];
+                  return (
+                    <Surface
+                      q={quad([
+                        r[0] + r[2] * 0.23,
+                        r[1] + r[3] * 0.2,
+                        r[2] * 0.55,
+                        r[3] * 0.65,
+                      ])}
+                      width={width}
+                    >
+                      <div
+                        className={
+                          "processing-paper " + (solved ? "processed" : "")
+                        }
+                      >
+                        <Photo
+                          asset={
+                            id === "develop"
+                              ? CLUES.panorama.image
+                              : photo("backroom-north")
+                          }
+                          style={{
+                            opacity: solved ? 1 : Math.min(0.7, v.length * 0.2),
+                          }}
+                        />
+                      </div>
+                    </Surface>
+                  );
+                })()}
+              {id === "shutters" && v.length > 0 && (
+                <div
+                  key={v.length}
+                  className="lamp-flash"
+                  style={{ ...box(m.controls[v.at(-1)!]), borderRadius: "50%" }}
+                />
+              )}
+              {id === "beyond" && v.length > 0 && !opened && (
+                <div
+                  key={v.length}
+                  className="bolt-shift"
+                  style={box(m.controls[v.at(-1)!])}
+                >
+                  <Photo
+                    asset={{
+                      ...photo("backroom-north"),
+                      crop: m.controls[v.at(-1)!],
+                    }}
+                  />
+                </div>
+              )}
+              {id === "develop" && opened && !s.collected.includes("print") && (
+                <Surface
+                  q={[
+                    [40.5, 72],
+                    [57.5, 74.2],
+                    [55.1, 79.5],
+                    [37, 78],
+                  ]}
+                  width={width}
+                >
+                  <Photo asset={CLUES.panorama.image} />
+                </Surface>
+              )}
+              {id === "cut" &&
+                v.map((i) => (
+                  <div
+                    key={i}
+                    className="paper-cut"
+                    style={box(m.controls[i])}
+                  />
+                ))}
+              {id === "cut" &&
+                opened &&
+                !s.collected.includes("mask") &&
+                p.answer.map((cell, i) => (
+                  <Surface key={i} q={quad(m.controls[cell])} width={width}>
+                    <Photo
+                      asset={{
+                        ...photo("glass-triptych"),
+                        crop: [(i * 100) / 3 + 1, 4, 100 / 3 - 2, 91],
+                      }}
+                    />
+                  </Surface>
+                ))}
+              {id === "rack" &&
+                v.map((i) => (
+                  <div
+                    key={i}
+                    className="shelf-pressed"
+                    style={box(m.controls[i])}
+                  />
+                ))}
+              {zoom &&
+                !solved &&
+                (!opened || id === "lamp") &&
+                id !== "wall" &&
+                m.controls.map((base, i) => {
+                  const r: Rect =
+                    id === "lamp"
+                      ? ([
+                          [20, 24, 26, 13],
+                          [20, 31, 26, 11],
+                          [15, 33, 20, 15],
+                        ][v[0]] as Rect)
+                      : id === "feed"
+                        ? i === 0
+                          ? v[0] === 0
+                            ? [73, 44, 5, 9]
+                            : v[0] === 1
+                              ? [67, 43, 10, 5]
+                              : [73, 37, 5, 10]
+                          : v[1]
+                            ? [88, 43, 10, 5]
+                            : [87, 44, 6, 9]
+                        : id === "backfeed"
+                          ? i === 1
+                            ? v[1] === 0
+                              ? [92, 13, 4, 13]
+                              : v[1] === 1
+                                ? [92, 23, 8, 4]
+                                : [92, 24, 4, 13]
+                            : v[0]
+                              ? [78, 22, 13, 4]
+                              : [87, 13, 4, 13]
+                          : id === "panel" && v.includes(i)
+                            ? [26.5, i === 0 ? 46 : i === 1 ? 60 : 75, 4, 9]
+                            : base;
+                  return (
+                    <Target
+                      key={i}
+                      r={r}
+                      label={
+                        p.kind === "order"
+                          ? "位置" + (i + 1) + "：" + p.labels[v[i]]
+                          : (p.labels[i] ?? p.name)
+                      }
+                      kind="control"
+                      pressed={
+                        p.kind === "order"
+                          ? swap === i
+                          : p.kind === "select"
+                            ? v.includes(i)
+                            : false
+                      }
+                      click={() => act(id, i)}
+                    />
+                  );
+                })}
+              {zoom &&
+                (!opened || id === "lamp") &&
+                p.items?.map(
+                  (item, i) =>
+                    !s.installed[id]?.includes(item) &&
+                    (id !== "print" ||
+                      item ===
+                        (selected && p.items?.includes(selected)
+                          ? selected
+                          : p.items?.find(
+                              (x) => !s.installed[id]?.includes(x),
+                            ))) && (
+                      <Target
+                        key={item}
+                        r={m.fittings?.[i] ?? m.bounds}
+                        label={ITEMS[item].name + "を取り付ける"}
+                        kind="fitting"
+                        click={() => install(id, item)}
+                      />
+                    ),
+                )}
+              {zoom && (!opened || id === "beyond") && (
+                <Target
+                  r={m.open}
+                  label={
+                    id === "wall"
+                      ? "幕を巻き上げる"
+                      : id === "beyond"
+                        ? opened
+                          ? "外へ進む"
+                          : "搬出口を開く"
+                        : "取っ手を引く"
+                  }
+                  kind="handle"
+                  click={() => open(id)}
+                />
+              )}
+              {zoom &&
+                opened &&
+                p.rewards?.map(
+                  (item, i) =>
+                    !s.collected.includes(item) && (
+                      <Target
+                        key={item}
+                        r={m.pickups?.[i] ?? m.open}
+                        label={ITEMS[item].name + "を拾う"}
+                        click={() => {
+                          update(E.take(s, id, item));
+                          notify(ITEMS[item].name + "を手に取った。");
+                        }}
+                      />
+                    ),
+                )}
+            </div>
+          );
+        })}
+        {nodes
+          .filter(
+            (n) =>
+              n.type === "clue" &&
+              n.target !== "model" &&
+              n.target !== "memory" &&
+              n.target !== "shutter" &&
+              !CLUES[n.target].requires?.some((x) => !s.solved.includes(x)),
+          )
+          .map((n) => (
+            <Surface key={n.id} q={quad(n.rect)} width={width}>
+              <SceneDocument id={n.target} mounted />
+            </Surface>
+          ))}
+        {key === "4:1" &&
+          [0, 1, 2, 3, 4].map((i) => (
+            <Surface
+              key={"light-" + i}
+              q={quad([26.5, 12 + i * 9.5, 7, 6.8])}
+              width={width}
+            >
+              <Photo
+                asset={{
+                  ...CLUES.shutter.image,
+                  crop: [i * 20 + 1, 31, 18.8, 48],
+                }}
+              />
+            </Surface>
+          ))}
+        {key === "2:0" && (
+          <>
+            <Patch id="retouch-model-leverless" area={[56, 33, 11, 14]} />
+            <Lever
+              asset={photo("retouch-north")}
+              r={[57.1, 33.6, 2.3, 12]}
+              pivot={[50, 94]}
+              angle={demo[0] * 90}
+            />
+            <Lever
+              asset={photo("retouch-north")}
+              r={[63.2, 33.6, 2.3, 12]}
+              pivot={[50, 94]}
+              angle={demo[1] * 90}
+            />
+          </>
+        )}
+        {key === "2:0" && focus?.id === "model" && (
+          <>
+            <Target
+              r={
+                demo[0] === 0
+                  ? [56, 33, 5, 13]
+                  : demo[0] === 1
+                    ? [56, 43, 14, 5]
+                    : [56, 44, 5, 13]
+              }
+              label="見本の左軸"
+              click={() => setDemo([(demo[0] + 1) % 3, 0])}
+            />
+            <Target
+              r={demo[1] === 0 ? [62, 33, 5, 13] : [62, 43, 14, 5]}
+              label="見本の右軸"
+              click={() => {
+                if (demo[0] === 2) setDemo([2, 1 - demo[1]]);
+                else notify("左の爪に当たる。");
+              }}
+            />
+          </>
+        )}
+        {!focus &&
+          nodes
+            .filter(
+              (n) =>
+                !(
+                  n.type === "door" &&
+                  n.requires &&
+                  !s.opened.includes(n.requires)
+                ),
+            )
+            .map((n) => (
+              <Target
+                key={n.type + n.id}
+                r={
+                  n.target === "wall" && s.opened.includes("wall")
+                    ? MECHANISMS.wall.open
+                    : n.rect
+                }
+                label={n.label}
+                click={() => touch(n)}
+              />
+            ))}
+        {focus?.type === "door" && focused && (
+          <Target
+            r={focused.rect}
+            label={
+              E.doorRequirement(s, focus.to!)
+                ? "鍵を使う"
+                : E.doorIsOpen(s, focus.to!)
+                  ? "進む"
+                  : "扉を開く"
+            }
+            click={() => travel(focus.to!)}
+          />
+        )}
+        {focus?.type === "clue" &&
+          focused &&
+          focus.id !== "model" &&
+          focus.id !== "memory" && (
+            <Target
+              r={focused.rect}
+              label="写真を手に取る"
+              click={() => touch({ ...focused, type: "take" })}
+            />
+          )}
+        {focus?.id === "wall" && s.opened.includes("wall") && (
+          <Target
+            r={[36, 20, 35, 54]}
+            label="裏室へ進む"
+            click={() => travel(5)}
+          />
+        )}
+      </div>
+    </div>
+  );
+}

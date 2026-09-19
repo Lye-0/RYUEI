@@ -1,0 +1,242 @@
+[
+  {
+    "id": "reception-north",
+    "prompt": "Use case: precise-object-edit. ONE high-resolution square 2048x2048 master photograph for a point-and-click game. Edit FIRST reference room preserving camera angle, counter, lamps, wall frames, floor, door frame. SECOND reference is a hardware guide. On visible front panel of left oak counter add exactly THREE aged brass turn-tabs like second reference: top tab, middle tab slightly to its right, bottom tab. Remove counter round keyhole. Room door at RIGHT fully CLOSED solid dark wooden panel, brass handle and keyhole; no corridor visible. Three tabs and entire door clearly visible. Exact same room, not another room. No UI, text, labels. Sharp realistic photography for crop zoom using this SAME photo."
+  },
+  {
+    "id": "retouch-north",
+    "prompt": "ONE square 2048x2048 master room photograph. Preserve exact room, worktable, viewpoint, shelf, lamp, tabletop mechanism, right drawer bank. Close large open drawer completely: no gap or exposed tools. Green articulated lamp at LEFT unlit with bulb socket ready. Plain cream paper on tabletop below lamp. Tabletop mechanism CENTER is real brass demonstrator with two distinct vertical black-handled levers and visible dark cassette held by two claws under glass lid. Preserve placements and scale; no camera movement. Tactile realistic photography, readable mechanisms, dim warm ambient light. No graphics, labels or writing. This SAME photograph will also be zoomed to show details."
+  },
+  {
+    "id": "retouch-east",
+    "prompt": "ONE 2048x2048 square photo preserving reference viewpoint and exact six-compartment oak cabinet, sun ornament upper-left, legs, surroundings. Open-front pigeonholes: 3 columns x2 rows. Keep sun upper-left; a few papers and objects in other cubbies. Below them ONE wide SHALLOW wooden drawer currently CLOSED with small centered brass pull. Its face is shallow, not a tall cupboard door; cabinet lower portion can have flat wood below drawer. Six compartment edges clear. Upper-right wall frame unchanged. Photorealistic no text. Entire cabinet visible in master room shot; zoom will be an exact crop of SAME image."
+  },
+  {
+    "id": "gallery-east",
+    "prompt": "Use case: precise-object-edit. ONE highly detailed square 2048x2048 master room photograph for a realistic escape game. Preserve reference camera viewpoint and room architecture, change only specified physical objects. Keep the four photo frames across upper wall and single small drawer below, and the doorway at far right. All frames empty cream photographic paper (images will be mounted later), inside edges straight and clearly separated. Two small frames below drawer also empty cream. Drawer firmly CLOSED with its existing central brass pull. Preserve the whole room exactly. No UI, no labels, no numbers, no decorative added symbols. Crisp photographic wood/metal, muted natural light, not illustration. This ONE master photo will be used for BOTH room and magnified detail by exact crop, so all interactive hardware must be legible."
+  },
+  {
+    "id": "gallery-west",
+    "prompt": "Use case: precise-object-edit. ONE highly detailed square 2048x2048 master room photograph for a realistic escape game. Preserve reference camera viewpoint and room architecture, change only specified physical objects. Preserve closed red-glass darkroom door at left. On brass device at right keep its glass hatch and two downward black-ball brass levers, add one square crank socket centered ABOVE hatch. Device hatch is CLOSED, dark interior, no lens visible. Keep all architecture and device location. No UI, no labels, no numbers, no decorative added symbols. Crisp photographic wood/metal, muted natural light, not illustration. This ONE master photo will be used for BOTH room and magnified detail by exact crop, so all interactive hardware must be legible."
+  },
+  {
+    "id": "darkroom-north",
+    "prompt": "Use case: precise-object-edit. ONE highly detailed square 2048x2048 master room photograph for a realistic escape game. Preserve reference camera viewpoint and room architecture, change only specified physical objects. Three enamel trays remain on bench: LEFT white enamel, MIDDLE black enamel, RIGHT medium gray enamel. Add fourth small water-rinse basin with brass tap at far right. All four physically distinct and fully visible. Beneath trays a single wide shallow drying drawer with central brass handle is CLOSED, replacing current clutter boxes. Poster above bench blank cream paper in same frame. Keep room and perspective. No UI, no labels, no numbers, no decorative added symbols. Crisp photographic wood/metal, muted natural light, not illustration. This ONE master photo will be used for BOTH room and magnified detail by exact crop, so all interactive hardware must be legible."
+  },
+  {
+    "id": "darkroom-west",
+    "prompt": "Use case: precise-object-edit. ONE highly detailed square 2048x2048 master room photograph for a realistic escape game. Preserve reference camera viewpoint and room architecture, change only specified physical objects. In illuminated board on upper left half display exactly FOUR blank cream photographic paper strips SIDE BY SIDE in a single row held by brass clips. Remove other photos within that board. Under board on tabletop have one small CLOSED shallow wood drawer with a brass pull. Keep small closed transfer hatch at right, room, shelves, architecture, viewpoint. No UI, no labels, no numbers, no decorative added symbols. Crisp photographic wood/metal, muted natural light, not illustration. This ONE master photo will be used for BOTH room and magnified detail by exact crop, so all interactive hardware must be legible."
+  },
+  {
+    "id": "studio-north",
+    "prompt": "Use case: precise-object-edit. ONE highly detailed square 2048x2048 master room photograph for a realistic escape game. Preserve reference camera viewpoint and room architecture, change only specified physical objects. Keep curtain fully lowered, exact chair, spotlight, room. Replace small square hatch in left wall with a CLOSED brass-and-dark-wood lighting control cabinet in same location: exactly THREE round brass pushbuttons in a horizontal row, small cable socket below, a tiny closed shallow drawer below buttons with brass pull. At RIGHT curtain support remove only the removable handwheel: show a bare clearly hexagonal spindle at same position. No handle mounted yet. All architecture and chair unchanged. No UI, no labels, no numbers, no decorative added symbols. Crisp photographic wood/metal, muted natural light, not illustration. This ONE master photo will be used for BOTH room and magnified detail by exact crop, so all interactive hardware must be legible."
+  },
+  {
+    "id": "studio-west",
+    "prompt": "Use case: precise-object-edit. ONE highly detailed square 2048x2048 master room photograph for a realistic escape game. Preserve reference camera viewpoint and room architecture, change only specified physical objects. Keep same camera, wheeled wooden stand on floor rails, lamp, walls. Turn only camera body to a rear three-quarter orientation so rear ground-glass screen is prominently visible and blank gray; keep recognizable dark wood, bellows, brass corners. Three small physical brass adjustment knobs in a horizontal row on base beneath glass screen. Front lens absent, empty brass lens mounting ring glimpsed at far side of camera body. Ground glass should be blank ready for image, no pictures. Camera feet and floor rails unchanged. Same ROOM viewpoint. No UI, no labels, no numbers, no decorative added symbols. Crisp photographic wood/metal, muted natural light, not illustration. This ONE master photo will be used for BOTH room and magnified detail by exact crop, so all interactive hardware must be legible."
+  },
+  {
+    "id": "backroom-north",
+    "prompt": "Use case: precise-object-edit. ONE highly detailed square 2048x2048 master room photograph for a realistic escape game. Preserve reference camera viewpoint and room architecture, change only specified physical objects. Preserve exact central solid oak door with THREE horizontal brass bolts side by side in ONE ROW, arched rainy window at left. On small two-lever cabinet at far right retain two upward black-handled levers; add small square crank socket between their pivots, and below the levers a CLOSED shallow paper drawer with brass pull. Keep module clear of door, fully in frame. Everything else unchanged. No UI, no labels, no numbers, no decorative added symbols. Crisp photographic wood/metal, muted natural light, not illustration. This ONE master photo will be used for BOTH room and magnified detail by exact crop, so all interactive hardware must be legible."
+  },
+  {
+    "id": "reception-counter-open",
+    "prompt": "Exact registered photographic state edit. The input is the final master room image: DO NOT reframe, zoom, change camera, relocate furniture or change unaffected details. Open ONLY the counter's front panel at lower LEFT (the panel with three brass tabs). It swings entirely towards the left edge so the three latches no longer cover the opening. Show a dark shallow storage compartment with ONE antique brass key clearly lying on its shelf. Preserve entire room framing and keep the RIGHT room door CLOSED. No other changes. Keep the same square canvas and photographic quality. No words, UI, added outlines. The output will be overlaid at identical pixel coordinates."
+  },
+  {
+    "id": "reception-door-open",
+    "prompt": "Exact registered photographic state edit. The input is the final master room image: DO NOT reframe, zoom, change camera, relocate furniture or change unaffected details. Open ONLY the room door at RIGHT, inward into the gallery. Show the same dim hallway as the original photography house. Counter front panel and three brass tabs remain CLOSED and unchanged. Door frame, walls, lamp and camera viewpoint absolutely unchanged. Keep the same square canvas and photographic quality. No words, UI, added outlines. The output will be overlaid at identical pixel coordinates."
+  },
+  {
+    "id": "retouch-rack-open",
+    "prompt": "Exact registered photographic state edit. The input is the final master room image: DO NOT reframe, zoom, change camera, relocate furniture or change unaffected details. Open ONLY the shallow centered drawer under six cubbies. Inside lie exactly two objects: small dark-handled metal crank at LEFT, black photographic dry-plate case at RIGHT, both clearly separated and pickable. Keep six cubbies, sun, all objects, camera and room exactly unchanged. Keep the same square canvas and photographic quality. No words, UI, added outlines. The output will be overlaid at identical pixel coordinates."
+  },
+  {
+    "id": "retouch-lamp-on",
+    "prompt": "Exact registered photographic state edit. The input is the final master room image: DO NOT reframe, zoom, change camera, relocate furniture or change unaffected details. Change ONLY lamp and light: install a milky bulb under the same green lamp shade, turn it on. Lamp remains high in original position. Paper remains plain. Both large desk drawers stay CLOSED. Everything else, mechanism and room geometry identical. Keep the same square canvas and photographic quality. No words, UI, added outlines. The output will be overlaid at identical pixel coordinates."
+  },
+  {
+    "id": "retouch-lamp-low",
+    "prompt": "Exact registered photographic state edit. The input is the final master room image: DO NOT reframe, zoom, change camera, relocate furniture or change unaffected details. Change ONLY green lamp pose/light: bulb installed, lower articulated shade to LEFT LOW position close to paper, casting strong raking light from left across paper. Paper gains faint square embossed cut marks; do not change its position. Drawer at right stays CLOSED; tabletop mechanism unchanged. Same master camera and room. Keep the same square canvas and photographic quality. No words, UI, added outlines. The output will be overlaid at identical pixel coordinates."
+  },
+  {
+    "id": "retouch-lamp-open",
+    "prompt": "Exact registered photographic state edit. The input is the final master room image: DO NOT reframe, zoom, change camera, relocate furniture or change unaffected details. Change ONLY right-hand large desk drawer: pull it open with a realistic visible interior and ONE large pair of metal tailoring scissors inside. Left drawer remains closed. Lower the lit green lamp at left to a low raking-light position. Preserve tabletop mechanism, all furniture, camera and background exactly. Keep the same square canvas and photographic quality. No words, UI, added outlines. The output will be overlaid at identical pixel coordinates."
+  },
+  {
+    "id": "reception-unlatched",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Rotate each of the THREE horizontal brass retaining tabs on the left counter panel exactly 90 degrees into vertical position about its left screw. Keep panel closed. All three tabs now release panel. Do not add a keyhole."
+  },
+  {
+    "id": "reception-counter-empty",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Remove ONLY the brass key inside the open counter shelf. Leave open panel and everything else pixel registered."
+  },
+  {
+    "id": "retouch-rack-empty",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Remove ONLY the crank and black plate case inside the open drawer. Leave drawer open."
+  },
+  {
+    "id": "retouch-lamp-empty",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Remove ONLY the scissors from the open right drawer. Leave drawer open."
+  },
+  {
+    "id": "gallery-frames-open",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Pull open the wall-mounted drawer below the four blank frames. Inside the open drawer place a small old brass key with red thread on LEFT and one clear incandescent light bulb on RIGHT. Preserve blank papers and all other objects."
+  },
+  {
+    "id": "gallery-feed-open",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Open ONLY the brass mechanism's small rectangular glass hatch (at x73-91%,y36-42%) upwards revealing a small round brass camera lens inside. Keep two levers and the square socket unchanged. Door stays closed."
+  },
+  {
+    "id": "gallery-door-open",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Open ONLY the tall red-glass door on the LEFT to reveal a darkroom with dim red light. Preserve brass mechanism on right exactly."
+  },
+  {
+    "id": "darkroom-develop-open",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Pull open ONLY the wide wooden drawer below the trays; inside put ONE curled blank photographic paper at center. Preserve all trays and blank wall poster."
+  },
+  {
+    "id": "darkroom-panorama-open",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Pull open ONLY the small shallow wooden box drawer on countertop directly below the four blank hanging paper strips, x12-28%,y53-58%. Inside place one slim black glass plate with metal edge. Keep rest identical."
+  },
+  {
+    "id": "studio-shutters-open",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Open ONLY the tiny lower drawer in the wall mechanism on far left at x8-16%, y48-53%. Inside place a small dark metal removable handwheel with circular rim. Keep curtain spindle bare and backdrop closed."
+  },
+  {
+    "id": "studio-wheel",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Install a dark metal handwheel on the bare horizontal spindle on RIGHT curtain support at x83%,y45%. Wheel diameter 8 percent of picture width. Backdrop remains lowered."
+  },
+  {
+    "id": "backroom-feed-open",
+    "prompt": "Registered photographic state edit for a realistic escape game. Keep camera, perspective, lighting, crop and every unaffected pixel exactly the same as reference. No new text or UI. Pull open ONLY the tiny paper drawer in the far RIGHT narrow mechanism, x88-96%,y34-41%. Inside place ONE white photographic paper. Leave door bolts shut and levers unchanged."
+  },
+  {
+    "id": "gallery-frames-empty",
+    "prompt": "Exactly registered state photograph. Preserve the reference camera, perspective, composition, all unaffected pixels. No text, no UI. Remove only the red-thread key and light bulb from the open drawer."
+  },
+  {
+    "id": "gallery-feed-empty",
+    "prompt": "Exactly registered state photograph. Preserve the reference camera, perspective, composition, all unaffected pixels. No text, no UI. Remove only the camera lens from the open brass hatch."
+  },
+  {
+    "id": "darkroom-develop-empty",
+    "prompt": "Exactly registered state photograph. Preserve the reference camera, perspective, composition, all unaffected pixels. No text, no UI. Remove only the curled photographic paper in the open drawer."
+  },
+  {
+    "id": "darkroom-panorama-empty",
+    "prompt": "Exactly registered state photograph. Preserve the reference camera, perspective, composition, all unaffected pixels. No text, no UI. Remove only the slim black glass plate in the small open countertop drawer."
+  },
+  {
+    "id": "studio-shutters-empty",
+    "prompt": "Exactly registered state photograph. Preserve the reference camera, perspective, composition, all unaffected pixels. No text, no UI. Remove only the small handwheel from the open little wall drawer."
+  },
+  {
+    "id": "backroom-feed-empty",
+    "prompt": "Exactly registered state photograph. Preserve the reference camera, perspective, composition, all unaffected pixels. No text, no UI. Remove only the white paper from the small open drawer on far right."
+  },
+  {
+    "id": "studio-curtain-open",
+    "prompt": "Exactly registered state photograph. Preserve the reference camera, perspective, composition, all unaffected pixels. No text, no UI. Wind up the big gray backdrop curtain to the top roll, uncovering a dark narrow human-height doorway at center in the plaster wall behind. Keep chair on exactly same spot foreground, lamps and wheel same."
+  },
+  {
+    "id": "studio-camera-open",
+    "prompt": "Exactly registered state photograph. Preserve the reference camera, perspective, composition, all unaffected pixels. No text, no UI. Pull open the small storage drawer immediately BELOW camera back, x31-47%,y49-53%, exposing a coiled thin black shutter release cable with a small brass plunger inside. Camera stays still, groundglass empty."
+  },
+  {
+    "id": "backroom-east",
+    "prompt": "Original high resolution photographic master; reuse identical source for room and zoom."
+  },
+  {
+    "id": "gallery-leverless",
+    "prompt": "Escape game photographic asset. Remove ONLY both two thin brass lever arms and black knobs from the mechanism. Leave circular pivot hubs in exactly same positions. Repair underlying brass plate and glass hatch naturally. Keep everything else identical."
+  },
+  {
+    "id": "backroom-leverless",
+    "prompt": "Escape game photographic asset. Remove ONLY both long vertical lever arms and round black knobs above the small far-right wall mechanism. Keep wall texture naturally behind them, two pivot attachment points at x89%,y24% and x94%,y24% unchanged. Do not change mechanism drawer or door."
+  },
+  {
+    "id": "retouch-model-leverless",
+    "prompt": "Escape game photographic asset. Remove ONLY the two long vertical arms and black knobs of the small brass model on the desk at x58 and64%,y35-45%. Keep horizontal shaft, pivot hubs, clamps and glass plate in exactsame locations."
+  },
+  {
+    "id": "studio-camera-empty",
+    "prompt": "Escape game photographic asset. Remove only the coiled shutter release cable in the open camera drawer. Leave drawer open."
+  },
+  {
+    "id": "backroom-door-open",
+    "prompt": "Escape game photographic asset. Open the CENTRAL tall wooden exit door outward into rainy night garden. Only change the door region, preserve arched window on left and paper device far-right exactly. The door has three horizontal brass bolts disengaged. Same camera."
+  },
+  {
+    "id": "camera-view-0",
+    "prompt": "Escape game photographic asset. Produce one realistic old monochrome photograph of THIS exact chair, gray backdrop, right brass support and scratched floor as seen from a camera slightly to LEFT of current viewpoint. Frame chair at center with entire seat and legs and the right backdrop support visible behind it. No margins, no printed words, no other architecture or people. Tall portrait crop."
+  },
+  {
+    "id": "camera-view-1",
+    "prompt": "Escape game photographic asset. Produce one realistic old monochrome photograph of THIS exact chair, gray backdrop, right brass support and scratched floor from the current centered viewpoint. Frame chair centrally with entire seat and legs and the right backdrop support visible far right. No margins, text or people. Tall portrait crop."
+  },
+  {
+    "id": "camera-view-2",
+    "prompt": "Escape game photographic asset. Produce one realistic old monochrome photograph of THIS exact chair, gray backdrop, right brass support and scratched floor from far to the RIGHT of current viewpoint so the right leg of the chair lines up in front of the right brass backdrop support pole. Seat and bothlegs visible. No margins, text, people, columns or different architecture. Tall portrait crop."
+  },
+  {
+    "id": "rear-exterior",
+    "prompt": "Escape game photographic asset. Photorealistic antique monochrome documentary photograph taken OUTSIDE this exact rear doorway, facing the exterior wall. Door is LEFT and narrow tall arched window RIGHT because view is reversed. Plain old timber/plaster facade, same dark wood paneled door proportions; simple rainy courtyard with the lantern visible behind/right of window. No signs, no letters. Square photo, no borders."
+  },
+  {
+    "id": "retouch-lamp-socket",
+    "prompt": "Registered edit. Remove ONLY bulb inside green lamp shade on LEFT. Leave empty dark screw socket clearly visible inside shade, unlit. Keep every other part of scene unchanged."
+  },
+  {
+    "id": "layout-plan",
+    "prompt": "Edit this antique hand-drawn map minimally. Top row middle room window MUST have a clear semicircular ARCHED TOP. Top left room round circular window; top right room plain rectangle window. No words. Preserve 3x3 room layout and drawings on aged paper."
+  },
+  {
+    "id": "studio-gallery-open",
+    "prompt": "Registered state edit. Open ONLY central double wood glass doors to exhibition hallway with rug and framed photos. Preserve room wall and frames exactly. Same camera."
+  },
+  {
+    "id": "lamp-pose-1-1",
+    "prompt": "Registered photograph. ONLY reposition and bend the green task lamp on LEFT of desk. Bulb installed and lit. Put center of round lamp base at x=24%, y=51%. Put shade center at x=35%, y=36%. Lamp arm bent naturally to connect them. Other objects, model, drawers, room, camera and framing unchanged. Lamp stays within x49%. Paper on desk remains plain."
+  },
+  {
+    "id": "darkroom-glass-board",
+    "prompt": "Registered photographic edit. Replace ONLY the very flat little 3-holder lighttable on the desk at x32-66%,y53-59% with a firmly tilted easel lightbox facing viewer. New lightbox occupies x32-66%,y42-59%, rectangular white backlit face with THREE EMPTY square brass glass holders side-by-side. Make each holder clearly large and square on tilted face, no illustrations, no text, no glass yet. Preserve camera position and all other room objects exactly."
+  },
+  {
+    "id": "retouch-cut-board",
+    "prompt": "Registered photographic edit. Tilt ONLY the central lighttable drawing board upward toward viewer on a sturdy easel. It now occupies x30-64%, y35-53%. Same beige paper with exactly 3x3 faint embossed rectangular cells, tall enough to touch separately. Keep cutter at left, tray at right, room camera and all background unchanged. No extra text."
+  },
+  {
+    "id": "glass-triptych",
+    "prompt": "Create a photorealistic macro image of THREE perfectly square transparent glass panes placed side by side with no gaps, on neutral pale illuminated background. One continuous thin etched outline of the reference's arched window spans all three: semicircular arch on top, two vertical sides, irregular small tree branches at lower left and lower right for orientation. All three squares together make a 3:1 wide rectangle filling image; exactly matching heights and edges. No frames, no words, no wood background. Three pieces align into one asymmetric continuous window drawing."
+  },
+  {
+    "id": "gallery-studio-open-v2",
+    "prompt": "Preserve image1 camera, doors and all hallway objects exactly. Replace ONLY what is visible THROUGH the open doors with the exact studio in image2: same gray backdrop, ornate brass support poles, same wooden chair, lamp, and herringbone parquet floor, correct distance perspective. Do not invent any room elements. Registered photographic state edit."
+  },
+  {
+    "id": "darkroom-gallery-open-v2",
+    "prompt": "Keep image1 darkroom, door and camera position exactly. Replace ONLY view through open door with the old dim photography gallery of image2: distressed gray plaster, dark wood wainscoting, antique framed portraits, Persian rug on dark parquet floor, warm old brass wall sconces. No modern spotlights, no modern clean walls. Registered photographic edit."
+  },
+  {
+    "id": "studio-shutters-cable",
+    "prompt": "Keep image1 whole scene registered and identical. Connect the exact thin black coiled shutter cable shown in image2's camera drawer to the round socket below the three brass buttons on the far LEFT wall of image1. Cable hangs short below socket beside the small drawer, not over the drawer. Preserve every other pixel."
+  },
+  {
+    "id": "gallery-studio-revealed:0",
+    "prompt": "Registered photographic state edit. Keep first image's hallway, camera, all foreground doors, frames, floor and lighting exactly. Through the open studio doors, the gray backdrop is now wound UP revealing the narrow dark doorway exactly as shown in second reference. Same chair remains in same place as first reference. Change ONLY distant studio backdrop area. No other changes."
+  },
+  {
+    "id": "clues-b:3",
+    "prompt": "Photographic clue for an escape game. One very wide horizontal strip containing exactly FIVE equal SQUARE monochrome photographs edge-to-edge, 5:1 overall aspect, no words/numbers/wood/background, thin ivory borders only. All five photographs show the SAME wooden chair from this reference (two horizontal back rails, woven seat), SAME fixed frontal camera, SAME gray backdrop, same floor. Only lighting changes. Photo1: light from RIGHT, strong clear chair shadow extending LEFT. Photo2: light from RIGHT, longer shadow LEFT. Photo3: overhead light, strong centered shadow projecting STRAIGHT TOWARD THE VIEWER. Photo4: light from LEFT, strong clear shadow extending RIGHT. Photo5: light from LEFT, longer shadow RIGHT. Whole chair and enough floor visible in every square. Identical chair and composition. High contrast shadows, realistic antique silver gelatin photo quality. 2500 by 500 image."
+  },
+  {
+    "id": "backroom:2",
+    "prompt": "Precise registered correction of FIRST reference. ONLY fix the wooden chair near the doorway: replace its incorrect vertical back spindles with the EXACT chair in SECOND reference, seen FROM BEHIND. Exactly TWO horizontal back rails: broad curved top rail and one thinner horizontal rail midway; NO vertical spindles between side uprights. Same worn woven seat, same position and scale as first image. Also the distant double glass doors behind the camera must be OPEN to the warm hallway, preserving their frame position. Do not change camera, doorway, room walls, floor, exposure or any other object. Photorealistic."
+  },
+  {
+    "id": "studio-shutters-open:0",
+    "prompt": "Exact registered photographic edit of FIRST image. Change ONLY the little handwheel resting INSIDE the open wall drawer at far left (x11-15%,y49-53%). It must be the SAME FIVE-SPOKE dark metal handwheel shown installed on right support in SECOND image: five evenly spaced slim spokes, circular rim and central hub. Keep its existing small size, position and perspective inside the drawer. Do not change the drawer, frame, walls, background curtain, lamps or any other pixel. This is object identity consistency, not a redesign."
+  }
+]

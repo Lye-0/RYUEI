@@ -8,6 +8,7 @@ export type State = {
   wall: number;
   visited: number[];
   doors: string[];
+  openDoors: string[];
   inventory: string[];
   installed: Record<string, string[]>;
   solved: string[];
@@ -30,6 +31,7 @@ export const fresh = (): State => ({
   wall: 0,
   visited: [0],
   doors: [],
+  openDoors: [],
   inventory: [],
   installed: {},
   solved: [],
@@ -114,7 +116,7 @@ export function solve(s: State, id: string): State {
 export function open(s: State, id: string): State {
   if (
     PUZZLES[id]?.room !== s.room ||
-    !s.solved.includes(id) ||
+    (!s.solved.includes(id) && id !== "lamp") ||
     s.opened.includes(id)
   )
     return s;
@@ -146,8 +148,8 @@ export const neighbors: Record<number, number[]> = {
   0: [1],
   1: [0, 2, 3, 4],
   2: [1],
-  3: [1, 4],
-  4: [1, 3, 5],
+  3: [1],
+  4: [1, 5],
   5: [4],
 };
 export function doorRequirement(s: State, to: number) {
@@ -155,6 +157,31 @@ export function doorRequirement(s: State, to: number) {
     return "brassKey";
   if (to === 3 && !s.doors.includes("darkroom")) return "archiveKey";
   return null;
+}
+export function doorId(s: State, to: number) {
+  if ([s.room, to].sort().join() === "0,1") return "gallery";
+  if ([s.room, to].sort().join() === "1,3") return "darkroom";
+  if ([s.room, to].sort().join() === "1,4") return "studio";
+  return null;
+}
+export function doorIsOpen(s: State, to: number) {
+  const id = doorId(s, to);
+  return !id || s.openDoors.includes(id);
+}
+export function unlockDoor(s: State, to: number, key: string | null): State {
+  const need = doorRequirement(s, to),
+    id = doorId(s, to);
+  if (!id || !need || key !== need || !s.inventory.includes(need)) return s;
+  return {
+    ...s,
+    doors: [...s.doors, id],
+    inventory: s.inventory.filter((x) => x !== need),
+  };
+}
+export function openDoor(s: State, to: number): State {
+  const id = doorId(s, to);
+  if (!id || doorRequirement(s, to) || s.openDoors.includes(id)) return s;
+  return { ...s, openDoors: [...s.openDoors, id] };
 }
 export function move(
   s: State,
@@ -171,7 +198,7 @@ export function move(
     return s;
   if (to === 5 && !s.opened.includes("wall")) return s;
   const key = doorRequirement(s, to);
-  if (key && (!s.inventory.includes(key) || selected !== key)) return s;
+  if (key || (!fast && !doorIsOpen(s, to))) return s;
   return {
     ...s,
     room: to,
@@ -202,7 +229,9 @@ export function observe(s: State, id: string): State {
   return { ...s, seen: [...new Set([...s.seen, id])] };
 }
 export function finish(s: State): State {
-  return s.room === 5 && s.solved.includes("beyond")
+  return s.room === 5 &&
+    s.solved.includes("beyond") &&
+    s.opened.includes("beyond")
     ? { ...s, finished: true }
     : s;
 }
@@ -241,7 +270,7 @@ export function parse(raw: string | null): State | null {
       !a.collected.every((x: string) => ITEMS[x]) ||
       !a.inventory.every((x: string) => a.collected.includes(x)) ||
       !a.solved.every((x: string) => PUZZLES[x]) ||
-      !a.opened.every((x: string) => a.solved.includes(x)) ||
+      !a.opened.every((x: string) => x === "lamp" || a.solved.includes(x)) ||
       !a.seen.every((x: string) => CLUES[x])
     )
       return null;
@@ -266,11 +295,35 @@ export function parse(raw: string | null): State | null {
       )
     )
       return null;
+    if (Array.isArray(a.values.lamp) && a.values.lamp.length === 2)
+      a.values.lamp = [a.values.lamp[1]];
+    if (Array.isArray(a.values.panel))
+      a.values.panel = [...new Set(a.values.panel)];
     if (!Object.entries(a.values).every(([id, v]) => validValues(id, v)))
       return null;
+    for (const id of ["panel", "lamp"]) {
+      const input = a.values[id];
+      const ready =
+        id === "panel"
+          ? Array.isArray(input) && input.length === 3
+          : a.installed.lamp?.includes("bulb") && input?.[0] === 2;
+      if (ready && !a.solved.includes(id)) a.solved = [...a.solved, id];
+    }
     return {
       ...fresh(),
       ...a,
+      inventory: a.inventory.filter(
+        (item: string) =>
+          ITEMS[item].reusable ||
+          !Object.values(a.installed).some((items: any) =>
+            items.includes(item),
+          ),
+      ),
+      openDoors: Array.isArray(a.openDoors)
+        ? a.openDoors.filter((x: string) =>
+            ["gallery", "darkroom", "studio"].includes(x),
+          )
+        : [...a.doors, ...(a.visited.includes(4) ? ["studio"] : [])],
       wall: Number.isInteger(a.wall) && a.wall >= 0 && a.wall < 4 ? a.wall : 0,
       sound: a.sound === true,
       motion: a.motion !== false,

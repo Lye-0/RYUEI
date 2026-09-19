@@ -23,9 +23,15 @@ export function Photo({
       aria-label={label || undefined}
       className={"photo " + className}
       style={{
-        ...style,
         backgroundImage: `url(${url})`,
-        backgroundSize: "100% 100%",
+        backgroundSize: asset.crop
+          ? `${10000 / asset.crop[2]}% ${10000 / asset.crop[3]}%`
+          : "100% 100%",
+        backgroundPosition: asset.crop
+          ? `${asset.crop[2] === 100 ? 0 : (asset.crop[0] / (100 - asset.crop[2])) * 100}% ${asset.crop[3] === 100 ? 0 : (asset.crop[1] / (100 - asset.crop[3])) * 100}%`
+          : undefined,
+        transform: asset.mirror ? "scaleX(-1)" : undefined,
+        ...style,
       }}
     >
       <img

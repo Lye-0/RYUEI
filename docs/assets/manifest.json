@@ -1,13 +1,5 @@
 [
   {
-    "id": "reception:0",
-    "path": "public/images/rooms/reception/views/north.webp",
-    "bytes": 40662,
-    "width": 500,
-    "height": 500,
-    "sha256": "267709129b43f48f5d02dbd111bf75355cd03c206bc2a1bffcbac6f5dbeb4164"
-  },
-  {
     "id": "reception:1",
     "path": "public/images/rooms/reception/views/east.webp",
     "bytes": 44146,
@@ -56,28 +48,12 @@
     "sha256": "41a7b976b3d27f4d23049fe83ef76f9c4595cdd267c1553d08901c355e023154"
   },
   {
-    "id": "gallery:1",
-    "path": "public/images/rooms/gallery/views/east.webp",
-    "bytes": 39790,
-    "width": 500,
-    "height": 500,
-    "sha256": "dbfcbeab55397397903a03ea1071f1b9fd8181d6c60bbb35c85c2e92546bd09b"
-  },
-  {
     "id": "gallery:2",
     "path": "public/images/rooms/gallery/views/south.webp",
     "bytes": 34566,
     "width": 500,
     "height": 500,
     "sha256": "d5a9a5bb90e0b012d69913c6154a534ca6949e7599e5414c425c47b367cff808"
-  },
-  {
-    "id": "gallery:3",
-    "path": "public/images/rooms/gallery/views/west.webp",
-    "bytes": 35250,
-    "width": 500,
-    "height": 500,
-    "sha256": "9ff90d62bbbc5580744f675ee6dfd673e8402b66b8175ac1bc6bb6b2148ab622"
   },
   {
     "id": "gallery:4",
@@ -96,36 +72,12 @@
     "sha256": "35396de1cb3c6088b3c078a608f83f03820392b4e13a8c73087a19e6481e9e44"
   },
   {
-    "id": "retouch:0",
-    "path": "public/images/rooms/retouch/views/north.webp",
-    "bytes": 47340,
-    "width": 500,
-    "height": 500,
-    "sha256": "af41231c9bfc59d1fcfcfd1e6bd4cb69e113d6d19af4448d904c267e3d352cdd"
-  },
-  {
-    "id": "retouch:1",
-    "path": "public/images/rooms/retouch/views/east.webp",
-    "bytes": 42076,
-    "width": 500,
-    "height": 500,
-    "sha256": "23bbea4fcc6592374a7ab1e49dbe4cb69b761b15ba85d659f0f067a70d767e2d"
-  },
-  {
     "id": "retouch:2",
     "path": "public/images/rooms/retouch/views/south.webp",
     "bytes": 36190,
     "width": 500,
     "height": 500,
     "sha256": "900d1547d82b050963d9d571e423831f2fd6e4972412aae30c4b8d64b8b5ee7a"
-  },
-  {
-    "id": "retouch:3",
-    "path": "public/images/rooms/retouch/views/west.webp",
-    "bytes": 42582,
-    "width": 500,
-    "height": 500,
-    "sha256": "55ba94207eecf18c7270d19304f1ca8b73ca5306ec585aa36f99b045db4ffb7a"
   },
   {
     "id": "retouch:4",
@@ -144,36 +96,12 @@
     "sha256": "0a019c5e69a877c7322f148db4d2e7f9e69f340e382c9833719364cbaeb5bbea"
   },
   {
-    "id": "darkroom:0",
-    "path": "public/images/rooms/darkroom/views/north.webp",
-    "bytes": 38200,
-    "width": 500,
-    "height": 500,
-    "sha256": "0de21442bfc5ca16f9aef2e36608be0a800736aeddf32a0ef6ff03c03524e3ff"
-  },
-  {
-    "id": "darkroom:1",
-    "path": "public/images/rooms/darkroom/views/east.webp",
-    "bytes": 38728,
-    "width": 500,
-    "height": 500,
-    "sha256": "b5d9e3bb30b62b6e0064884b5e22f9825a64df4861db3d19112a4e18c9cde400"
-  },
-  {
     "id": "darkroom:2",
     "path": "public/images/rooms/darkroom/views/south.webp",
     "bytes": 39802,
     "width": 500,
     "height": 500,
     "sha256": "54750225029999e55092806b413186994cccaf988e4942a29e63a43a8b243600"
-  },
-  {
-    "id": "darkroom:3",
-    "path": "public/images/rooms/darkroom/views/west.webp",
-    "bytes": 38372,
-    "width": 500,
-    "height": 500,
-    "sha256": "5203218b2d07a92c9a59ba503709182e1294962d5b4f4d4553ae8df800dd528f"
   },
   {
     "id": "darkroom:4",
@@ -192,14 +120,6 @@
     "sha256": "5ec1bb8200d418aa32968f10629ae3f1d8b45bb892564f918b0a044cc96902e7"
   },
   {
-    "id": "studio:0",
-    "path": "public/images/rooms/studio/views/north.webp",
-    "bytes": 42414,
-    "width": 500,
-    "height": 500,
-    "sha256": "36a1fe553a34aca399fe8dda43ebcbde61de37b9125458510fd8f5a7522f01f8"
-  },
-  {
     "id": "studio:1",
     "path": "public/images/rooms/studio/views/east.webp",
     "bytes": 44918,
@@ -216,14 +136,6 @@
     "sha256": "f6dec9c9bbfb7b9b5d59682124bfb174062ce622607954e4d87d768c742ed0bd"
   },
   {
-    "id": "studio:3",
-    "path": "public/images/rooms/studio/views/west.webp",
-    "bytes": 47630,
-    "width": 500,
-    "height": 500,
-    "sha256": "a8cec56d09c89671af49231b377009a1946be59ee482f73fe2672026f03325a3"
-  },
-  {
     "id": "studio:4",
     "path": "public/images/rooms/studio/views/ceiling.webp",
     "bytes": 45128,
@@ -238,14 +150,6 @@
     "width": 500,
     "height": 500,
     "sha256": "86185205a38cdfddb18d26da18d555294ce2d4cd852d76f8246898845c025be1"
-  },
-  {
-    "id": "backroom:2",
-    "path": "public/images/rooms/backroom/views/south.webp",
-    "bytes": 35476,
-    "width": 500,
-    "height": 500,
-    "sha256": "9a775f988853863fee9f0ad8366d666176ccc6ff210fbc8e3c6adfcecb715565"
   },
   {
     "id": "backroom:3",
@@ -270,230 +174,6 @@
     "width": 500,
     "height": 500,
     "sha256": "f3a9f9813cf6f9ae9cee911787b7e3910dc134278a55dc70ea478714c2bd19fe"
-  },
-  {
-    "id": "reception-details:0",
-    "path": "public/images/rooms/reception/details/counter-closed.webp",
-    "bytes": 63178,
-    "width": 500,
-    "height": 500,
-    "sha256": "d393da4b3a9593b32758b7fc6a0e0d909eec1e147fa413f4561fe4c458b8996f"
-  },
-  {
-    "id": "reception-details:1",
-    "path": "public/images/rooms/reception/details/counter-open-key.webp",
-    "bytes": 55834,
-    "width": 500,
-    "height": 500,
-    "sha256": "00eb60904ac62ee14d422e67d8cb963ecfd55773ee5a564957a35f51cca33cc2"
-  },
-  {
-    "id": "reception-details:2",
-    "path": "public/images/rooms/reception/details/counter-open-empty.webp",
-    "bytes": 54590,
-    "width": 500,
-    "height": 500,
-    "sha256": "4ceb239a55a06caaabdd8f80ff13b37aa7e411cd9e33e33771cb4309ace2b866"
-  },
-  {
-    "id": "gallery-details:0",
-    "path": "public/images/rooms/gallery/details/cabinet-closed.webp",
-    "bytes": 68362,
-    "width": 500,
-    "height": 500,
-    "sha256": "3d77745698f5278e22fa94716d877776b8996ba16aa8100d8c4210a4b28a96d1"
-  },
-  {
-    "id": "gallery-details:1",
-    "path": "public/images/rooms/gallery/details/cabinet-open-both.webp",
-    "bytes": 58720,
-    "width": 500,
-    "height": 500,
-    "sha256": "dc980d46ac4e9e191762cc38134bfd4b30cc0aebd714559bdd4d7fe4b81d62f9"
-  },
-  {
-    "id": "gallery-details:2",
-    "path": "public/images/rooms/gallery/details/cabinet-open-empty.webp",
-    "bytes": 60942,
-    "width": 500,
-    "height": 500,
-    "sha256": "675227d1d4c9bd0bc9397a981061ad957a046333a8ca88c23472ae3411f3c55d"
-  },
-  {
-    "id": "gallery-details:4",
-    "path": "public/images/rooms/gallery/details/transfer-open-lens.webp",
-    "bytes": 67092,
-    "width": 500,
-    "height": 500,
-    "sha256": "a61c5d452ed72fa782dc8f7fa09c9b7c3a508fa3005476e3dee1f6b15bf07b74"
-  },
-  {
-    "id": "gallery-details:5",
-    "path": "public/images/rooms/gallery/details/transfer-open-empty.webp",
-    "bytes": 63850,
-    "width": 500,
-    "height": 500,
-    "sha256": "67fed32eedaaba1580d2234c6956d9bfbefea3ee013d6f2d57d0514ef7b8b54b"
-  },
-  {
-    "id": "retouch-details:0",
-    "path": "public/images/rooms/retouch/details/shelf-closed.webp",
-    "bytes": 64460,
-    "width": 500,
-    "height": 500,
-    "sha256": "f22a0de26f9a46ac34523c8868d55ed3bfbc10bf8271b949fb33952f9bb827ba"
-  },
-  {
-    "id": "retouch-details:1",
-    "path": "public/images/rooms/retouch/details/shelf-open-both.webp",
-    "bytes": 51424,
-    "width": 500,
-    "height": 500,
-    "sha256": "fd1858b392ba30f06789140436f9bf2d6ddd019cc29e802225ccee27175ebe48"
-  },
-  {
-    "id": "retouch-details:2",
-    "path": "public/images/rooms/retouch/details/shelf-open-empty.webp",
-    "bytes": 51290,
-    "width": 500,
-    "height": 500,
-    "sha256": "98491ce5e756f1a0714efb6946320adfbbdec0a104f55c5694cbf08904035bf4"
-  },
-  {
-    "id": "retouch-details:4",
-    "path": "public/images/rooms/retouch/details/cutting-board.webp",
-    "bytes": 68534,
-    "width": 500,
-    "height": 500,
-    "sha256": "d8a1497b7178b304f216af794990e06a6ca9c60b1f77cb55b42c16d3932d3118"
-  },
-  {
-    "id": "darkroom-details:0",
-    "path": "public/images/rooms/darkroom/details/trays-closed-storage.webp",
-    "bytes": 49354,
-    "width": 500,
-    "height": 500,
-    "sha256": "fbe26c1c1856aac3a576da52c3d3f3a3f0237cd21f47679199897cf60a14ac12"
-  },
-  {
-    "id": "darkroom-details:1",
-    "path": "public/images/rooms/darkroom/details/trays-open-photos.webp",
-    "bytes": 48694,
-    "width": 500,
-    "height": 500,
-    "sha256": "7d2629ba666b2f4e677242aaa6265704b9c54b9bc445efc09a0ac985de86e53c"
-  },
-  {
-    "id": "darkroom-details:2",
-    "path": "public/images/rooms/darkroom/details/trays-open-empty.webp",
-    "bytes": 44092,
-    "width": 500,
-    "height": 500,
-    "sha256": "8eb1d95c1b1b6e055a5432ffbdaf9485be6e09e6e4a7320d68fcf8e634ac93e1"
-  },
-  {
-    "id": "darkroom-details:3",
-    "path": "public/images/rooms/darkroom/details/easel.webp",
-    "bytes": 52930,
-    "width": 500,
-    "height": 500,
-    "sha256": "caa0303fb519e0116c9dd4f6522cbcb33c9069644516cad5c1067e4c7626a814"
-  },
-  {
-    "id": "darkroom-details:4",
-    "path": "public/images/rooms/darkroom/details/lightbox.webp",
-    "bytes": 30672,
-    "width": 500,
-    "height": 500,
-    "sha256": "6164bb7a243c2a2bcca0c8412c47fb378002cd339105cae690d4e820a4d14250"
-  },
-  {
-    "id": "studio-details:0",
-    "path": "public/images/rooms/studio/details/camera-closed.webp",
-    "bytes": 39432,
-    "width": 500,
-    "height": 500,
-    "sha256": "93551f03da3b5f441dc3f7761b9112aa9c4a14fbe71bc83df9e6308aa25f5201"
-  },
-  {
-    "id": "studio-details:1",
-    "path": "public/images/rooms/studio/details/camera-open-cable.webp",
-    "bytes": 39744,
-    "width": 500,
-    "height": 500,
-    "sha256": "8f6ef093a1c60210d4b0e86bcbc2bff861e4ee36208f3dbce6ed982cd81c55fa"
-  },
-  {
-    "id": "studio-details:2",
-    "path": "public/images/rooms/studio/details/camera-open-empty.webp",
-    "bytes": 40352,
-    "width": 500,
-    "height": 500,
-    "sha256": "3c1ab08bffebd2c80d64722eb7a05e9c16ea465ac745413ae525ff3173204573"
-  },
-  {
-    "id": "studio-details:3",
-    "path": "public/images/rooms/studio/details/light-switch.webp",
-    "bytes": 54612,
-    "width": 500,
-    "height": 500,
-    "sha256": "565e197d1bea9f1b6901648e2df7f48f1575516504258d0bd3049e6aace19f42"
-  },
-  {
-    "id": "studio-details:4",
-    "path": "public/images/rooms/studio/details/curtain-lowered.webp",
-    "bytes": 38586,
-    "width": 500,
-    "height": 500,
-    "sha256": "a58a1702e2e69cfb00ba9c301c8ac8f00e097df2f1d1b2d4bedb4a8fdaf5a2e6"
-  },
-  {
-    "id": "backroom-details:1",
-    "path": "public/images/rooms/backroom/details/transfer-open-paper.webp",
-    "bytes": 39512,
-    "width": 500,
-    "height": 500,
-    "sha256": "0c201d800a87b2d97ffce0aad844bcf312ed21f71b92beeb957580205fafdb9f"
-  },
-  {
-    "id": "backroom-details:2",
-    "path": "public/images/rooms/backroom/details/transfer-open-empty.webp",
-    "bytes": 41202,
-    "width": 500,
-    "height": 500,
-    "sha256": "aad53992ab642aa752d3e1963e8ea2ab8ff6fbe7903be1a08513d70cca5ba89f"
-  },
-  {
-    "id": "backroom-details:3",
-    "path": "public/images/rooms/backroom/details/printing-table.webp",
-    "bytes": 49050,
-    "width": 500,
-    "height": 500,
-    "sha256": "bdf1c1c72fd9aa4c014a00c23e7e1e09456c8bc2c86c32b6c511732ee6549623"
-  },
-  {
-    "id": "clues-a:0",
-    "path": "public/images/clues/a/panel-reference.webp",
-    "bytes": 62858,
-    "width": 500,
-    "height": 500,
-    "sha256": "09f2e7294a032bd654a48cbad0063085ec38fba102eee0809b970f198796e039"
-  },
-  {
-    "id": "clues-a:1",
-    "path": "public/images/clues/a/outside.webp",
-    "bytes": 70750,
-    "width": 500,
-    "height": 500,
-    "sha256": "3587acb88f67255d30194d9c38f9647e6117b1888bd4d6ed2f76e716a5a40c84"
-  },
-  {
-    "id": "clues-a:2",
-    "path": "public/images/clues/a/chronology.webp",
-    "bytes": 52616,
-    "width": 500,
-    "height": 500,
-    "sha256": "a507c8648b60bb82ce451b5b742231831ff28cd8906a799be32ca5296cd506af"
   },
   {
     "id": "clues-a:3",
@@ -528,54 +208,6 @@
     "sha256": "90759af63530352f31c1a4539532bb5434eb6d8fee6e838473c8be62db5fd028"
   },
   {
-    "id": "clues-b:2",
-    "path": "public/images/clues/b/camera-position.webp",
-    "bytes": 47870,
-    "width": 500,
-    "height": 500,
-    "sha256": "a72f92bd8d96db12d2f9c3b680eb497225f8383eab1db644800eedab71ba685b"
-  },
-  {
-    "id": "clues-b:3",
-    "path": "public/images/clues/b/light-sequence.webp",
-    "bytes": 46558,
-    "width": 500,
-    "height": 500,
-    "sha256": "9ce08bd356858cd85f2d8e21d87a63382f8ed6bea1fc309eb96d823059c62731"
-  },
-  {
-    "id": "clues-b:4",
-    "path": "public/images/clues/b/panorama.webp",
-    "bytes": 77462,
-    "width": 500,
-    "height": 500,
-    "sha256": "e800eb8a304a739d929665ea9d6eb1b842760e425c51ebff3d9f524f580bd24b"
-  },
-  {
-    "id": "clues-b:5",
-    "path": "public/images/clues/b/glass-outline.webp",
-    "bytes": 84454,
-    "width": 500,
-    "height": 500,
-    "sha256": "05209823c9a8b61a4edc3718e0beed1e56086e944b23fbd15030003cb5f5358b"
-  },
-  {
-    "id": "clues-c:0",
-    "path": "public/images/clues/c/architecture.webp",
-    "bytes": 48756,
-    "width": 406,
-    "height": 615,
-    "sha256": "faf3d40e189f96356675109bfc169a7b2855d03fcf177b00312addc53c5d3379"
-  },
-  {
-    "id": "clues-c:1",
-    "path": "public/images/clues/c/floor-plan.webp",
-    "bytes": 41600,
-    "width": 406,
-    "height": 615,
-    "sha256": "04ede7ad5967099019518cc590c18fdba29fd12942be18ef2b2402cb51da9abe"
-  },
-  {
     "id": "clues-c:2",
     "path": "public/images/clues/c/paper-process.webp",
     "bytes": 33734,
@@ -590,142 +222,6 @@
     "width": 406,
     "height": 615,
     "sha256": "b7710893ab5f141fcf561e477c39350169f5c5d8915814acc9ca137feafd0932"
-  },
-  {
-    "id": "clues-c:5",
-    "path": "public/images/clues/c/empty-chair.webp",
-    "bytes": 36162,
-    "width": 406,
-    "height": 615,
-    "sha256": "3007d93ffe4f9504c8a1dd9451e8ef05d54d5e6d0644a612f81912ec8d4e5fd2"
-  },
-  {
-    "id": "items:0",
-    "path": "public/images/items/brass-key.webp",
-    "bytes": 22330,
-    "width": 302,
-    "height": 302,
-    "sha256": "095a11fb72b59f2e1adb5d95ec9ddb52af6b3a094aafb6cf23749950a2c71d90"
-  },
-  {
-    "id": "items:1",
-    "path": "public/images/items/darkroom-key.webp",
-    "bytes": 22660,
-    "width": 301,
-    "height": 302,
-    "sha256": "44b43135a25dde570253614d98a9fc3f1d8b6f21bc84a1c94bf462506d31f1d9"
-  },
-  {
-    "id": "items:2",
-    "path": "public/images/items/crank.webp",
-    "bytes": 19896,
-    "width": 302,
-    "height": 302,
-    "sha256": "926d9520f23eb77711917c90ca95c1ec8269eafe74450d15ac48c7cb0755ac4b"
-  },
-  {
-    "id": "items:3",
-    "path": "public/images/items/dry-plate.webp",
-    "bytes": 18590,
-    "width": 301,
-    "height": 302,
-    "sha256": "689a8ec789362f32e535883de22cf10014269d3987561b2db39bd3b7b6a2ec94"
-  },
-  {
-    "id": "items:4",
-    "path": "public/images/items/lens.webp",
-    "bytes": 21292,
-    "width": 302,
-    "height": 301,
-    "sha256": "7c008672d94ab88911f529230612cc85f0ae6942d7d14e5531a4bf9aee029545"
-  },
-  {
-    "id": "items:5",
-    "path": "public/images/items/scissors.webp",
-    "bytes": 22860,
-    "width": 301,
-    "height": 301,
-    "sha256": "8ba017e8aca0f71cdfe680a15510c0b379cff87cea651b3647a2dfd91534eea2"
-  },
-  {
-    "id": "items:6",
-    "path": "public/images/items/glass-masks.webp",
-    "bytes": 19412,
-    "width": 302,
-    "height": 301,
-    "sha256": "79f4287654a936370a85ed2bdfdf5736b53b8f42dd37cbdc2ffc6fec61f6bfe8"
-  },
-  {
-    "id": "items:7",
-    "path": "public/images/items/bulb.webp",
-    "bytes": 15112,
-    "width": 301,
-    "height": 301,
-    "sha256": "38b8b7931865ebc2da072839784bbff18b53295c8bb3758c3ce8c37bd98fa243"
-  },
-  {
-    "id": "items:8",
-    "path": "public/images/items/release-cable.webp",
-    "bytes": 19130,
-    "width": 302,
-    "height": 302,
-    "sha256": "f5ae1676491b7d4c3d633c6930110f21c9a2a8dac68acacd83b5c106ea7ed59b"
-  },
-  {
-    "id": "items:9",
-    "path": "public/images/items/print.webp",
-    "bytes": 27936,
-    "width": 301,
-    "height": 302,
-    "sha256": "1f70e60d3a29e3a915969d51891b85f41ecd88fcf610da2609d94cfd33755102"
-  },
-  {
-    "id": "items:10",
-    "path": "public/images/items/curtain-wheel.webp",
-    "bytes": 17860,
-    "width": 302,
-    "height": 302,
-    "sha256": "b698255044b821dcb44d95718b6f2d3fda3121924b2acc81837d080edb367942"
-  },
-  {
-    "id": "items:11",
-    "path": "public/images/items/final-plate.webp",
-    "bytes": 15772,
-    "width": 301,
-    "height": 302,
-    "sha256": "0847a11032d3cf8e4e665f6228ac6402bfe94fae5209231b57081aaf5163198b"
-  },
-  {
-    "id": "items:12",
-    "path": "public/images/items/paper.webp",
-    "bytes": 13970,
-    "width": 302,
-    "height": 301,
-    "sha256": "3c9a3c9219cedfdce4a1eeb6ccd56506665a2b95923c30008773d25c8bc50e7f"
-  },
-  {
-    "id": "components:0",
-    "path": "public/images/mechanisms/components/knob-up.webp",
-    "bytes": 24774,
-    "width": 302,
-    "height": 302,
-    "sha256": "20c406e3d59baa8680682250e1497aa089bbedab7ea7d539f9d1524590b9d781"
-  },
-  {
-    "id": "components:1",
-    "path": "public/images/mechanisms/components/knob-right.webp",
-    "bytes": 25864,
-    "width": 301,
-    "height": 302,
-    "sha256": "d4527525bf431c007b42aea0b8af1e667e741d4eb456347545d2a2cec7db9213"
-  },
-  {
-    "id": "components:2",
-    "path": "public/images/mechanisms/components/knob-down.webp",
-    "bytes": 27852,
-    "width": 302,
-    "height": 302,
-    "sha256": "41b8f4a45e6bccc9487e3dbab59309bd325b4399c89f73b05e0f6b9108f56597"
   },
   {
     "id": "fragments:0",
@@ -760,190 +256,6 @@
     "sha256": "f5f957edda1d10aeee19faa0ffdb05f440bd7648ab3a69b378a6e753f2200e5d"
   },
   {
-    "id": "fragments:4",
-    "path": "public/images/mechanisms/fragments/right-column.webp",
-    "bytes": 20176,
-    "width": 302,
-    "height": 301,
-    "sha256": "2c21d6494aa61ce19129f2de368243fb16700c57446145620c1583e92b1174d8"
-  },
-  {
-    "id": "fragments:5",
-    "path": "public/images/mechanisms/fragments/window.webp",
-    "bytes": 16418,
-    "width": 301,
-    "height": 301,
-    "sha256": "7e0154de28919d41544112f9e01c99dabd72ccabf635db5a9a3f640d3218ab55"
-  },
-  {
-    "id": "fragments:6",
-    "path": "public/images/mechanisms/fragments/loading-door.webp",
-    "bytes": 18496,
-    "width": 302,
-    "height": 301,
-    "sha256": "0734335ec63981a6c95fd75548ad2d2962068ebe3e1480cd396884911ddbf229"
-  },
-  {
-    "id": "fragments:7",
-    "path": "public/images/mechanisms/fragments/left-column.webp",
-    "bytes": 20120,
-    "width": 301,
-    "height": 301,
-    "sha256": "ba1188ee1ad23561d67139e5fcca5b2a82eb5f916c8325348632547705a769db"
-  },
-  {
-    "id": "fragments:8",
-    "path": "public/images/mechanisms/fragments/view-left.webp",
-    "bytes": 22194,
-    "width": 302,
-    "height": 302,
-    "sha256": "0fbc4d0dd43141a8247897fbdeadb8f3fd33dd6699cc6d80745179b917263a6f"
-  },
-  {
-    "id": "fragments:9",
-    "path": "public/images/mechanisms/fragments/view-center.webp",
-    "bytes": 21914,
-    "width": 301,
-    "height": 302,
-    "sha256": "e3aedc83a700d996046c91d8ed89c9c5e4cdb8f2650e134aa4403ed8dce7fccc"
-  },
-  {
-    "id": "fragments:10",
-    "path": "public/images/mechanisms/fragments/view-right.webp",
-    "bytes": 22958,
-    "width": 302,
-    "height": 302,
-    "sha256": "e74831e77df8867b2de204df73ac40b0c4e5b32cdf98b99d34d7a569c4ea3b02"
-  },
-  {
-    "id": "fragments:12",
-    "path": "public/images/mechanisms/fragments/arch.webp",
-    "bytes": 11994,
-    "width": 302,
-    "height": 301,
-    "sha256": "24da91659d53872f9ecd3208ad09482b0832512e239db92af7fafca0658eedf1"
-  },
-  {
-    "id": "fragments:13",
-    "path": "public/images/mechanisms/fragments/left-pane.webp",
-    "bytes": 9528,
-    "width": 301,
-    "height": 301,
-    "sha256": "0769702cc1a3dd0cdd9d8aa4e33031d20c7cd5e361a005aade02738edf5da096"
-  },
-  {
-    "id": "fragments:14",
-    "path": "public/images/mechanisms/fragments/right-pane.webp",
-    "bytes": 8650,
-    "width": 302,
-    "height": 301,
-    "sha256": "21c456997e2322ef8da1e69a1e2ee887a2a6273a927ae89e63d4cc111d2a42df"
-  },
-  {
-    "id": "fragments:15",
-    "path": "public/images/mechanisms/fragments/complete-window.webp",
-    "bytes": 12962,
-    "width": 301,
-    "height": 301,
-    "sha256": "e1404589e7ed83346900f65439cb97c5fac43f545e0b1280b07a4cbe574bccf7"
-  },
-  {
-    "id": "rewards:0",
-    "path": "public/images/mechanisms/rewards/scissors.webp",
-    "bytes": 27360,
-    "width": 350,
-    "height": 350,
-    "sha256": "de2a0d42a8d550a1cb4cbb133ec4863da1470cfced91d8b58101c042f686fb7e"
-  },
-  {
-    "id": "rewards:1",
-    "path": "public/images/mechanisms/rewards/scissors-taken.webp",
-    "bytes": 24898,
-    "width": 350,
-    "height": 350,
-    "sha256": "d394a4c77cd68975282bc63490b8b4ee08fbb273db7772726e9de06511d90eec"
-  },
-  {
-    "id": "rewards:2",
-    "path": "public/images/mechanisms/rewards/glass-masks.webp",
-    "bytes": 22344,
-    "width": 350,
-    "height": 350,
-    "sha256": "7802ae3d6ebc1e5bd830aa9a50cebc80a6f391463373029929d50d9d8bc7e552"
-  },
-  {
-    "id": "rewards:3",
-    "path": "public/images/mechanisms/rewards/glass-taken.webp",
-    "bytes": 24642,
-    "width": 350,
-    "height": 350,
-    "sha256": "70d55b73e459f8bf70dc901cdb9a3f930c995c3f94f24a25b53102536b247343"
-  },
-  {
-    "id": "rewards:4",
-    "path": "public/images/mechanisms/rewards/curtain-wheel.webp",
-    "bytes": 20916,
-    "width": 350,
-    "height": 350,
-    "sha256": "51267190a945d851f3dd4c363410f28e7f71b6750cd9f6374771c84a1d20d842"
-  },
-  {
-    "id": "rewards:5",
-    "path": "public/images/mechanisms/rewards/wheel-taken.webp",
-    "bytes": 21078,
-    "width": 350,
-    "height": 350,
-    "sha256": "cc6c0e031e961173062c9e29c7fe37f6dda7493dc674162d19772cbda195b76e"
-  },
-  {
-    "id": "rewards:6",
-    "path": "public/images/mechanisms/rewards/final-plate.webp",
-    "bytes": 21534,
-    "width": 350,
-    "height": 350,
-    "sha256": "3f387485d3ff8fdd84eafb5c161dfb247a430c993ca59dea71061199df0062b6"
-  },
-  {
-    "id": "rewards:7",
-    "path": "public/images/mechanisms/rewards/plate-taken.webp",
-    "bytes": 19616,
-    "width": 350,
-    "height": 350,
-    "sha256": "356ecf993f520a317f2259fd4c846377527bc937cf19c99b23f3a8bbd1b4387c"
-  },
-  {
-    "id": "rewards:10",
-    "path": "public/images/mechanisms/rewards/shelf-only-plate.webp",
-    "bytes": 19774,
-    "width": 350,
-    "height": 350,
-    "sha256": "9b8bde1439220d08318a74d8d15b9bac804887ba2aaacbeb2818e4a689e90c48"
-  },
-  {
-    "id": "rewards:11",
-    "path": "public/images/mechanisms/rewards/shelf-only-crank.webp",
-    "bytes": 19846,
-    "width": 350,
-    "height": 350,
-    "sha256": "26ccc4a1388ce23954559fc1de258d8e858daca9b4b815fcc687311fd613027e"
-  },
-  {
-    "id": "partial:0",
-    "path": "public/images/mechanisms/partial/cabinet-only-bulb.webp",
-    "bytes": 145248,
-    "width": 800,
-    "height": 800,
-    "sha256": "baff9a58a56fc572e899f2cfe4bb5103d0b341bdd401147188fbcf32c03d6c0b"
-  },
-  {
-    "id": "partial:1",
-    "path": "public/images/mechanisms/partial/cabinet-only-key.webp",
-    "bytes": 138316,
-    "width": 800,
-    "height": 800,
-    "sha256": "2d39502be2b7e6faaa89ce14cc9bb9d615a889f35ddbf7883849eb95c1db24e3"
-  },
-  {
     "id": "ending:0",
     "path": "public/images/ending/last-photograph.webp",
     "bytes": 103102,
@@ -960,171 +272,475 @@
     "sha256": "0661a4cc7aa7f2d961a4bec2b3d3c337efd19c863d828011bb79d930428fed12"
   },
   {
-    "id": "demo:0",
-    "path": "public/images/mechanisms/demo/closed.webp",
-    "bytes": 91844,
-    "width": 615,
-    "height": 615,
-    "sha256": "2709907f7dcffa7a79af7b05bd0ea3db554c4807760730232d7f14a1696cff2e"
+    "id": "reception-north:0",
+    "path": "public/images/rooms/reception/views/north.webp",
+    "bytes": 190012,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "84432ab514b50d0de38fddc28648232f854c2578e97802ab983d5b5849561871"
   },
   {
-    "id": "demo:1",
-    "path": "public/images/mechanisms/demo/left-one.webp",
-    "bytes": 89246,
-    "width": 615,
-    "height": 615,
-    "sha256": "b3edbab09f5308a43d0912b5450c52435e8623a05308eb1aaa1626a3a62422d5"
+    "id": "retouch-north:0",
+    "path": "public/images/rooms/retouch/views/north.webp",
+    "bytes": 182428,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "977c42ef2a292443e1c2a98290b8d0ad712bc3be9775f274bbbd8741ebb5039d"
   },
   {
-    "id": "demo:2",
-    "path": "public/images/mechanisms/demo/left-two.webp",
-    "bytes": 89982,
-    "width": 615,
-    "height": 615,
-    "sha256": "1faf2475f8db31a3d2304cce3936d91affd4340123c09a575dd2e641161ba88e"
+    "id": "retouch-east:0",
+    "path": "public/images/rooms/retouch/views/east.webp",
+    "bytes": 151922,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "d44113d298d41fab684574b7730e38edbf3deddee938bb071f154cb7de044cf0"
   },
   {
-    "id": "demo:3",
-    "path": "public/images/mechanisms/demo/released.webp",
-    "bytes": 88018,
-    "width": 615,
-    "height": 615,
-    "sha256": "13fc2a05effaac29ade04d34de0afd17ce990ddd060c972590e6ef2039e0fbdc"
+    "id": "gallery-east:0",
+    "path": "public/images/rooms/gallery/views/east.webp",
+    "bytes": 192794,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "9fb2f1cf5e50d9eaa8cb0ae2bb4619c3765e9baab16623e259f6e3397bd81372"
   },
   {
-    "id": "studio-open:0",
-    "path": "public/images/rooms/studio/views/north-open.webp",
-    "bytes": 75682,
-    "width": 800,
-    "height": 800,
-    "sha256": "9a273a9f00ce7d3982c60c8f6dc10077719f2cb03d0fa5415d4e8a8b60197a81"
+    "id": "gallery-west:0",
+    "path": "public/images/rooms/gallery/views/west.webp",
+    "bytes": 148838,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "70d56e014a49add36dfb42b775e3a56b6fabe255c8005f5eb21930b4df85b384"
   },
   {
-    "id": "backroom:0",
+    "id": "darkroom-north:0",
+    "path": "public/images/rooms/darkroom/views/north.webp",
+    "bytes": 156030,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "ae12251905d19ef4c7c04d2eb188d4b1241c8814356106010978454856f8d960"
+  },
+  {
+    "id": "darkroom-west:0",
+    "path": "public/images/rooms/darkroom/views/west.webp",
+    "bytes": 115324,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "1cbafbece7eac1b52a064c87fcc2287495b40b4a5b165c031c0cbbe8ef1b235d"
+  },
+  {
+    "id": "studio-north:0",
+    "path": "public/images/rooms/studio/views/north.webp",
+    "bytes": 137516,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "7bf9c0233b8e2d55bd4249d08ca9c0f0ea1b51910622862414ca7c1b872110ab"
+  },
+  {
+    "id": "studio-west:0",
+    "path": "public/images/rooms/studio/views/west.webp",
+    "bytes": 177496,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "4934f486363bad3f563bfb39154f2d585f2a0af136d78a0ecf81abd6a50c8c1e"
+  },
+  {
+    "id": "backroom-north:0",
     "path": "public/images/rooms/backroom/views/north.webp",
-    "bytes": 95768,
-    "width": 800,
-    "height": 800,
-    "sha256": "b4b84cc52ae57a5105374de3ac743e79d2b128fd3b3fe0b946b74a6f8dbbd72c"
+    "bytes": 200406,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "0de6298796fc1da15923a5222798adfdd2198da3f4cdad9d37236428e22c39aa"
   },
   {
-    "id": "backroom:1",
+    "id": "reception-counter-open:0",
+    "path": "public/images/rooms/reception/states/reception-counter-open.webp",
+    "bytes": 176666,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "1958f2e060766240ba32f80f692540a0525e40b68baa0f42c1ae376fa0b4252c"
+  },
+  {
+    "id": "reception-door-open:0",
+    "path": "public/images/rooms/reception/states/reception-door-open.webp",
+    "bytes": 210264,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "a8acc59aa7e854d331ef232512429bf6440d29d8530227c2661f8525e1a6afb6"
+  },
+  {
+    "id": "retouch-rack-open:0",
+    "path": "public/images/rooms/retouch/states/retouch-rack-open.webp",
+    "bytes": 173276,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "35b35d08c6799684a7c9307b9f590f025730c4fa8fef459beec69c3f7635f1b5"
+  },
+  {
+    "id": "retouch-lamp-on:0",
+    "path": "public/images/rooms/retouch/states/retouch-lamp-on.webp",
+    "bytes": 192002,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "4911105284c9d5fa401f612dc37128b86b5e800c97660a0a8b3d3f490a95334d"
+  },
+  {
+    "id": "retouch-lamp-low:0",
+    "path": "public/images/rooms/retouch/states/retouch-lamp-low.webp",
+    "bytes": 181348,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "340b78ac60c6e83977971545a1e11c2a930d616d9df52dc533316f132127a950"
+  },
+  {
+    "id": "retouch-lamp-open:0",
+    "path": "public/images/rooms/retouch/states/retouch-lamp-open.webp",
+    "bytes": 192442,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "06a2be46ce249f314e77d7b785fb2f064ca4f5194896fce2953ae57b8e27f347"
+  },
+  {
+    "id": "reception-unlatched:0",
+    "path": "public/images/rooms/reception/states/reception-unlatched.webp",
+    "bytes": 175622,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "4ec4a80c003a29f247b7c74ef3ecc3ad2b9ddfd8f2dbda2f1d1a8f0ec48cf0a2"
+  },
+  {
+    "id": "reception-counter-empty:0",
+    "path": "public/images/rooms/reception/states/reception-counter-empty.webp",
+    "bytes": 157890,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "176abf75d0ab7e9141d57fa2b162822d993ff7316616272d1e5cd0ba1178905b"
+  },
+  {
+    "id": "retouch-rack-empty:0",
+    "path": "public/images/rooms/retouch/states/retouch-rack-empty.webp",
+    "bytes": 155890,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "6e56cbe474781ece13bb20ac2abe8fefa8add4fa136b3f4c93296ccd40ba025a"
+  },
+  {
+    "id": "retouch-lamp-empty:0",
+    "path": "public/images/rooms/retouch/states/retouch-lamp-empty.webp",
+    "bytes": 177552,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "1d66b5290e5349b2d4a49a93da9ce133112f0349ae5e3a9743bcdc080f61a562"
+  },
+  {
+    "id": "gallery-frames-open:0",
+    "path": "public/images/rooms/gallery/states/gallery-frames-open.webp",
+    "bytes": 176746,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "da59c7524fa5b34f16c515221c77f0c7173ccd5d5a3acc463e6047d77c38e1b3"
+  },
+  {
+    "id": "gallery-feed-open:0",
+    "path": "public/images/rooms/gallery/states/gallery-feed-open.webp",
+    "bytes": 147650,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "f932cb733a2066f8e15445b8967755a412cac8ed56bc660c495ae6ba3f87a72c"
+  },
+  {
+    "id": "gallery-door-open:0",
+    "path": "public/images/rooms/gallery/states/gallery-door-open.webp",
+    "bytes": 172742,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "91449cea9bfa1679e472d219c4ce757554b8462c3e8de5f927738617da63b664"
+  },
+  {
+    "id": "darkroom-develop-open:0",
+    "path": "public/images/rooms/darkroom/states/darkroom-develop-open.webp",
+    "bytes": 187770,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "c1eeea59cca5ef9f5fd168041ae65b55820defa7e33f4ba9d018ea07fcb4b7d9"
+  },
+  {
+    "id": "darkroom-panorama-open:0",
+    "path": "public/images/rooms/darkroom/states/darkroom-panorama-open.webp",
+    "bytes": 115352,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "760c4cb1226407d2d991253a7b7c8dd7732549de157ab69673ebf475ff8da8f1"
+  },
+  {
+    "id": "studio-wheel:0",
+    "path": "public/images/rooms/studio/states/studio-wheel.webp",
+    "bytes": 122558,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "0e45cdae7137038da6d3597a8b6dd6a4008d35385a9917a50389bff69879e9d3"
+  },
+  {
+    "id": "backroom-feed-open:0",
+    "path": "public/images/rooms/backroom/states/backroom-feed-open.webp",
+    "bytes": 191948,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "1ca85bba2404557d0b3f5d2882c85692c0752fb06764fe18770ebfda6df5e5cb"
+  },
+  {
+    "id": "gallery-frames-empty:0",
+    "path": "public/images/rooms/gallery/states/gallery-frames-empty.webp",
+    "bytes": 157982,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "83d5ba7ae437666e90435060b42adac22944d41469b9f0d71d654c2ab896416c"
+  },
+  {
+    "id": "gallery-feed-empty:0",
+    "path": "public/images/rooms/gallery/states/gallery-feed-empty.webp",
+    "bytes": 146186,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "0af3f43805f70d9c37a79707a0cea80ca8c8cd8890bd5e17cd225d2b7328e4e3"
+  },
+  {
+    "id": "darkroom-develop-empty:0",
+    "path": "public/images/rooms/darkroom/states/darkroom-develop-empty.webp",
+    "bytes": 175052,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "c61cf8cf40a7195d967b98bd09bef9d242612ae2815a0760e024ad86440b7cf2"
+  },
+  {
+    "id": "darkroom-panorama-empty:0",
+    "path": "public/images/rooms/darkroom/states/darkroom-panorama-empty.webp",
+    "bytes": 113192,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "861953a43bf774013b5fa397e3033f1de27b163476658a9980ca4a35669d6d38"
+  },
+  {
+    "id": "studio-shutters-empty:0",
+    "path": "public/images/rooms/studio/states/studio-shutters-empty.webp",
+    "bytes": 107286,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "9735c85bd27869f7e157a666916f463b7a49637cec15c186da8998bba09c696d"
+  },
+  {
+    "id": "backroom-feed-empty:0",
+    "path": "public/images/rooms/backroom/states/backroom-feed-empty.webp",
+    "bytes": 175320,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "855f04d2c2cf29e4c1664186abe3046dc87ed17e95d2603630be97c286e9d829"
+  },
+  {
+    "id": "studio-curtain-open:0",
+    "path": "public/images/rooms/studio/states/studio-curtain-open.webp",
+    "bytes": 139992,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "e1eb159890918e29b6dc6f5d3f2f67c631c6597973b66b25390c39580fe2dc37"
+  },
+  {
+    "id": "studio-camera-open:0",
+    "path": "public/images/rooms/studio/states/studio-camera-open.webp",
+    "bytes": 166342,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "2c4b40eaeef31a15666464e470d2f38bf255808c525d2ccd7bf778b85c6f58a1"
+  },
+  {
+    "id": "backroom-east:0",
     "path": "public/images/rooms/backroom/views/east.webp",
-    "bytes": 75968,
-    "width": 800,
-    "height": 800,
-    "sha256": "6348e78f1bebfc25ee271c96bb43658b09ca38d85332a8d5f74d9a41d8c455a9"
+    "bytes": 151544,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "2485a47c3d55593f5284d513f4e2cf194fba169ae0083f7e9500b58bde215573"
   },
   {
-    "id": "rewards:8",
-    "path": "public/images/mechanisms/rewards/last-print.webp",
-    "bytes": 64378,
-    "width": 617,
-    "height": 617,
-    "sha256": "2af157025ef32367d4970895c0e2fe1e29aa510ae2a26075b73bbcd6cebe7e33"
+    "id": "gallery-leverless:0",
+    "path": "public/images/rooms/gallery/states/gallery-leverless.webp",
+    "bytes": 146726,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "9c7c4b2018bc6373273f14bca9b6fb4fb5a88297ba214f23602571d45db88efd"
   },
   {
-    "id": "rewards:9",
-    "path": "public/images/mechanisms/rewards/print-taken.webp",
-    "bytes": 30276,
-    "width": 617,
-    "height": 617,
-    "sha256": "db4f994d01d23467a130201dc162e96a83e3e0878ed434c141c2bfcd00d7ad50"
+    "id": "backroom-leverless:0",
+    "path": "public/images/rooms/backroom/states/backroom-leverless.webp",
+    "bytes": 176326,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "bbc9b69f36bcafe60df6b756a5e1adfbe37803b0b97214b57024633e354c891e"
   },
   {
-    "id": "items:13",
-    "path": "public/images/items/portrait.webp",
-    "bytes": 89860,
-    "width": 617,
-    "height": 617,
-    "sha256": "3d097296d71519796de2e2d028b1f1b82cd3595f09a662ab16cb8fc92d2cf405"
+    "id": "retouch-model-leverless:0",
+    "path": "public/images/rooms/retouch/states/retouch-model-leverless.webp",
+    "bytes": 179074,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "cc66ad62432f1bd4a0493227af11b39515ddb4a4c79125ec0dd5533945282cd6"
   },
   {
-    "id": "feed-states:0",
-    "path": "public/images/rooms/gallery/details/feed-closed.webp",
-    "bytes": 94436,
-    "width": 617,
-    "height": 617,
-    "sha256": "156c333fbd00085a430e0dd67faf8b35062033bed3a3b0a143898fc1cdcecfd5"
+    "id": "studio-camera-empty:0",
+    "path": "public/images/rooms/studio/states/studio-camera-empty.webp",
+    "bytes": 156204,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "5bebf35fa8b27b5db9242499539a911a6801b97137b6f52d73a93f9553e5823e"
   },
   {
-    "id": "backfeed-states:0",
-    "path": "public/images/rooms/backroom/details/feed-closed.webp",
-    "bytes": 57396,
-    "width": 617,
-    "height": 617,
-    "sha256": "0483d292a17c26fd587dbb6e0c44975f7b8fcd3c3bbbdb4b747ec9aa4be35494"
+    "id": "backroom-door-open:0",
+    "path": "public/images/rooms/backroom/states/backroom-door-open.webp",
+    "bytes": 349310,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "1083ff219a5196d76975a034e31b40f3a575b1e84e9c04da2bcc85d1a2b76534"
   },
   {
-    "id": "feed-states:1",
-    "path": "public/images/rooms/gallery/details/feed-left-one.webp",
-    "bytes": 91632,
-    "width": 617,
-    "height": 617,
-    "sha256": "1830ad4d824c7749c847eb4fce1c3c2d91d75763a8de0f968f170ba15c1e27c1"
+    "id": "camera-view-0:0",
+    "path": "public/images/clues/camera/camera-view-0.webp",
+    "bytes": 356508,
+    "width": 1024,
+    "height": 1536,
+    "sha256": "02ffd9ad5e24e89329f265f3474f4f84981ec13e457d8bac925ffb97d73e6817"
   },
   {
-    "id": "backfeed-states:1",
-    "path": "public/images/rooms/backroom/details/feed-right-one.webp",
-    "bytes": 57952,
-    "width": 617,
-    "height": 617,
-    "sha256": "f21e61b2bfc9670cdb2335f45be95dc08725dcb58652721d80c7ee938e939d14"
+    "id": "camera-view-1:0",
+    "path": "public/images/clues/camera/camera-view-1.webp",
+    "bytes": 426266,
+    "width": 1024,
+    "height": 1536,
+    "sha256": "83730a792d527ca993c340f4843982892951983b3c5fc76220fcf8a0a149adc0"
   },
   {
-    "id": "feed-states:2",
-    "path": "public/images/rooms/gallery/details/feed-left-two.webp",
-    "bytes": 92898,
-    "width": 617,
-    "height": 617,
-    "sha256": "8784feebaa54954f240dea1b2cc52ea439dc5726cad15af88a5808d2cc276a92"
+    "id": "camera-view-2:0",
+    "path": "public/images/clues/camera/camera-view-2.webp",
+    "bytes": 305536,
+    "width": 1024,
+    "height": 1536,
+    "sha256": "4e1db125e28d108216c5b9bcfd5a1c3ba033e92d87dae3d217ff1cb0bd8414f6"
   },
   {
-    "id": "backfeed-states:2",
-    "path": "public/images/rooms/backroom/details/feed-right-two.webp",
-    "bytes": 56396,
-    "width": 617,
-    "height": 617,
-    "sha256": "42eab2ef2d6b8281f1935da65d307e154d8961a0b15458f9657573876cf74bb6"
+    "id": "rear-exterior:0",
+    "path": "public/images/clues/architecture/rear-exterior.webp",
+    "bytes": 474910,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "68983c1873fd5cf795da57c38b27bf097934e3f5ce83cb75c14f36ec544646f0"
   },
   {
-    "id": "feed-states:3",
-    "path": "public/images/rooms/gallery/details/feed-released.webp",
-    "bytes": 91722,
-    "width": 617,
-    "height": 617,
-    "sha256": "2ecf209b26cf931d1d965f029bac42ae370e4406afcc083ffd5ef9fff49781d8"
+    "id": "retouch-lamp-socket:0",
+    "path": "public/images/rooms/retouch/states/retouch-lamp-socket.webp",
+    "bytes": 169676,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "579a8fc5164913410d1526d4478db895b5d4067f31823e1fce28634e648fa84b"
   },
   {
-    "id": "backfeed-states:3",
-    "path": "public/images/rooms/backroom/details/feed-released.webp",
-    "bytes": 55120,
-    "width": 617,
-    "height": 617,
-    "sha256": "1a4c708481ab33d4e13dfa421c03a2831e317b04648193d7d11bc2ee4831c4fe"
+    "id": "layout-plan:0",
+    "path": "public/images/clues/architecture/layout-plan.webp",
+    "bytes": 169828,
+    "width": 1019,
+    "height": 1543,
+    "sha256": "90883e636fd298ab84a4f240279525a4f20026cc4e9333fc78b39e98f7b29a75"
   },
   {
-    "id": "lamp-states:0",
-    "path": "public/images/rooms/retouch/details/lamp-empty.webp",
-    "bytes": 52438,
-    "width": 617,
-    "height": 617,
-    "sha256": "b7304a1529a9dedb0fb79227ede918085415d16388dd4832f879816a78459757"
+    "id": "studio-gallery-open:0",
+    "path": "public/images/rooms/studio/states/studio-gallery-open.webp",
+    "bytes": 145768,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "d4f3fcd2ae84238b623d800da58308d1c3367b9f284882bb58a2a8cc6ffe7d3c"
   },
   {
-    "id": "lamp-states:1",
-    "path": "public/images/rooms/retouch/details/lamp-lit.webp",
-    "bytes": 54418,
-    "width": 617,
-    "height": 617,
-    "sha256": "d2d67bb74c318d28d25d22c7919ef7eb32b1a2fd4394ab7c5b69ea0854470ed6"
+    "id": "lamp-pose-1-1:0",
+    "path": "public/images/rooms/retouch/states/lamp-pose-1-1.webp",
+    "bytes": 187608,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "b8f5f08b465635bd73628754bc4ae22435d4b20e4a8dd961c4c9521fb86146c7"
   },
   {
-    "id": "lamp-states:2",
-    "path": "public/images/rooms/retouch/details/lamp-low.webp",
-    "bytes": 63396,
-    "width": 617,
-    "height": 617,
-    "sha256": "189feb55ba477f1b3c6c4e475bac6ec0341c8a86918a9717561f50ac707a0a3b"
+    "id": "darkroom-glass-board:0",
+    "path": "public/images/rooms/darkroom/views/east.webp",
+    "bytes": 137080,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "dd3e9d447e37c3c61734d179c5087826043a241b78ea8f8240ddb4151832b00c"
+  },
+  {
+    "id": "retouch-cut-board:0",
+    "path": "public/images/rooms/retouch/views/west.webp",
+    "bytes": 149452,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "8221d9d655513c33b0b69731e8d3eaf11f73872f709402d977ef039b84e729d1"
+  },
+  {
+    "id": "glass-triptych:0",
+    "path": "public/images/clues/glass/glass-triptych.webp",
+    "bytes": 439914,
+    "width": 2172,
+    "height": 724,
+    "sha256": "2520f1bde89cfb80efad446081713ea4208d8cd92ea5f8420dea05d969443fb8"
+  },
+  {
+    "id": "gallery-studio-open-v2:0",
+    "path": "public/images/rooms/gallery/states/gallery-studio-open-v2.webp",
+    "bytes": 170102,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "7f8bd928dda130a69ce12ff2b12a9a5404ee9e0e2dec726e94c1947cf3c1b04d"
+  },
+  {
+    "id": "darkroom-gallery-open-v2:0",
+    "path": "public/images/rooms/darkroom/states/darkroom-gallery-open-v2.webp",
+    "bytes": 193238,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "49f08eb9814166c63009746a95e6cd87c04cd8730f893866644ed5e95dcb80ab"
+  },
+  {
+    "id": "studio-shutters-cable:0",
+    "path": "public/images/rooms/studio/states/studio-shutters-cable.webp",
+    "bytes": 124862,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "a82218c2ce0bcf6e3cf5de1bff978fca2eb143eeafa3817b084bf2ae483f1cd8"
+  },
+  {
+    "id": "gallery-studio-revealed:0",
+    "path": "public/images/rooms/gallery/states/studio-revealed.webp",
+    "bytes": 150946,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "653ad7fc0abed795e7e5ff3ee366cccf1cf4526f84d1bebebb98cd0e9fa3c0cd"
+  },
+  {
+    "id": "clues-b:3",
+    "path": "public/images/clues/b/light-sequence.webp",
+    "bytes": 175654,
+    "width": 1959,
+    "height": 803,
+    "sha256": "3d759eb328414be0079368f5af78621f15085821fdcce458f140e29e9231fcf4"
+  },
+  {
+    "id": "backroom:2",
+    "path": "public/images/rooms/backroom/views/south.webp",
+    "bytes": 139190,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "0b440d603fadbb0add6a3a18f158d3980e07c5b1c5ec22c0b07b5c0c00a01deb"
+  },
+  {
+    "id": "studio-shutters-open:0",
+    "path": "public/images/rooms/studio/states/studio-shutters-open.webp",
+    "bytes": 113194,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "d6dc8a259eede03c9540cb6af2402a7809674790afd4948e94d8b3941f9cbb2d"
   }
 ]
