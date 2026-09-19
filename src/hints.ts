@@ -99,6 +99,19 @@ export function hintSituation(
     return {
       text: missing
         .map((x) => {
+          const mounted = Object.keys(s.installed).find((key) =>
+            s.installed[key]?.includes(x),
+          );
+          if (mounted)
+            return (
+              "「" +
+              ITEMS[x].name +
+              "」は" +
+              ROOMS[PUZZLES[mounted].room].name +
+              "の「" +
+              PUZZLES[mounted].name +
+              "」に付いています。装置のハンドルを押して外してください。"
+            );
           const source = Object.values(PUZZLES).find((p) =>
             p.rewards?.includes(x),
           )!;

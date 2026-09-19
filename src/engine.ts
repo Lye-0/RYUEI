@@ -71,10 +71,27 @@ export function install(s: State, id: string, item: string): State {
     return s;
   return {
     ...s,
-    inventory: ITEMS[item].reusable
-      ? s.inventory
-      : s.inventory.filter((x) => x !== item),
+    inventory:
+      ITEMS[item].reusable && item !== "crank"
+        ? s.inventory
+        : s.inventory.filter((x) => x !== item),
     installed: { ...s.installed, [id]: [...(s.installed[id] ?? []), item] },
+  };
+}
+export function detachCrank(s: State, id: string): State {
+  if (
+    !["feed", "backfeed"].includes(id) ||
+    PUZZLES[id].room !== s.room ||
+    !s.installed[id]?.includes("crank")
+  )
+    return s;
+  return {
+    ...s,
+    installed: {
+      ...s.installed,
+      [id]: s.installed[id].filter((x) => x !== "crank"),
+    },
+    inventory: [...new Set([...s.inventory, "crank"])],
   };
 }
 export function input(s: State, id: string, next: number[]): State {
@@ -120,7 +137,8 @@ export function open(s: State, id: string): State {
     s.opened.includes(id)
   )
     return s;
-  return { ...s, opened: [...s.opened, id] };
+  const next = { ...s, opened: [...s.opened, id] };
+  return ["feed", "backfeed"].includes(id) ? detachCrank(next, id) : next;
 }
 export function take(s: State, id: string, item: string): State {
   if (
@@ -309,6 +327,19 @@ export function parse(raw: string | null): State | null {
           : a.installed.lamp?.includes("bulb") && input?.[0] === 2;
       if (ready && !a.solved.includes(id)) a.solved = [...a.solved, id];
     }
+    // Earlier saves kept the reusable crank in inventory and in several devices.
+    const attached = ["feed", "backfeed"].filter(
+      (id) => a.installed[id]?.includes("crank") && !a.opened.includes(id),
+    );
+    const owner =
+      attached.find((id) => PUZZLES[id].room === a.room) ?? attached[0];
+    for (const id of ["feed", "backfeed"]) {
+      if (id !== owner && a.installed[id]?.includes("crank"))
+        a.installed[id] = a.installed[id].filter((x: string) => x !== "crank");
+    }
+    if (owner) a.inventory = a.inventory.filter((x: string) => x !== "crank");
+    else if (a.collected.includes("crank") && !a.inventory.includes("crank"))
+      a.inventory.push("crank");
     return {
       ...fresh(),
       ...a,

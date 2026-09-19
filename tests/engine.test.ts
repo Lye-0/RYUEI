@@ -131,3 +131,55 @@ describe("写真館の状態と進行", () => {
     );
   });
 });
+
+it("送りハンドルは一台だけに付き、取り外し・開蓋後に再利用できる", () => {
+  let s = {
+    ...E.fresh(),
+    started: true,
+    room: 1,
+    visited: [0, 1, 5],
+    inventory: ["crank", "handle"],
+    collected: ["crank", "handle"],
+  };
+  expect(E.install(s, "feed", "handle")).toBe(s);
+  s = E.install(s, "feed", "crank");
+  expect(s.inventory).not.toContain("crank");
+  expect(E.parse(JSON.stringify(s))?.installed.feed).toContain("crank");
+  expect(
+    E.install({ ...s, room: 5 }, "backfeed", "crank").installed.backfeed,
+  ).toBeUndefined();
+  s = E.detachCrank(s, "feed");
+  expect(s.inventory.filter((x) => x === "crank")).toHaveLength(1);
+  s = E.install(s, "feed", "crank");
+  s = E.open(E.solve(E.input(s, "feed", [2, 1]), "feed"), "feed");
+  expect(s.opened).toContain("feed");
+  expect(s.installed.feed).not.toContain("crank");
+  expect(s.inventory).toContain("crank");
+  s = E.install({ ...s, room: 5 }, "backfeed", "crank");
+  expect(s.installed.backfeed).toContain("crank");
+});
+
+it("旧保存の二重設置を現在の部屋の一台へ整理する", () => {
+  const old = {
+    ...E.fresh(),
+    room: 5,
+    visited: [0, 1, 5],
+    inventory: ["crank"],
+    collected: ["crank"],
+    installed: { feed: ["crank"], backfeed: ["crank"] },
+  };
+  const restored = E.parse(JSON.stringify(old))!;
+  expect(restored.inventory).not.toContain("crank");
+  expect(restored.installed.feed).toEqual([]);
+  expect(restored.installed.backfeed).toEqual(["crank"]);
+  const done = E.parse(
+    JSON.stringify({
+      ...old,
+      solved: ["feed", "backfeed"],
+      opened: ["feed", "backfeed"],
+    }),
+  )!;
+  expect(done.inventory.filter((x) => x === "crank")).toHaveLength(1);
+  expect(done.installed.feed).toEqual([]);
+  expect(done.installed.backfeed).toEqual([]);
+});

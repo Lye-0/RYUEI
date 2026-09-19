@@ -289,7 +289,7 @@ export function Scene({
         notify(
           s.installed.wall?.includes("handle")
             ? "軸がまだ動かない。"
-            : "軸の先に、六角形の穴がある。",
+            : "六角形の軸が突き出ている。",
         );
       return;
     }
@@ -302,6 +302,8 @@ export function Scene({
       return;
     }
     update(E.open(s, id));
+    if (["feed", "backfeed"].includes(id) && s.installed[id]?.includes("crank"))
+      notify("送りハンドルを外して手元に戻した。");
   }
   function install(id: string, item: string) {
     if (selected && PUZZLES[id].items?.includes(selected)) item = selected;
@@ -311,7 +313,13 @@ export function Scene({
     }
     const next = E.install(s, id, item);
     update(next);
-    notify(ITEMS[item].reusable ? "手応えがあった。" : "取り付いた。");
+    notify(
+      item === "crank"
+        ? "四角い軸が差し込み口に収まった。"
+        : ITEMS[item].reusable
+          ? "手応えがあった。"
+          : "取り付いた。",
+    );
   }
   const documents = nodes
     .filter(
@@ -703,6 +711,36 @@ export function Scene({
                         click={() => install(id, item)}
                       />
                     ),
+                )}
+              {["feed", "backfeed"].includes(id) &&
+                s.installed[id]?.includes("crank") && (
+                  <>
+                    <Patch
+                      id={
+                        id === "feed"
+                          ? "gallery-crank-installed"
+                          : "backroom-crank-installed"
+                      }
+                      area={
+                        id === "feed"
+                          ? [71, 27, 15, 8]
+                          : [82.5, 26.5, 13.5, 6.8]
+                      }
+                    />
+                    {zoom && (
+                      <Target
+                        r={
+                          id === "feed" ? [72, 28, 13, 7] : [83, 27.4, 13, 5.6]
+                        }
+                        label="送りハンドルを外す"
+                        kind="fitting"
+                        click={() => {
+                          update(E.detachCrank(s, id));
+                          notify("送りハンドルを外した。");
+                        }}
+                      />
+                    )}
+                  </>
                 )}
               {zoom && (!opened || id === "beyond") && (
                 <Target

@@ -754,10 +754,10 @@
   {
     "id": "inventory-a:0",
     "path": "public/images/items/keys-and-case.webp",
-    "bytes": 118516,
+    "bytes": 104080,
     "width": 1254,
     "height": 1254,
-    "sha256": "13f6e120fc5a2ed07377387b712b6f50bcb9d5ea15930003a6d3f9605d3de4a1"
+    "sha256": "0789c62efc463df91f73a697246e7d483723406335a698f28ebb8401c01cf579"
   },
   {
     "id": "inventory-b:0",
@@ -790,5 +790,21 @@
     "width": 1254,
     "height": 1254,
     "sha256": "f5835410d6113609c6995a9d3b6ce03d099c51d24aeedda4e5b3d41bf123763d"
+  },
+  {
+    "id": "gallery-crank-installed:0",
+    "path": "public/images/rooms/gallery/states/crank-installed.webp",
+    "bytes": 213064,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "d9be8d050bbd4a050303a41c140857365950535e4c72060ea63827c8125d3ec5"
+  },
+  {
+    "id": "backroom-crank-installed:0",
+    "path": "public/images/rooms/backroom/states/crank-installed.webp",
+    "bytes": 250632,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "60b492b9b98ac3ab8dee04f79f1c708e1e8b05327fdcf585bc7c9edf660c8a52"
   }
 ]

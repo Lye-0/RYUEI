@@ -97,5 +97,7 @@
   "inventory-b:0": "items/optics-and-tools.webp",
   "inventory-c:0": "items/wheel-and-paper.webp",
   "gallery-retouch-entry:0": "rooms/gallery/states/retouch-entry.webp",
-  "retouch-rack-pressed:0": "rooms/retouch/states/retouch-rack-pressed.webp"
+  "retouch-rack-pressed:0": "rooms/retouch/states/retouch-rack-pressed.webp",
+  "gallery-crank-installed:0": "rooms/gallery/states/crank-installed.webp",
+  "backroom-crank-installed:0": "rooms/backroom/states/crank-installed.webp"
 }

@@ -65,7 +65,7 @@ export const ITEMS: Record<
   crank: {
     name: "送りハンドル",
     tile: 2,
-    description: "角の軸。手で回せる。",
+    description: "先端は四角い軸。木の握りが付いている。",
     reusable: true,
   },
   plate: {
@@ -105,7 +105,7 @@ export const ITEMS: Record<
   handle: {
     name: "幕のハンドル",
     tile: 10,
-    description: "背景幕の巻き上げに使う金属製のハンドル。",
+    description: "中央に六角形の穴がある、丸い金属製ハンドル。",
   },
   finalPlate: {
     name: "裏室の乾板",
