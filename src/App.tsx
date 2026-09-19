@@ -494,7 +494,9 @@ export default function App() {
               />
             ) : panel?.type === "clue" &&
               (!panel.inWorld ||
-                ["shadows", "history", "layout"].includes(panel.id)) ? (
+                ["shadows", "history", "layout", "mirror"].includes(
+                  panel.id,
+                )) ? (
               <SceneDocument id={panel.id} />
             ) : (
               <Scene

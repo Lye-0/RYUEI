@@ -1008,12 +1008,6 @@ button,
 .state-patch {
   pointer-events: none;
 }
-.shelf-pressed {
-  position: absolute;
-  background: #0005;
-  box-shadow: inset 2px 3px 2px #0009;
-  pointer-events: none;
-}
 .back-button {
   position: absolute;
   bottom: 0;

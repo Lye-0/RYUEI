@@ -621,10 +621,10 @@ export function Scene({
                 ))}
               {id === "rack" &&
                 v.map((i) => (
-                  <div
+                  <Patch
                     key={i}
-                    className="shelf-pressed"
-                    style={box(m.controls[i])}
+                    id="retouch-rack-pressed"
+                    area={m.controls[i]}
                   />
                 ))}
               {zoom &&

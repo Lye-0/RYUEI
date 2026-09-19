@@ -178,10 +178,10 @@
   {
     "id": "clues-a:3",
     "path": "public/images/clues/a/mirrored-shelf.webp",
-    "bytes": 51902,
-    "width": 500,
-    "height": 500,
-    "sha256": "3d5f92e93e6138657312f799bdac1b0295971d59df92642dc6fcca764f402880"
+    "bytes": 704442,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "9539e39dc7a61eed48514ab0bd7f136542d533980708ac7160969d60871faa24"
   },
   {
     "id": "clues-a:4",
@@ -290,10 +290,10 @@
   {
     "id": "retouch-east:0",
     "path": "public/images/rooms/retouch/views/east.webp",
-    "bytes": 151922,
+    "bytes": 254142,
     "width": 1254,
     "height": 1254,
-    "sha256": "d44113d298d41fab684574b7730e38edbf3deddee938bb071f154cb7de044cf0"
+    "sha256": "d603026b43090bed4cafa67d0f9ebd1ebb7064d421e882c851eae93a861614ae"
   },
   {
     "id": "gallery-east:0",
@@ -782,5 +782,13 @@
     "width": 1254,
     "height": 1254,
     "sha256": "98d69b50fd5863a18719c673232e1780a7b056fba3d80b87833c506efb56e47a"
+  },
+  {
+    "id": "retouch-rack-pressed:0",
+    "path": "public/images/rooms/retouch/states/retouch-rack-pressed.webp",
+    "bytes": 235468,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "f5835410d6113609c6995a9d3b6ce03d099c51d24aeedda4e5b3d41bf123763d"
   }
 ]
