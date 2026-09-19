@@ -154,9 +154,9 @@ export const CLUES: Record<
     room: 1,
   },
   mirror: {
-    name: "保管棚の押し板図",
+    name: "保管棚の図",
     image: photo("clues-a", 3),
-    text: "白い板を押す図。放射状の飾りは、棚と反対側にある。",
+    text: "六つの区画を描いた古い図。",
     room: 2,
   },
   shadows: {

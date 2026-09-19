@@ -207,3 +207,12 @@ Generate a strictly registered 2x2 contact sheet of FOUR square closeup photogra
 用途: lamp-states:0, lamp-states:1, lamp-states:2
 
 Create a 2 by 2 precisely registered contact sheet of FOUR square photographs of the EXACT workbench in the reference. The drawer on RIGHT is CLOSED in ALL four panels (no scissors exposed). Same composition and camera. TOP LEFT: lamp OFF, bulb socket empty inside shade, plain cream paper on desk. TOP RIGHT: bulb installed and lamp ON at its normal high position, softly even flat lighting over same plain paper. BOTTOM LEFT: articulated lamp moved to a LOW LEFT position (base remains on left), casts strong raking light across paper so three pressed square outlines in the paper become visible (3x3 grid, TOP CENTER, MIDDLE RIGHT, BOTTOM LEFT squares have strong embossed cut outline). Drawer stays closed. BOTTOM RIGHT: same as bottom-left but drawer open with scissors inside. All other objects, wood grain, desk, books, shelves remain consistent. Photorealistic engineering photographic states, same aged green lamp. Do not add knobs or graphical UI. No labels or words or numbers. Four square panels without gutters.
+
+
+## 2026-09-19 保管棚の図の操作説明を整理
+
+採用: `public/images/clues/a/mirrored-shelf.webp` (`clues-a:3`)。built-in image_gen で既存画像を編集。
+
+Prompt: Edit this image, preserving the exact square canvas, weathered parchment edges, and the entire cabinet drawing in the upper 73% unchanged. The final artwork consists solely of this cabinet drawing above and plain naturally aged parchment below. In the bottom 27% restore continuous blank old parchment with subtle paper fibres, stains and folds matching surrounding paper. Preserve cabinet six-panel arrangement, every white and dark panel, rosette top right, all knobs, drawer and baseline. Keep original cabinet size and location. This is a photographic aged pencil-drawn artifact, not a clean digital diagram.
+
+生成結果とスマホ幅の実画面を目視確認。白黒配置・飾りの位置を維持。観察文も解き方を直説しないものへ変更。ビルド・資産監査成功。
