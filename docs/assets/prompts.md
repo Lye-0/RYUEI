@@ -227,3 +227,12 @@ built-in image_gen で `rooms/studio/views/north.webp` を参照編集。採用�
 - left: Light from LEFT of camera; chair shadow extends clearly to the RIGHT across the floor. Existing left tripod lamp is lit.
 - top: Light from HIGH ABOVE and behind the chair; chair shadow extends clearly FORWARD toward viewer along the floor. Existing left tripod lamp is dark/off.
 - right: Light from RIGHT of camera; chair shadow extends clearly to the LEFT across the floor. Existing left tripod lamp is dark/off.
+
+
+## 2026-09-19 搬出口の四コマ写真
+
+採用: `public/images/mechanisms/exit/contact-print.webp`。built-in image_gen に既存写真を参照して編集。
+
+指示: 古い四コマのコンタクトプリントの構図、セピア、傷、折れ、紙縁を維持。各コマの窓は右側のまま。指先は左上=左、右上=右、左下=左、右下=中央を厳密に維持。各コマの左上の紙余白に、順に1・2・3・4の小さな読みやすい古い鉛筆の手書き番号だけを加える。番号は紙になじませ、他の説明や操作指示を足さない。
+
+390px・1440px の持ち物裏面を実画面で確認。写真に既に紙縁があるため、裏面では追加の紙枠による縮小をやめる。正解の左右反転と入力列は維持し、通常観察文は仕掛けを直接説明しない内容にした。

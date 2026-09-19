@@ -479,7 +479,7 @@ export default function App() {
                 asset={asset}
                 className={
                   "scene-image item-portrait" +
-                  (["print", "portrait"].includes(panel.id)
+                  (["print", "portrait"].includes(panel.id) && !back
                     ? " paper-portrait"
                     : "")
                 }

@@ -230,7 +230,7 @@ export const CLUES: Record<
   exit: {
     name: "戸口に残った手順",
     image: photo("exit", 0, 1, 1),
-    text: "左上から右へ、次に下の段。窓がこちらと反対側に写っている。",
+    text: "四つの場面が焼き付けられている。",
     room: 5,
     requires: ["print"],
   },

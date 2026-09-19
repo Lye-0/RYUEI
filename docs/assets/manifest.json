@@ -266,10 +266,10 @@
   {
     "id": "exit:0",
     "path": "public/images/mechanisms/exit/contact-print.webp",
-    "bytes": 136486,
-    "width": 800,
-    "height": 800,
-    "sha256": "0661a4cc7aa7f2d961a4bec2b3d3c337efd19c863d828011bb79d930428fed12"
+    "bytes": 298654,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "929d16e92c8f6bd7dda090e64b3a86b052dae505ceb80439d4d973da736da0e8"
   },
   {
     "id": "reception-north:0",
