@@ -186,10 +186,10 @@
   {
     "id": "clues-a:4",
     "path": "public/images/clues/a/shadow-study.webp",
-    "bytes": 42200,
-    "width": 500,
-    "height": 500,
-    "sha256": "3cedcac9b8c5259113c89581d6ac3d669ce6b36c9710420cf3887823228589ea"
+    "bytes": 507804,
+    "width": 1122,
+    "height": 1402,
+    "sha256": "e70ad3ec4c6ea5337b2e84f9aa4a812fcf96522b5e324e60723cc144d2eea9d3"
   },
   {
     "id": "clues-b:0",
@@ -642,10 +642,10 @@
   {
     "id": "layout-plan:0",
     "path": "public/images/clues/architecture/layout-plan.webp",
-    "bytes": 169828,
-    "width": 1019,
-    "height": 1543,
-    "sha256": "90883e636fd298ab84a4f240279525a4f20026cc4e9333fc78b39e98f7b29a75"
+    "bytes": 518000,
+    "width": 1024,
+    "height": 1536,
+    "sha256": "0c77ccdfd3a99507f114a22eb4c1fcd97b13d7346ae6d132d8257a354dec074b"
   },
   {
     "id": "studio-gallery-open:0",
@@ -742,5 +742,37 @@
     "width": 1254,
     "height": 1254,
     "sha256": "d6dc8a259eede03c9540cb6af2402a7809674790afd4948e94d8b3941f9cbb2d"
+  },
+  {
+    "id": "history-framed:0",
+    "path": "public/images/clues/a/framed-history.webp",
+    "bytes": 555256,
+    "width": 1122,
+    "height": 1402,
+    "sha256": "8118fd4114ac070a80c4d477ac82b6664fb21ff71b1ed60bb62a3c236bf4d73c"
+  },
+  {
+    "id": "inventory-a:0",
+    "path": "public/images/items/keys-and-case.webp",
+    "bytes": 118516,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "13f6e120fc5a2ed07377387b712b6f50bcb9d5ea15930003a6d3f9605d3de4a1"
+  },
+  {
+    "id": "inventory-b:0",
+    "path": "public/images/items/optics-and-tools.webp",
+    "bytes": 151094,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "b71ef688f7a4401c21896aabffb99a9e81d54a0592b69a31a8d4f9cb194c0e73"
+  },
+  {
+    "id": "inventory-c:0",
+    "path": "public/images/items/wheel-and-paper.webp",
+    "bytes": 143690,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "455a7a95ac4e05e02209ce79e8c3c1399d593d0e9ccf01134093e6b75fbee0ac"
   }
 ]

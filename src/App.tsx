@@ -18,6 +18,7 @@ import {
 } from "./data";
 import * as E from "./engine";
 import { Photo } from "./Photo";
+import { recommendedHint, hintSituation, operationHint } from "./hints";
 import { PuzzlePicker } from "./PuzzlePicker";
 import { Scene } from "./Scene";
 import { SceneDocument, itemPortrait as itemPhoto } from "./SceneDocument";
@@ -90,55 +91,42 @@ function Hint({
   update: (s: E.State) => void;
 }) {
   const [page, setPage] = useState(0);
-  const n = s.hints[p.id] ?? 0;
-  const current = Math.min(page, 2);
-  let help = "";
-  if (s.solved.includes(p.id)) {
-    const pending = p.rewards?.filter((i) => !s.collected.includes(i));
-    help = pending?.length
-      ? s.opened.includes(p.id)
-        ? "開いた中の物を押して拾う。"
-        : "仕掛けは解けている。取っ手を押して中を調べる。"
-      : "この仕掛けは完了している。ほかの部屋へ。";
-  } else if (
-    p.items?.some(
-      (i) => !s.installed[p.id]?.includes(i) && s.inventory.includes(i),
-    )
-  )
-    help = "必要な物を持っている。接写で選び、取り付け位置を押す。";
+  const situation = hintSituation(s, p.id);
   return (
     <div className="hint-card">
-      <h3>{p.name}</h3>
-      {help && <p>{help}</p>}
-      {n === 0 ? (
-        <button
-          className="line-button"
-          onClick={() => update({ ...s, hints: { ...s.hints, [p.id]: 1 } })}
-        >
-          最初の手掛かりを開く
-        </button>
-      ) : (
+      <h3>
+        {ROOMS[p.room].name} / {p.name}
+      </h3>
+      <p className="hint-situation">{situation.text}</p>
+      {situation.steps && (
         <>
-          <p>{p.hint[current]}</p>
+          <span className="hint-level">
+            {["見る場所", "考え方", "今の状態からの操作"][page]}
+          </span>
+          <p>{page === 2 ? operationHint(s, p.id) : p.hint[page]}</p>
           <div className="hint-nav">
-            <button
-              disabled={current === 0}
-              onClick={() => setPage(current - 1)}
-            >
-              前へ
+            <button disabled={page === 0} onClick={() => setPage(page - 1)}>
+              前のヒント
             </button>
-            <span>{current + 1} / 3</span>
             <button
-              disabled={current === 2}
+              disabled={page === 2}
               onClick={() => {
-                setPage(current + 1);
+                const next = page + 1;
+                setPage(next);
                 update({
                   ...s,
-                  hints: { ...s.hints, [p.id]: Math.max(n, current + 2) },
+                  hints: {
+                    ...s.hints,
+                    [p.id]: Math.max(s.hints[p.id] ?? 0, next + 1),
+                  },
                 });
               }}
             >
-              次の手掛かり
+              {page === 0
+                ? "考え方を見る"
+                : page === 1
+                  ? "具体的な操作を見る"
+                  : "操作を表示中"}
             </button>
           </div>
         </>
@@ -485,7 +473,12 @@ export default function App() {
             {panel?.type === "item" ? (
               <Photo
                 asset={asset}
-                className="scene-image"
+                className={
+                  "scene-image item-portrait" +
+                  (["print", "portrait"].includes(panel.id)
+                    ? " paper-portrait"
+                    : "")
+                }
                 style={
                   panel.id === "mask"
                     ? {
@@ -495,7 +488,9 @@ export default function App() {
                     : undefined
                 }
               />
-            ) : panel?.type === "clue" && !panel.inWorld ? (
+            ) : panel?.type === "clue" &&
+              (!panel.inWorld ||
+                ["shadows", "history", "layout"].includes(panel.id)) ? (
               <SceneDocument id={panel.id} />
             ) : (
               <Scene
@@ -695,7 +690,18 @@ export default function App() {
                 物を押して近づく。持ち物を選び、使う場所を押す。写真は記録から見直せる。
               </p>
               <p>持ち物の⌕から、表と裏を調べられます。</p>
-              <button className="subtle" onClick={() => setMenu("hints")}>
+              <button
+                className="subtle"
+                onClick={() => {
+                  setHintId(
+                    recommendedHint(
+                      s,
+                      panel?.type === "puzzle" ? panel.id : undefined,
+                    ),
+                  );
+                  setMenu("hints");
+                }}
+              >
                 行き詰まったとき
               </button>
               <button className="subtle" onClick={() => setMenu("restart")}>

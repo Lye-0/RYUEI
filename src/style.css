@@ -947,7 +947,8 @@ button,
 .scene-world {
   transform-origin: 0 0;
   overflow: visible;
-  transition: transform 0.45s cubic-bezier(0.2, 0.65, 0.25, 1);
+  transition: none;
+  animation: scene-arrive 0.16s ease-out;
 }
 .world-photo.photo {
   position: absolute;
@@ -1005,13 +1006,6 @@ button,
   z-index: 5;
 }
 .state-patch {
-  pointer-events: none;
-}
-.paper-cut {
-  position: absolute;
-  background: #151811;
-  box-shadow: inset 1px 1px 2px #030500;
-  border: 1px solid #e8d5ac55;
   pointer-events: none;
 }
 .shelf-pressed {
@@ -1289,14 +1283,6 @@ button,
 .world-target.fitting {
   z-index: 9;
 }
-.paper-cut:after {
-  content: "";
-  position: absolute;
-  inset: 0 0 88%;
-  background: #bdaa86;
-  box-shadow: 0 1px 2px #0009;
-}
-
 .held-print {
   filter: brightness(1.2);
   transform: translateY(-1.5%);
@@ -1558,4 +1544,98 @@ button,
   top: auto;
   margin-top: 0;
   max-height: min(250px, 30dvh);
+}
+
+/* Projected paper and glass occupy their photographed support planes. */
+.processing-paper {
+  border: 0;
+  background: #ab9678;
+  box-shadow: inset 0 0 18px #1e170d55;
+}
+.processing-paper.processed {
+  background: #b1a187;
+}
+.developed-print {
+  height: 100%;
+  width: 100%;
+  padding: 2%;
+  background: #bbae91;
+  box-shadow: 0 8px 15px #0008;
+}
+.developed-print > .photo {
+  width: 100%;
+  height: 100%;
+  filter: sepia(0.35) brightness(0.82);
+}
+.mounted-mirror {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: #bfb296;
+}
+.mounted-mirror > .photo {
+  width: 100%;
+  height: 33%;
+  aspect-ratio: auto;
+}
+.mounted-process {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.mounted-process > .photo {
+  width: 8.1%;
+  height: 100%;
+  aspect-ratio: auto;
+  box-shadow: 2px 4px 8px #0006;
+}
+
+.mounted-mirror {
+  position: relative;
+}
+.mounted-mirror > .paper-texture {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+.mounted-mirror > .photo:not(.paper-texture) {
+  position: relative;
+}
+
+@keyframes scene-arrive {
+  from {
+    opacity: 0.65;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.stage > .item-portrait {
+  background-color: #151410;
+}
+.stage > .paper-portrait {
+  inset: 15% 17%;
+  width: 66%;
+  height: 66%;
+  border: 10px solid #cabea6;
+  box-shadow: 0 10px 30px #0008;
+  background-repeat: no-repeat;
+}
+
+.hint-situation {
+  border-left: 2px solid #7f8768;
+  padding: 9px 12px;
+  background: #21291f;
+}
+.hint-card .hint-situation {
+  min-height: 0;
+}
+.hint-level {
+  color: #c6b78c;
+  font-size: 11px;
+  letter-spacing: 0.08em;
 }

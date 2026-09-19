@@ -91,5 +91,9 @@
   "gallery-studio-open-v2:0": "rooms/gallery/states/gallery-studio-open-v2.webp",
   "darkroom-gallery-open-v2:0": "rooms/darkroom/states/darkroom-gallery-open-v2.webp",
   "studio-shutters-cable:0": "rooms/studio/states/studio-shutters-cable.webp",
-  "gallery-studio-revealed:0": "rooms/gallery/states/studio-revealed.webp"
+  "gallery-studio-revealed:0": "rooms/gallery/states/studio-revealed.webp",
+  "history-framed:0": "clues/a/framed-history.webp",
+  "inventory-a:0": "items/keys-and-case.webp",
+  "inventory-b:0": "items/optics-and-tools.webp",
+  "inventory-c:0": "items/wheel-and-paper.webp"
 }

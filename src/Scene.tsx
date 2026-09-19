@@ -24,6 +24,9 @@ import {
   MASTER,
   MECHANISMS,
   CLUE_PLACEMENTS,
+  CLUE_SURFACES,
+  CUT_SURFACES,
+  PROCESS_SURFACES,
   focusRect,
   quad,
   sceneNodes,
@@ -43,25 +46,10 @@ function Patch({ id, area }: { id: string; area: Rect }) {
       asset={photo(id)}
       className="world-photo state-patch"
       style={{
-        maskImage: id.includes("lamp")
-          ? "linear-gradient(to right,transparent " +
-            area[0] +
-            "%,black " +
-            (area[0] + 1.5) +
-            "%,black " +
-            (area[0] + area[2] - 1.5) +
-            "%,transparent " +
-            (area[0] + area[2]) +
-            "%),linear-gradient(to bottom,transparent " +
-            area[1] +
-            "%,black " +
-            (area[1] + 1.5) +
-            "%,black " +
-            (area[1] + area[3] - 1.5) +
-            "%,transparent " +
-            (area[1] + area[3]) +
-            "%)"
-          : undefined,
+        maskImage: [
+          `linear-gradient(to right, transparent ${area[0]}%, black ${area[0] + 0.25}%, black ${area[0] + area[2] - 0.25}%, transparent ${area[0] + area[2]}%)`,
+          `linear-gradient(to bottom, transparent ${area[1]}%, black ${area[1] + 0.25}%, black ${area[1] + area[3] - 0.25}%, transparent ${area[1] + area[3]}%)`,
+        ].join(","),
         maskComposite: "intersect",
         clipPath: `inset(${area[1]}% ${100 - area[0] - area[2]}% ${100 - area[1] - area[3]}% ${area[0]}%)`,
       }}
@@ -98,7 +86,7 @@ function Surface({
       className={"world-surface" + (mounted ? " mounted-document" : "")}
       style={{
         filter: mounted
-          ? `sepia(.28) saturate(.6) brightness(.86) contrast(.88) blur(${(width * 0.00065) / Math.max(0.04, Math.abs(p1[0] - p0[0]))}px)`
+          ? `sepia(.28) saturate(.6) brightness(.86) contrast(.88) blur(${(width * 0.00055) / Math.max(0.04, Math.abs(p1[0] - p0[0]))}px)`
           : undefined,
         transform: `matrix3d(${a},${d},0,${g / width},${b},${e},0,${h / width},0,0,1,0,${width * p0[0]},${width * p0[1]},0,1)`,
       }}
@@ -232,7 +220,7 @@ export function Scene({
     : focused
       ? focused.target === "old"
         ? [45, 0, 24, 24]
-        : focusRect(focused.rect)
+        : focusRect(focused.rect, focused.type === "clue" ? 28 : 0)
       : [0, 0, 100, 100];
   const key = `${s.room}:${s.face}`,
     master = MASTER[key];
@@ -325,13 +313,35 @@ export function Scene({
     update(next);
     notify(ITEMS[item].reusable ? "手応えがあった。" : "取り付いた。");
   }
+  const documents = nodes
+    .filter(
+      (n) =>
+        n.type === "clue" &&
+        n.target !== "model" &&
+        n.target !== "memory" &&
+        n.target !== "shutter" &&
+        !CLUES[n.target].requires?.some((x) => !s.solved.includes(x)),
+    )
+    .map((n) => (
+      <Surface
+        key={n.id}
+        q={CLUE_SURFACES[key + ":" + n.target] ?? quad(n.rect)}
+        width={width}
+        mounted
+      >
+        <SceneDocument id={n.target} mounted />
+      </Surface>
+    ));
   return (
     <div ref={ref} className={"scene-camera " + (marks ? "show-targets" : "")}>
       <div
         className="scene-world"
-        style={{
-          transform: `scale(${100 / crop[2]}) translate(${-crop[0]}%,${-crop[1]}%)`,
-        }}
+        key={`${s.room}:${s.face}:${focus?.type ?? "room"}:${focus?.id ?? focus?.to ?? ""}`}
+        style={
+          {
+            transform: `matrix(${100 / crop[2]}, 0, 0, ${100 / crop[2]}, ${(-width * crop[0]) / crop[2]}, ${(-width * crop[1]) / crop[2]})`,
+          } as CSSProperties
+        }
       >
         <Photo
           asset={master ? photo(master) : photo(ROOMS[s.room].id, s.face)}
@@ -362,6 +372,7 @@ export function Scene({
         {s.room === 1 && s.face === 3 && s.openDoors.includes("darkroom") && (
           <Patch id="gallery-door-open" area={[5, 4, 36, 83]} />
         )}
+        {key === "1:1" && documents}
         {active.map(([id, m]) => {
           const p = PUZZLES[id],
             v = E.values(s, id),
@@ -409,10 +420,22 @@ export function Scene({
                 <Patch id="gallery-leverless" area={[71, 39, 28, 15]} />
               )}
               {opened && m.state && (
-                <Patch id={m.state + "-open"} area={m.patch!} />
+                <Patch
+                  id={
+                    m.state +
+                    (id === "develop" ||
+                    (p.rewards?.length &&
+                      p.rewards.every((item) => s.collected.includes(item)))
+                      ? "-empty"
+                      : "-open")
+                  }
+                  area={m.patch!}
+                />
               )}
               {opened &&
                 m.state &&
+                id !== "develop" &&
+                !p.rewards?.every((item) => s.collected.includes(item)) &&
                 p.rewards?.map(
                   (item, i) =>
                     s.collected.includes(item) && (
@@ -459,7 +482,7 @@ export function Scene({
               {p.kind === "order" &&
                 (!p.items || s.installed[id]?.length) &&
                 m.controls.map((r, i) => (
-                  <Surface key={i} q={quad(r)} width={width}>
+                  <Surface key={i} q={quad(r)} width={width} mounted>
                     <Photo
                       className={zoom && swap === i ? "held-print" : ""}
                       asset={
@@ -474,7 +497,7 @@ export function Scene({
                   </Surface>
                 ))}
               {id === "camera" && s.installed.camera?.includes("lens") && (
-                <Surface q={m.surfaces![0]} width={width}>
+                <Surface q={m.surfaces![0]} width={width} mounted>
                   <Photo
                     asset={
                       s.opened.includes("wall")
@@ -494,7 +517,7 @@ export function Scene({
               {id === "masks" &&
                 s.installed.masks?.includes("mask") &&
                 m.surfaces!.map((q, i) => (
-                  <Surface key={i} q={q} width={width}>
+                  <Surface key={i} q={q} width={width} mounted>
                     <Photo
                       asset={{
                         ...photo("glass-triptych"),
@@ -511,19 +534,11 @@ export function Scene({
                 ) &&
                 (() => {
                   const target = v.at(-1) ?? (id === "develop" ? 1 : 0);
-                  const r =
-                    id === "print" && target === 0
-                      ? m.fittings![0]
-                      : m.controls[target];
                   return (
                     <Surface
-                      q={quad([
-                        r[0] + r[2] * 0.23,
-                        r[1] + r[3] * 0.2,
-                        r[2] * 0.55,
-                        r[3] * 0.65,
-                      ])}
+                      q={PROCESS_SURFACES[id][target]}
                       width={width}
+                      mounted
                     >
                       <div
                         className={
@@ -575,22 +590,24 @@ export function Scene({
                   ]}
                   width={width}
                 >
-                  <Photo asset={CLUES.panorama.image} />
+                  <div className="developed-print">
+                    <Photo asset={CLUES.panorama.image} />
+                  </div>
                 </Surface>
               )}
               {id === "cut" &&
                 v.map((i) => (
-                  <div
-                    key={i}
-                    className="paper-cut"
-                    style={box(m.controls[i])}
-                  />
+                  <Surface key={i} q={CUT_SURFACES[i]} width={width}>
+                    <Photo
+                      asset={{ ...CLUES.cut.image, crop: [39, 15, 20, 22] }}
+                    />
+                  </Surface>
                 ))}
               {id === "cut" &&
                 opened &&
                 !s.collected.includes("mask") &&
                 p.answer.map((cell, i) => (
-                  <Surface key={i} q={quad(m.controls[cell])} width={width}>
+                  <Surface key={i} q={CUT_SURFACES[cell]} width={width} mounted>
                     <Photo
                       asset={{
                         ...photo("glass-triptych"),
@@ -719,25 +736,13 @@ export function Scene({
             </div>
           );
         })}
-        {nodes
-          .filter(
-            (n) =>
-              n.type === "clue" &&
-              n.target !== "model" &&
-              n.target !== "memory" &&
-              n.target !== "shutter" &&
-              !CLUES[n.target].requires?.some((x) => !s.solved.includes(x)),
-          )
-          .map((n) => (
-            <Surface key={n.id} q={quad(n.rect)} width={width} mounted>
-              <SceneDocument id={n.target} mounted />
-            </Surface>
-          ))}
+        {key !== "1:1" && documents}
         {key === "4:1" &&
           [0, 1, 2, 3, 4].map((i) => (
             <Surface
               key={"light-" + i}
               q={quad([26.5, 12 + i * 9.5, 7, 6.8])}
+              mounted
               width={width}
             >
               <Photo

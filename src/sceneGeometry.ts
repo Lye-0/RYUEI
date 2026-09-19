@@ -53,7 +53,7 @@ export const MECHANISMS: Record<string, Mechanism> = {
       [46, 42, 10, 6],
     ],
     state: "gallery-frames",
-    patch: [20, 39, 42, 24],
+    patch: [19.5, 39, 42, 18],
   },
   rack: {
     room: 2,
@@ -306,14 +306,17 @@ export const CLUE_PLACEMENTS: Record<string, Record<string, Rect>> = {
   "0:1": { position: [8.2, 10.8, 29.2, 38], outside: [48, 20, 25, 30] },
   "0:3": { old: [53, 4.5, 7.2, 9.4] },
   "4:1": { shutter: [25, 10, 10, 48] },
-  "4:2": { history: [4, 21, 15, 22], architecture: [80, 23, 17, 20] },
+  "4:2": { history: [1.3, 19.6, 21.6, 29.4], architecture: [80, 23, 17, 20] },
   "5:1": { printProcess: [40, 6.5, 32, 24] },
   "5:3": { reverse: [64.8, 9.5, 11.6, 9.5] },
-  "1:1": { shadows: [30.5, 55.5, 6, 8.7], history: [44, 55.5, 6, 8.7] },
+  "1:1": {
+    shadows: [28.3, 53.4, 10.8, 13.4],
+    history: [41.5, 53.4, 10.8, 13.4],
+  },
   "2:0": { model: [51, 32, 25, 27], cut: [18.7, 53.5, 11.5, 2.3] },
   "2:1": { mirror: [5.3, 29.5, 4.3, 13], architecture: [66, 5, 10, 12] },
   "3:0": { bath: [23.5, 29.5, 53, 12] },
-  "4:0": { memory: [46.5, 52, 15, 26], layout: [10, 14, 10, 15] },
+  "4:0": { memory: [46.5, 52, 15, 26], layout: [8, 7, 10, 15] },
 };
 export function sceneNodes(room: number, face: number) {
   const nodes = ROOMS[room].views[face].filter(
@@ -360,8 +363,8 @@ export function sceneNodes(room: number, face: number) {
   }
   return result;
 }
-export function focusRect(r: Rect): Rect {
-  const size = Math.min(100, Math.max(r[2], r[3]) * 1.2);
+export function focusRect(r: Rect, minimum = 0): Rect {
+  const size = Math.min(100, Math.max(minimum, Math.max(r[2], r[3]) * 1.2));
   return [
     Math.max(0, Math.min(100 - size, r[0] + r[2] / 2 - size / 2)),
     Math.max(0, Math.min(100 - size, r[1] + r[3] / 2 - size / 2)),
@@ -369,3 +372,129 @@ export function focusRect(r: Rect): Rect {
     size,
   ];
 }
+
+// Photograph corners, measured in the same world coordinates as the background.
+export const CLUE_SURFACES: Record<string, Quad> = {
+  "2:0:cut": [
+    [22, 53.6],
+    [30.3, 53.6],
+    [28.1, 55.5],
+    [18.6, 55.5],
+  ],
+  "2:1:mirror": [
+    [5.3, 29.5],
+    [9.6, 29.5],
+    [9.2, 42.5],
+    [5.1, 42.5],
+  ],
+};
+export const CUT_SURFACES: Quad[] = [
+  [
+    [39, 30],
+    [44.8, 30],
+    [44.3, 34.7],
+    [38.2, 34.7],
+  ],
+  [
+    [45.8, 30],
+    [51.8, 30],
+    [51.8, 34.7],
+    [45.6, 34.7],
+  ],
+  [
+    [53, 30],
+    [58.7, 30],
+    [59.4, 34.7],
+    [53.1, 34.7],
+  ],
+  [
+    [38.1, 35.9],
+    [44.2, 35.9],
+    [43.6, 40.7],
+    [37.2, 40.7],
+  ],
+  [
+    [45.5, 35.9],
+    [51.8, 35.9],
+    [51.9, 40.7],
+    [45.2, 40.7],
+  ],
+  [
+    [53.4, 35.9],
+    [59.5, 35.9],
+    [60.2, 40.7],
+    [53.6, 40.7],
+  ],
+  [
+    [36.9, 41.7],
+    [43.5, 41.7],
+    [42.9, 47.1],
+    [35.9, 47.1],
+  ],
+  [
+    [45.1, 41.7],
+    [52, 41.7],
+    [52, 47.1],
+    [44.7, 47.1],
+  ],
+  [
+    [53.7, 41.7],
+    [60.4, 41.7],
+    [61.3, 47.1],
+    [54, 47.1],
+  ],
+];
+export const PROCESS_SURFACES: Record<string, Quad[]> = {
+  develop: [
+    [
+      [12, 55.8],
+      [25, 55.8],
+      [23.5, 58.5],
+      [9.7, 58.5],
+    ],
+    [
+      [37, 55.8],
+      [49, 55.8],
+      [50, 58.4],
+      [35, 58.4],
+    ],
+    [
+      [62, 55.9],
+      [72, 55.9],
+      [75, 58.6],
+      [61, 58.6],
+    ],
+    [
+      [84, 57],
+      [90, 57],
+      [92, 59.2],
+      [83, 59.2],
+    ],
+  ],
+  print: [
+    [
+      [49.5, 43],
+      [57, 43],
+      [57.3, 47],
+      [49.1, 47],
+    ],
+    [
+      [46, 52.3],
+      [51.9, 52.3],
+      [52, 54.3],
+      [45.2, 54.3],
+    ],
+    [
+      [56.5, 52.3],
+      [62.6, 52.3],
+      [63.4, 54.3],
+      [56, 54.3],
+    ],
+    [
+      [67.7, 52.4],
+      [73.2, 52.4],
+      [74.8, 54.4],
+      [68, 54.4],
+    ],
+  ],
+};
