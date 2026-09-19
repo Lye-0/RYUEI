@@ -17,3 +17,6 @@ run = "pnpm preview"
 
 [tasks."check:assets"]
 run = "pnpm check:assets"
+
+[tasks."build:pages"]
+run = "pnpm build:pages"

@@ -50,3 +50,16 @@ pnpm dev
 - 採用画像と生成指示: [docs/assets/manifest.json](docs/assets/manifest.json)、[docs/assets/prompts.md](docs/assets/prompts.md)。
 
 企画の2〜3時間は制作目標で、初見の人による実測値ではありません。自動操作による通し確認は、解けること・操作できることの検証です。難易度や解けたときの納得感には、人による初見テストを別に行う必要があります。
+
+## GitHub Pagesへのリリース
+
+デフォルトブランチは `main` です。公開予定URLは https://lye-0.github.io/RYUEI/ です。
+
+`main` へのpushとPRで、GitHub Actionsがテスト・採用画像の監査・Pages用ビルドを実行します。pushだけでは公開されません。
+
+初回はリポジトリの **Settings → Pages → Source** を **GitHub Actions** に設定します。
+公開するときは **Actions → GitHub Pages → Run workflow → main** を選びます。手動実行でも検証を再実行し、成功した成果物だけを公開します。
+
+Pages用ビルドは `pnpm build:pages`（または `mise run build:pages`）です。配信パス `/RYUEI/` を指定し、`dist-pages/` に出力します。通常の `dist/` や開発サーバーの設定は変更しません。CIでも `mise.toml` のNode・pnpmを使用します。
+
+公開対象はビルド成果物だけで、制作資料やテストはサイトへ配信しません。ただし公開リポジトリ内の攻略資料はGitHubから閲覧できます。開発サーバーのセーブデータは、ホストが異なる公開サイトへ自動では引き継がれません。

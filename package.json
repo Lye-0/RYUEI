@@ -14,7 +14,8 @@
     "preview": "vite preview --host 127.0.0.1 --port 4196 --strictPort",
     "test": "vitest run",
     "check:assets": "node scripts/audit-assets.mjs",
-    "format": "prettier --write src tests scripts docs *.json *.md *.html *.ts"
+    "format": "prettier --write src tests scripts docs *.json *.md *.html *.ts",
+    "build:pages": "tsc -b && vite build --base=/RYUEI/ --outDir=dist-pages"
   },
   "dependencies": {
     "react": "19.2.0",

@@ -4,3 +4,4 @@ dist/
 *.tsbuildinfo
 *.log
 .kilo/
+dist-pages/
