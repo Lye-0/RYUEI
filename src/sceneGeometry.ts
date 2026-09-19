@@ -316,7 +316,8 @@ export const CLUE_PLACEMENTS: Record<string, Record<string, Rect>> = {
   "2:0": { model: [51, 32, 25, 27], cut: [18.7, 53.5, 11.5, 2.3] },
   "2:1": { mirror: [5.3, 29.5, 4.3, 13], architecture: [66, 5, 10, 12] },
   "3:0": { bath: [23.5, 29.5, 53, 12] },
-  "4:0": { memory: [46.5, 52, 15, 26], layout: [8, 7, 10, 15] },
+  "4:0": { memory: [46.5, 52, 15, 26] },
+  "4:3": { layout: [55.9, 12.7, 9, 16.3] },
 };
 export function sceneNodes(room: number, face: number) {
   const nodes = ROOMS[room].views[face].filter(
@@ -375,6 +376,12 @@ export function focusRect(r: Rect, minimum = 0): Rect {
 
 // Photograph corners, measured in the same world coordinates as the background.
 export const CLUE_SURFACES: Record<string, Quad> = {
+  "4:3:layout": [
+    [55.9, 14],
+    [64.9, 12.7],
+    [64.9, 28],
+    [55.9, 29],
+  ],
   "2:0:cut": [
     [22, 53.6],
     [30.3, 53.6],
