@@ -806,5 +806,29 @@
     "width": 1254,
     "height": 1254,
     "sha256": "60b492b9b98ac3ab8dee04f79f1c708e1e8b05327fdcf585bc7c9edf660c8a52"
+  },
+  {
+    "id": "studio-light-left:0",
+    "path": "public/images/rooms/studio/states/light-left.webp",
+    "bytes": 227612,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "33a526ecc7fa75de39b3f7f921ccec7b56fd522bbd8d838a034a2c4d90d53066"
+  },
+  {
+    "id": "studio-light-top:0",
+    "path": "public/images/rooms/studio/states/light-top.webp",
+    "bytes": 240198,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "6a6f71c2f8318cf34c79b967a431918e963702d460ee1e400f38f7c73daffebc"
+  },
+  {
+    "id": "studio-light-right:0",
+    "path": "public/images/rooms/studio/states/light-right.webp",
+    "bytes": 241734,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "1689c128376b36af70cad33f5493765fb3c2990dfd2f998b405d1e8905ac9f5a"
   }
 ]

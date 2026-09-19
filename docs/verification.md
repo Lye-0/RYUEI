@@ -83,3 +83,12 @@
 - 全15仕掛けをブラウザで解いて終了。pageerror / HTTP error なし。
 - 31単体テスト、TypeScript、production build、採用画像101枚の資産監査を実行。
 - 証跡: リポジトリ外 `ryuei-revision/crank-{390,1440}-{feed,backfeed}-{before,attached,detached,open}.png` および `final-390/result.json`。
+
+
+## 2026-09-19 照明切替とボタンの再表示
+
+- 照明切替器の選択を北壁の照明写真三種へ反映。他の視点には方向に応じた弱い環境光を適用。入力済みの最後の照明を視点移動・保存復元後も維持。
+- `.lamp-flash` のマウント時アニメーションを廃止。選択されたボタンの沈み込みは静的に表示する。
+- Chrome 本番プレビュー 390/1440px: 左灯・上灯・右灯を押し、接写と全景を撮影・目視。拡大を開き直した後の20フレームでボタンの animationName=none / opacity=1、回転後に発光要素なし。再読込後の右灯維持、元の五回の入力で解錠、収納開放を確認。pageerrorなし。
+- 証跡はリポジトリ外 `ryuei-revision/lighting-check.cjs` と `lighting-{390,1440}-*.png`。
+- ui-evolve の代表性のある確認を参照。今回は静止画だけでなく再マウント後をフレーム計測した。再描画を検証する既存知見で扱えるため、スキルへの重複追記は行わない。

@@ -1196,12 +1196,19 @@ button,
 .processing-paper.processed {
   background: #ddd0ac;
 }
-.lamp-flash {
+.lamp-selected {
   position: absolute;
   pointer-events: none;
-  background: #fff5ca;
-  box-shadow: 0 0 12px #fff7b0;
-  animation: flash 0.55s both;
+  background: rgba(42, 27, 9, 0.36);
+  box-shadow:
+    inset 1px 2px 4px #170f09,
+    0 1px 1px #d5b27366;
+}
+.studio-light-spill {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
 }
 .bolt-shift {
   position: absolute;
@@ -1211,14 +1218,6 @@ button,
 .bolt-shift .photo {
   height: 100%;
   width: 100%;
-}
-@keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 @keyframes bolt {
   0%,

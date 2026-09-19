@@ -224,6 +224,13 @@ export function Scene({
       : [0, 0, 100, 100];
   const key = `${s.room}:${s.face}`,
     master = MASTER[key];
+  const studioLight = s.installed.shutters?.includes("cable")
+    ? s.values.shutters?.at(-1)
+    : undefined;
+  const lightPhoto =
+    studioLight === undefined
+      ? null
+      : "studio-light-" + ["left", "top", "right"][studioLight];
   const active = Object.entries(MECHANISMS).filter(
     ([, m]) => m.room === s.room && m.face === s.face,
   );
@@ -352,7 +359,13 @@ export function Scene({
         }
       >
         <Photo
-          asset={master ? photo(master) : photo(ROOMS[s.room].id, s.face)}
+          asset={
+            s.room === 4 && s.face === 0 && lightPhoto
+              ? photo(lightPhoto)
+              : master
+                ? photo(master)
+                : photo(ROOMS[s.room].id, s.face)
+          }
           className="world-photo"
         />
         {s.room === 1 && s.face === 0 && s.openDoors.includes("studio") && (
@@ -572,8 +585,7 @@ export function Scene({
                 })()}
               {id === "shutters" && v.length > 0 && (
                 <div
-                  key={v.length}
-                  className="lamp-flash"
+                  className="lamp-selected"
                   style={{ ...box(m.controls[v.at(-1)!]), borderRadius: "50%" }}
                 />
               )}
@@ -879,6 +891,20 @@ export function Scene({
               click={() => touch({ ...focused, type: "take" })}
             />
           )}
+        {s.room === 4 && studioLight !== undefined && (
+          <div
+            className="studio-light-spill"
+            data-light={studioLight}
+            data-face={s.face}
+            style={{
+              opacity: s.face === 0 ? 0.12 : 0.32,
+              background:
+                studioLight === 1
+                  ? "linear-gradient(180deg, rgba(255,227,169,.65), transparent 72%)"
+                  : `linear-gradient(${(studioLight === 0 ? 90 : 270) + s.face * 90}deg, rgba(255,215,145,.65), transparent 50%, rgba(0,0,0,.5))`,
+            }}
+          />
+        )}
         {focus?.id === "wall" && s.opened.includes("wall") && (
           <Target
             r={[36, 20, 35, 54]}

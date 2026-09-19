@@ -99,5 +99,8 @@
   "gallery-retouch-entry:0": "rooms/gallery/states/retouch-entry.webp",
   "retouch-rack-pressed:0": "rooms/retouch/states/retouch-rack-pressed.webp",
   "gallery-crank-installed:0": "rooms/gallery/states/crank-installed.webp",
-  "backroom-crank-installed:0": "rooms/backroom/states/crank-installed.webp"
+  "backroom-crank-installed:0": "rooms/backroom/states/crank-installed.webp",
+  "studio-light-left:0": "rooms/studio/states/light-left.webp",
+  "studio-light-top:0": "rooms/studio/states/light-top.webp",
+  "studio-light-right:0": "rooms/studio/states/light-right.webp"
 }

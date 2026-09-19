@@ -216,3 +216,14 @@ Create a 2 by 2 precisely registered contact sheet of FOUR square photographs of
 Prompt: Edit this image, preserving the exact square canvas, weathered parchment edges, and the entire cabinet drawing in the upper 73% unchanged. The final artwork consists solely of this cabinet drawing above and plain naturally aged parchment below. In the bottom 27% restore continuous blank old parchment with subtle paper fibres, stains and folds matching surrounding paper. Preserve cabinet six-panel arrangement, every white and dark panel, rosette top right, all knobs, drawer and baseline. Keep original cabinet size and location. This is a photographic aged pencil-drawn artifact, not a clean digital diagram.
 
 生成結果とスマホ幅の実画面を目視確認。白黒配置・飾りの位置を維持。観察文も解き方を直説しないものへ変更。ビルド・資産監査成功。
+
+
+## 2026-09-19 撮影室の照明状態
+
+built-in image_gen で `rooms/studio/views/north.webp` を参照編集。採用画像は `public/images/rooms/studio/states/light-left.webp`、`light-top.webp`、`light-right.webp`。採用した三枚だけをリポジトリへ追加。
+
+共通指示: Edit target: exact attached square antique photographic studio room. Create lighting-state variant only. Preserve exact camera, framing, furniture, chair position and silhouette, wall controls, cables, backdrop, textures and every object. Relight the chair, curtain and floor using one photographic spotlight. Keep dim ambient antique room lighting and small wall sconce. Physically coherent directional shadows of chair legs/back, readable but natural. Do not add any fixture or furniture. Preserve switch panel at left unchanged in geometry. Entire original room composition must remain aligned pixel for pixel for an interactive fixed-camera game. Photorealistic, warm low light, no graphic overlays or labels.
+
+- left: Light from LEFT of camera; chair shadow extends clearly to the RIGHT across the floor. Existing left tripod lamp is lit.
+- top: Light from HIGH ABOVE and behind the chair; chair shadow extends clearly FORWARD toward viewer along the floor. Existing left tripod lamp is dark/off.
+- right: Light from RIGHT of camera; chair shadow extends clearly to the LEFT across the floor. Existing left tripod lamp is dark/off.
