@@ -292,7 +292,9 @@ export function Scene({
     if (p.kind === "select")
       change(id, v.includes(i) ? v.filter((x) => x !== i) : [...v, i]);
     else if (p.kind === "feed") change(id, E.feedStep(s, id, i));
-    else if (p.kind === "sequence" || p.kind === "develop")
+    else if (p.kind === "sequence")
+      change(id, E.sequenceInput(s, id, i));
+    else if (p.kind === "develop")
       change(id, v.length >= p.answer.length ? [i] : [...v, i]);
     else if (p.kind === "map") {
       notify("巻き上げ軸は、まだ固定されている。");

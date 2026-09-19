@@ -110,6 +110,12 @@ export function input(s: State, id: string, next: number[]): State {
     return s;
   return { ...s, values: { ...s.values, [id]: next } };
 }
+// Sequence mechanisms listen continuously; exploratory presses must not
+// offset an invisible fixed-size attempt boundary.
+export function sequenceInput(s: State, id: string, button: number): number[] {
+  const p = PUZZLES[id];
+  return [...values(s, id), button].slice(-p.answer.length);
+}
 export function validValues(id: string, a: unknown): a is number[] {
   const p = PUZZLES[id];
   if (!p || !Array.isArray(a) || !a.every((n) => Number.isInteger(n) && n >= 0))
