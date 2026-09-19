@@ -201,6 +201,15 @@ export function Scene({
     [width, setWidth] = useState(800),
     [swap, setSwap] = useState<number | null>(null),
     [demo, setDemo] = useState([0, 0]);
+  const boltSerial = useRef(0);
+  const [boltMotion, setBoltMotion] = useState<{
+    index: number;
+    serial: number;
+  } | null>(null);
+  // Motion belongs to the click, never to saved input or mounting a viewpoint.
+  useLayoutEffect(() => {
+    setBoltMotion(null);
+  }, [s.room, s.face, focus?.type, focus?.id]);
   useLayoutEffect(() => {
     if (!ref.current) return;
     const observer = new ResizeObserver(([e]) => setWidth(e.contentRect.width));
@@ -264,6 +273,9 @@ export function Scene({
     if (!E.available(s, id)) {
       notify("動かない。");
       return;
+    }
+    if (id === "beyond" && !s.solved.includes(id)) {
+      setBoltMotion({ index: i, serial: ++boltSerial.current });
     }
     if (p.kind === "order") {
       if (swap === null) setSwap(i);
@@ -589,16 +601,21 @@ export function Scene({
                   style={{ ...box(m.controls[v.at(-1)!]), borderRadius: "50%" }}
                 />
               )}
-              {id === "beyond" && v.length > 0 && !opened && (
+              {id === "beyond" && zoom && boltMotion && !opened && (
                 <div
-                  key={v.length}
+                  key={boltMotion.serial}
                   className="bolt-shift"
-                  style={box(m.controls[v.at(-1)!])}
+                  onAnimationEnd={() =>
+                    setBoltMotion((current) =>
+                      current?.serial === boltMotion.serial ? null : current,
+                    )
+                  }
+                  style={box(m.controls[boltMotion.index])}
                 >
                   <Photo
                     asset={{
                       ...photo("backroom-north"),
-                      crop: m.controls[v.at(-1)!],
+                      crop: m.controls[boltMotion.index],
                     }}
                   />
                 </div>
