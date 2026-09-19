@@ -216,14 +216,6 @@
     "sha256": "2639d7e212437438d079fded3a3d8546eda5623bfdf715d5d9bca72fcaf00e84"
   },
   {
-    "id": "clues-c:4",
-    "path": "public/images/clues/c/mechanism-reverse.webp",
-    "bytes": 44628,
-    "width": 406,
-    "height": 615,
-    "sha256": "b7710893ab5f141fcf561e477c39350169f5c5d8915814acc9ca137feafd0932"
-  },
-  {
     "id": "fragments:0",
     "path": "public/images/mechanisms/fragments/torn-broken.webp",
     "bytes": 21924,
@@ -440,14 +432,6 @@
     "sha256": "da59c7524fa5b34f16c515221c77f0c7173ccd5d5a3acc463e6047d77c38e1b3"
   },
   {
-    "id": "gallery-feed-open:0",
-    "path": "public/images/rooms/gallery/states/gallery-feed-open.webp",
-    "bytes": 147650,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "f932cb733a2066f8e15445b8967755a412cac8ed56bc660c495ae6ba3f87a72c"
-  },
-  {
     "id": "gallery-door-open:0",
     "path": "public/images/rooms/gallery/states/gallery-door-open.webp",
     "bytes": 172742,
@@ -480,28 +464,12 @@
     "sha256": "0e45cdae7137038da6d3597a8b6dd6a4008d35385a9917a50389bff69879e9d3"
   },
   {
-    "id": "backroom-feed-open:0",
-    "path": "public/images/rooms/backroom/states/backroom-feed-open.webp",
-    "bytes": 191948,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "1ca85bba2404557d0b3f5d2882c85692c0752fb06764fe18770ebfda6df5e5cb"
-  },
-  {
     "id": "gallery-frames-empty:0",
     "path": "public/images/rooms/gallery/states/gallery-frames-empty.webp",
     "bytes": 157982,
     "width": 1254,
     "height": 1254,
     "sha256": "83d5ba7ae437666e90435060b42adac22944d41469b9f0d71d654c2ab896416c"
-  },
-  {
-    "id": "gallery-feed-empty:0",
-    "path": "public/images/rooms/gallery/states/gallery-feed-empty.webp",
-    "bytes": 146186,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "0af3f43805f70d9c37a79707a0cea80ca8c8cd8890bd5e17cd225d2b7328e4e3"
   },
   {
     "id": "darkroom-develop-empty:0",
@@ -528,14 +496,6 @@
     "sha256": "9735c85bd27869f7e157a666916f463b7a49637cec15c186da8998bba09c696d"
   },
   {
-    "id": "backroom-feed-empty:0",
-    "path": "public/images/rooms/backroom/states/backroom-feed-empty.webp",
-    "bytes": 175320,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "855f04d2c2cf29e4c1664186abe3046dc87ed17e95d2603630be97c286e9d829"
-  },
-  {
     "id": "studio-curtain-open:0",
     "path": "public/images/rooms/studio/states/studio-curtain-open.webp",
     "bytes": 139992,
@@ -558,30 +518,6 @@
     "width": 1254,
     "height": 1254,
     "sha256": "2485a47c3d55593f5284d513f4e2cf194fba169ae0083f7e9500b58bde215573"
-  },
-  {
-    "id": "gallery-leverless:0",
-    "path": "public/images/rooms/gallery/states/gallery-leverless.webp",
-    "bytes": 146726,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "9c7c4b2018bc6373273f14bca9b6fb4fb5a88297ba214f23602571d45db88efd"
-  },
-  {
-    "id": "backroom-leverless:0",
-    "path": "public/images/rooms/backroom/states/backroom-leverless.webp",
-    "bytes": 176326,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "bbc9b69f36bcafe60df6b756a5e1adfbe37803b0b97214b57024633e354c891e"
-  },
-  {
-    "id": "retouch-model-leverless:0",
-    "path": "public/images/rooms/retouch/states/retouch-model-leverless.webp",
-    "bytes": 179074,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "cc66ad62432f1bd4a0493227af11b39515ddb4a4c79125ec0dd5533945282cd6"
   },
   {
     "id": "studio-camera-empty:0",
@@ -792,22 +728,6 @@
     "sha256": "f5835410d6113609c6995a9d3b6ce03d099c51d24aeedda4e5b3d41bf123763d"
   },
   {
-    "id": "gallery-crank-installed:0",
-    "path": "public/images/rooms/gallery/states/crank-installed.webp",
-    "bytes": 213064,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "d9be8d050bbd4a050303a41c140857365950535e4c72060ea63827c8125d3ec5"
-  },
-  {
-    "id": "backroom-crank-installed:0",
-    "path": "public/images/rooms/backroom/states/crank-installed.webp",
-    "bytes": 250632,
-    "width": 1254,
-    "height": 1254,
-    "sha256": "60b492b9b98ac3ab8dee04f79f1c708e1e8b05327fdcf585bc7c9edf660c8a52"
-  },
-  {
     "id": "studio-light-left:0",
     "path": "public/images/rooms/studio/states/light-left.webp",
     "bytes": 227612,
@@ -830,5 +750,37 @@
     "width": 1254,
     "height": 1254,
     "sha256": "1689c128376b36af70cad33f5493765fb3c2990dfd2f998b405d1e8905ac9f5a"
+  },
+  {
+    "id": "transport-cabinet:0",
+    "path": "public/images/mechanisms/transport/cabinet.webp",
+    "bytes": 556636,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "e41c5ffc488780ed857c1ecf866b2c1c9071b081f226d3d2a07e22897e005a04"
+  },
+  {
+    "id": "transport-clean-gallery:0",
+    "path": "public/images/rooms/gallery/states/transport-clean.webp",
+    "bytes": 214682,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "cf936eb60bad008df2e7bc094d3fb3ab5cc92a57a5ff624de0ba6e5360afef3c"
+  },
+  {
+    "id": "transport-clean-backroom:0",
+    "path": "public/images/rooms/backroom/states/transport-clean.webp",
+    "bytes": 260230,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "10c470d5505e85673f4731700bea854854c769bf50f93b3eae590ceb52dffefb"
+  },
+  {
+    "id": "transport-clean-retouch:0",
+    "path": "public/images/rooms/retouch/states/transport-clean.webp",
+    "bytes": 226060,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "901491bdacbab73a5e859fa553204a33499a20f6130c6f218693974a86237578"
   }
 ]

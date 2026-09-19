@@ -205,27 +205,10 @@ export function operationHint(s: E.State, id: string) {
     );
   }
   if (p.kind === "feed") {
-    const queue = [{ v, path: [] as number[] }],
-      seen = new Set<string>();
-    while (queue.length) {
-      const q = queue.shift()!;
-      if (E.same(q.v, p.answer))
-        return q.path.length
-          ? "今の位置から、" +
-              q.path
-                .map((i) => (i === 0 ? "左のレバー" : "右のレバー"))
-                .join(" → ") +
-              "の順に押してください。その後、収納の取っ手を押します。"
-          : "レバーの位置は合っています。収納の取っ手を押してください。";
-      const key = q.v.join();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      for (const i of [0, 1])
-        queue.push({
-          v: E.feedStep({ ...s, values: { ...s.values, [id]: q.v } }, id, i),
-          path: [...q.path, i],
-        });
-    }
+    return (
+      (v.length > 2 ? "下中央の復帰つまみで最初に戻してください。" : "") +
+      p.hint[2]
+    );
   }
   if (p.kind === "sequence" || p.kind === "develop") {
     const prefix =

@@ -91,8 +91,8 @@ export const MECHANISMS: Record<string, Mechanism> = {
   feed: {
     room: 1,
     face: 3,
-    bounds: [70, 30, 24, 27],
-    focus: [65, 25, 35, 35],
+    bounds: [73, 27, 21, 48],
+    focus: [59, 25, 50, 50],
     controls: [
       [73, 43, 7, 10],
       [87, 43, 7, 10],
@@ -100,8 +100,6 @@ export const MECHANISMS: Record<string, Mechanism> = {
     open: [75, 37, 15, 4],
     fittings: [[80, 31, 4, 4]],
     pickups: [[80, 38, 5, 4]],
-    state: "gallery-feed",
-    patch: [72, 34, 21, 9],
   },
   cut: {
     room: 2,
@@ -244,16 +242,15 @@ export const MECHANISMS: Record<string, Mechanism> = {
   backfeed: {
     room: 5,
     face: 0,
-    bounds: [86, 13, 12, 28],
-    focus: [77, 12, 23, 34],
+    bounds: [84, 11, 15, 37],
+    focus: [71, 10, 39, 39],
     controls: [
       [87.5, 13.5, 3, 12],
       [92, 13.5, 3, 12],
     ],
     open: [90, 35, 4, 3],
     fittings: [[90.3, 27, 4, 4]],
-    state: "backroom-feed",
-    patch: [87, 33, 11, 12],
+
     pickups: [[89.5, 35, 6, 3]],
   },
   print: {
@@ -313,7 +310,7 @@ export const CLUE_PLACEMENTS: Record<string, Record<string, Rect>> = {
     shadows: [28.3, 53.4, 10.8, 13.4],
     history: [41.5, 53.4, 10.8, 13.4],
   },
-  "2:0": { model: [51, 32, 25, 27], cut: [18.7, 53.5, 11.5, 2.3] },
+  "2:0": { model: [49, 23, 24, 31], cut: [18.7, 53.5, 11.5, 2.3] },
   "2:1": { mirror: [5.3, 29.5, 4.3, 13], architecture: [66, 5, 10, 12] },
   "3:0": { bath: [23.5, 29.5, 53, 12] },
   "4:0": { memory: [46.5, 52, 15, 26] },

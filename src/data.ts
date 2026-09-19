@@ -1,3 +1,4 @@
+import { transportRoute } from "./transport";
 export type Photo = {
   mirror?: boolean;
   crop?: [number, number, number, number];
@@ -167,8 +168,8 @@ export const CLUES: Record<
   },
   model: {
     name: "送り装置の見本",
-    image: { ...photo("retouch-north"), crop: [50, 33, 23, 23] },
-    text: "透明な蓋越しに、爪と切り欠きが見える。軸を動かしてみる。",
+    image: { ...photo("transport-cabinet"), crop: [100 / 3, 0, 100 / 3, 100] },
+    text: "ガラス越しに、三枚の隔壁と小さなケースが見える。",
     room: 2,
   },
   cut: {
@@ -236,8 +237,12 @@ export const CLUES: Record<
   },
   reverse: {
     name: "反対側の送り装置",
-    image: photo("clues-c", 4),
-    text: "見本と同じ型の機構が、左右を逆に組まれている。",
+    image: {
+      ...photo("transport-cabinet"),
+      crop: [100 / 3, 0, 100 / 3, 100],
+      mirror: true,
+    },
+    text: "片端に三日月、もう片端に三つの鋲。",
     room: 5,
   },
   memory: {
@@ -346,19 +351,19 @@ export const PUZZLES: Record<string, Puzzle> = Object.fromEntries(
         name: "壁の搬送口",
         kind: "feed",
 
-        answer: [2, 1],
+        answer: transportRoute().flat(),
         initial: [0, 0],
         size: 4,
         labels: ["左の送り", "右の送り"],
         items: ["crank"],
         clues: ["model"],
         rewards: ["lens"],
-        effect: "ケースを押さえていた爪が退いた。",
-        detail: "左の爪を十分引くと、右の爪が動く。",
+        effect: "ケースが受け取り口へ届いた。",
+        detail: "二本の案内軸と、三段の送り。",
         hint: [
-          "修整室の机の中央に、二本のレバーが付いた見本があります。左を動かしてから右を押し、動く条件を調べてください。",
-          "左のレバーを二段階動かすと、右のレバーを止めていた金具が退きます。搬送口でも同じ順に動かします。",
-          "左を2回、右を1回。ハンドルは使用後も残る。",
+          "修整室の見本と、装置の端の目印を見比べてください。",
+          "左右の案内軸でケースの突起の高さが変わります。三枚の隔壁それぞれの切り欠きに合わせ、一枚ずつ通します。",
+          "下から数えて、左1・右4、左3・右2、左4・右3。各組を合わせるたびにハンドルを一回回します。",
         ],
       },
       {
@@ -534,19 +539,19 @@ export const PUZZLES: Record<string, Puzzle> = Object.fromEntries(
         name: "反対側の送り口",
         kind: "feed",
 
-        answer: [1, 2],
+        answer: transportRoute(true).flat(),
         initial: [0, 0],
         size: 4,
         labels: ["左の送り", "右の送り"],
         items: ["crank"],
         clues: ["model", "reverse"],
         rewards: ["paper"],
-        effect: "ケースを押さえていた爪が退いた。",
-        detail: "同じ型の機構が、左右を逆に組まれている。",
+        effect: "ケースが受け取り口へ届いた。",
+        detail: "三つの鋲が打たれた送り装置。",
         hint: [
-          "裏室の棚の右上に掛かる装置の図を、修整室の二本レバーの見本と比べてください。",
-          "裏室の装置は左右が逆です。展示廊下で先に動かした左レバーに対応するのは、こちらの右レバーです。",
-          "右を2回、左を1回。",
+          "見本の両端の目印と、こちらの装置の目印を見比べてください。",
+          "三つの鋲がある端から送るので、隔壁を通る順序と左右の対応が両方変わります。高さは変わりません。",
+          "下から数えて、左3・右4、左2・右3、左4・右1。各組を合わせるたびにハンドルを一回回します。",
         ],
       },
       {
@@ -679,7 +684,7 @@ export const ROOMS = [
     name: "修整室",
     chapter: "Ⅱ",
     views: [
-      [c("model", [41, 32, 45, 45]), p("lamp", [4, 25, 35, 55])],
+      [c("model", [50, 24, 21, 31]), p("lamp", [4, 25, 35, 55])],
       [p("rack", [10, 12, 80, 75]), c("architecture", [64, 3, 25, 18])],
       [d(1, [3, 10, 41, 77]), c("mirror", [58, 19, 30, 59])],
       [p("cut", [23, 29, 55, 56]), c("cut", [17, 9, 20, 31])],

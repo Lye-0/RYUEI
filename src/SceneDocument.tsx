@@ -1,3 +1,4 @@
+import { Transport } from "./FeedMachine";
 import { Photo } from "./Photo";
 import { CLUES, photo, type Photo as PhotoSpec } from "./data";
 const itemCells: Record<string, [string, number]> = {
@@ -32,6 +33,21 @@ export function SceneDocument({
   id: string;
   mounted?: boolean;
 }) {
+  if (["model", "reverse"].includes(id))
+    return (
+      <div className="transport-document">
+        <Transport
+          model
+          reverse={id === "reverse"}
+          active={false}
+          installed
+          values={[0, 0]}
+          onAdjust={() => {}}
+          onSend={() => {}}
+          onReset={() => {}}
+        />
+      </div>
+    );
   if (mounted && id === "mirror")
     return (
       <div className="mounted-mirror">

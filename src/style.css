@@ -1664,3 +1664,201 @@ button,
   top: auto;
   bottom: 0;
 }
+
+/* All transport instances share the same physical controls and shell. */
+.transport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  filter: sepia(0.12) brightness(0.8);
+}
+.transport .transport-case {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.transport button {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+.transport button:focus-visible {
+  outline: 1px solid #d4be89;
+  outline-offset: 1px;
+}
+.transport-inside {
+  position: absolute;
+  left: 13%;
+  top: 11%;
+  width: 74%;
+  height: 31%;
+  filter: drop-shadow(1px 2px 2px #000);
+}
+.transport-slider {
+  position: absolute;
+  width: 13%;
+  height: 5%;
+  transform: translate(-50%, -50%);
+}
+.transport-lever {
+  position: absolute;
+  inset: 0;
+  border-radius: 45%;
+  background: radial-gradient(
+    ellipse at 34% 26%,
+    #929184 0,
+    #35382e 15%,
+    #11130f 44%,
+    #050604 68%,
+    #463b24 76%,
+    #a18b54 82%,
+    #33291b 88%
+  );
+  box-shadow: 2px 3px 3px #000b;
+}
+.transport .transport-ratchet {
+  position: absolute;
+  left: 44%;
+  top: 61%;
+  width: 12%;
+  height: 4%;
+  border-radius: 50%;
+  border: 2px solid #9e8756;
+  background: #3e3523;
+}
+.transport-ratchet i {
+  position: absolute;
+  width: 2px;
+  height: 35%;
+  left: 45%;
+  background: #c3b17e;
+  transform-origin: 50% 140%;
+}
+.transport-ratchet i:nth-child(2) {
+  transform: rotate(90deg);
+}
+.transport-ratchet i:nth-child(3) {
+  transform: rotate(180deg);
+}
+.transport-crank {
+  position: absolute;
+  left: 34%;
+  top: 65%;
+  width: 21%;
+  height: 6%;
+}
+.crank-arm {
+  position: absolute;
+  right: 0;
+  top: 8%;
+  width: 30%;
+  height: 75%;
+  border: 4px solid #a69b79;
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 2px 2px 2px #000;
+}
+.crank-grip {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 88%;
+  height: 48%;
+  border-radius: 45%;
+  background: linear-gradient(#9b7548, #3c2717 35%, #634728 60%, #25180e);
+  box-shadow: 1px 2px 2px #000a;
+}
+.transport .transport-socket {
+  inset: 63% 39% auto;
+  width: 22%;
+  height: 10%;
+}
+.transport .transport-detach {
+  inset: 64% 50% auto;
+  width: 6%;
+  height: 3%;
+  border: 1px solid #9c8d68;
+  border-radius: 50%;
+}
+.transport .transport-reset {
+  inset: 78% 36% auto;
+  width: 28%;
+  height: 9%;
+}
+.transport .transport-lid {
+  inset: 39% 20% auto;
+  width: 60%;
+  height: 8%;
+}
+.transport-reward {
+  position: absolute;
+  left: 21%;
+  top: 24%;
+  width: 58%;
+  height: 17%;
+  background: #11100c;
+}
+.transport-reward > .photo {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+  filter: brightness(0.65) sepia(0.3);
+}
+.transport .transport-end {
+  top: 3%;
+  width: 21%;
+  height: 5%;
+}
+.transport .end-front {
+  left: 9%;
+}
+.transport .end-back {
+  left: 70%;
+}
+
+.show-targets .transport button {
+  outline: 1px solid #c5b67599;
+}
+
+.transport-slider button {
+  left: -75%;
+  top: -100%;
+  width: 250%;
+  height: 300%;
+}
+.transport-document {
+  width: 100%;
+  height: 100%;
+  background: #171812;
+  padding: 2% 18%;
+}
+
+.transport .transport-case {
+  clip-path: inset(1.6% 3% 1.8% round 2px);
+}
+.transport-reward {
+  top: 29%;
+  height: 13%;
+  background: transparent;
+}
+.transport-reward > .photo {
+  mask-image: radial-gradient(ellipse, #000 35%, #000c 55%, transparent 73%);
+}
+
+.crank-motion {
+  position: absolute;
+  inset: 0;
+  transform-origin: 90% 20%;
+  pointer-events: none;
+}
+.crank-motion.turning {
+  animation: transport-turn 0.4s ease-in-out;
+}
+@keyframes transport-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -95,7 +95,17 @@ export function detachCrank(s: State, id: string): State {
   };
 }
 export function input(s: State, id: string, next: number[]): State {
-  if (!available(s, id) || s.solved.includes(id) || !validValues(id, next))
+  const canAdjust =
+    PUZZLES[id]?.kind === "feed"
+      ? PUZZLES[id].room === s.room
+      : available(s, id);
+  if (!canAdjust || s.solved.includes(id) || !validValues(id, next)) return s;
+  if (
+    PUZZLES[id].kind === "feed" &&
+    next.length > 2 &&
+    !available(s, id) &&
+    !same(next.slice(2), values(s, id).slice(2))
+  )
     return s;
   return { ...s, values: { ...s.values, [id]: next } };
 }
@@ -103,6 +113,8 @@ export function validValues(id: string, a: unknown): a is number[] {
   const p = PUZZLES[id];
   if (!p || !Array.isArray(a) || !a.every((n) => Number.isInteger(n) && n >= 0))
     return false;
+  if (p.kind === "feed")
+    return [2, 4, 6, 8].includes(a.length) && a.every((n) => n < 4);
   if (["sequence", "develop"].includes(p.kind))
     return a.length <= p.answer.length && a.every((n) => n < p.labels.length);
   if (["select", "map"].includes(p.kind))
@@ -122,6 +134,7 @@ export function validValues(id: string, a: unknown): a is number[] {
 export function correct(s: State, id: string) {
   const p = PUZZLES[id],
     v = values(s, id);
+  if (p.kind === "feed") return same(v.slice(2), p.answer);
   return p.kind === "select"
     ? same([...v].sort(), [...p.answer].sort())
     : same(v, p.answer);
@@ -231,15 +244,24 @@ export function move(
 }
 export function feedStep(s: State, id: string, i: number) {
   const a = [...values(s, id)];
-  const lead = id === "backfeed" ? 1 : 0;
-  if (i !== lead && a[lead] < 2) return a;
-  if (i === lead) {
-    a[i] = a[i] >= 2 ? 0 : a[i] + 1;
-    a[1 - lead] = 0;
-  } else {
-    a[i] = a[i] === 0 ? 1 : 0;
-  }
+  if ((i !== 0 && i !== 1) || a.length === 8) return a;
+  a[i] = (a[i] + 1) % 4;
   return a;
+}
+export function advanceFeed(s: State, id: string): State {
+  if (
+    PUZZLES[id]?.kind !== "feed" ||
+    !available(s, id) ||
+    s.solved.includes(id)
+  )
+    return s;
+  const v = values(s, id);
+  if (v.length >= 8) return s;
+  return solve(input(s, id, [...v, v[0], v[1]]), id);
+}
+export function resetFeed(s: State, id: string): State {
+  if (PUZZLES[id]?.kind !== "feed") return s;
+  return input(s, id, [0, 0]);
 }
 export function observe(s: State, id: string): State {
   const c = CLUES[id];

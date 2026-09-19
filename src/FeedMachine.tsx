@@ -1,0 +1,301 @@
+import { useState, useId, useEffect } from "react";
+import { Photo } from "./Photo";
+import { photo, ITEMS } from "./data";
+const itemPortrait = (id: string) => ({
+  ...photo(id === "lens" ? "inventory-b" : "inventory-c"),
+  crop:
+    id === "lens"
+      ? ([0, 0, 50, 50] as [number, number, number, number])
+      : ([0, 50, 50, 50] as [number, number, number, number]),
+});
+import { transportRoute, transportProgress } from "./transport";
+
+type Props = {
+  values: number[];
+  reverse?: boolean;
+  model?: boolean;
+  active: boolean;
+  installed: boolean;
+  opened?: boolean;
+  reward?: string;
+  onAdjust: (i: number) => void;
+  onSend: () => void;
+  onReset: () => void;
+  onInstall?: () => void;
+  onDetach?: () => void;
+  onOpen?: () => void;
+  onTake?: () => void;
+};
+export function Transport(props: Props) {
+  const { values: v, model = false, active, installed, opened = false } = props;
+  const [fromBack, setFromBack] = useState(!!props.reverse);
+  const [turnTick, setTurnTick] = useState<number | null>(null);
+  useEffect(() => {
+    setTurnTick(null);
+  }, [active]);
+  useEffect(() => {
+    if (turnTick === null) return;
+    const timer = window.setTimeout(() => setTurnTick(null), 420);
+    return () => window.clearTimeout(timer);
+  }, [turnTick]);
+  const reverse = model ? fromBack : !!props.reverse;
+  const [demo, setDemo] = useState<number[]>([0, 0]);
+  const current = model ? demo : v;
+  const attempts = Array.from({ length: (current.length - 2) / 2 }, (_, i) =>
+    current.slice(2 + i * 2, 4 + i * 2),
+  );
+  const passed = transportProgress(attempts, reverse);
+  const uid = useId().replace(/:/g, "");
+  const adjust = (i: number) => {
+    if (model)
+      setDemo((d) =>
+        d.length === 8 ? d : d.map((n, j) => (j === i ? (n + 1) % 4 : n)),
+      );
+    else props.onAdjust(i);
+  };
+  const send = () => {
+    if (current.length >= 8 || (!model && !installed)) return;
+    setTurnTick(Date.now());
+    if (model) setDemo((d) => (d.length < 8 ? [...d, d[0], d[1]] : d));
+    else props.onSend();
+  };
+  return (
+    <div
+      className="transport"
+      data-transport={model ? "model" : reverse ? "reverse" : "forward"}
+    >
+      <Photo
+        asset={{
+          ...photo("transport-cabinet"),
+          crop: [((opened ? 2 : model ? 1 : 0) * 100) / 3, 0, 100 / 3, 100],
+        }}
+        className="transport-case"
+        style={{ transform: reverse ? "scaleX(-1)" : undefined }}
+      />
+      {model && (
+        <svg
+          className="transport-inside"
+          viewBox="0 0 300 260"
+          preserveAspectRatio="none"
+          aria-label="ガラス越しに見える隔壁とケース"
+        >
+          <defs>
+            <filter id={uid + "-grain"} x="0" y="0" width="100%" height="100%">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency=".38"
+                numOctaves="3"
+                seed="7"
+                result="noise"
+              />
+              <feColorMatrix
+                in="noise"
+                type="saturate"
+                values="0"
+                result="mono"
+              />
+              <feComponentTransfer in="mono" result="subtle">
+                <feFuncA type="linear" slope=".22" />
+              </feComponentTransfer>
+              <feComposite
+                in="subtle"
+                in2="SourceGraphic"
+                operator="in"
+                result="grain"
+              />
+              <feBlend in="SourceGraphic" in2="grain" mode="soft-light" />
+            </filter>
+            <linearGradient id={uid} x2="1" y2="1">
+              <stop stopColor="#d2b375" />
+              <stop offset=".5" stopColor="#766039" />
+              <stop offset="1" stopColor="#b3965f" />
+            </linearGradient>
+          </defs>
+          <path d="M8 245H292M8 252H292" stroke="#857457" strokeWidth="3" />
+          {transportRoute(reverse).map((pair, i) => (
+            <g key={i} transform={`translate(${10 + i * 96},30)`}>
+              <rect
+                width="85"
+                height="158"
+                rx="2"
+                fill={`url(#${uid})`}
+                filter={`url(#${uid}-grain)`}
+                stroke="#332b1f"
+                strokeWidth="4"
+              />
+              {pair.map((height, side) => (
+                <rect
+                  key={side}
+                  x={side ? 53 : 12}
+                  y={120 - height * 29}
+                  width="20"
+                  height="19"
+                  fill="#0b0c09"
+                  stroke="#d8cba7"
+                  strokeWidth="2"
+                />
+              ))}
+              <circle cx="7" cy="8" r="3" fill="#28251d" />
+              <circle cx="78" cy="150" r="3" fill="#28251d" />
+            </g>
+          ))}
+          <g
+            opacity={passed === 3 ? 0 : 1}
+            transform={`translate(${10 + Math.min(passed, 2) * 96},30)`}
+          >
+            <rect
+              x="4"
+              y="-5"
+              width="77"
+              height="170"
+              rx="3"
+              fill="#bbc7be"
+              fillOpacity=".09"
+              stroke="#c7c3a9"
+              strokeWidth="2"
+            />
+            {current.slice(0, 2).map((height, side) => (
+              <rect
+                key={side}
+                x={side ? 55 : 14}
+                y={123 - height * 29}
+                width="16"
+                height="13"
+                rx="2"
+                fill="#aba695"
+                stroke="#ded9c6"
+                strokeWidth="2"
+              />
+            ))}
+            <path d="M43 169V210" stroke="#a39b86" strokeWidth="5" />
+            <rect
+              x="28"
+              y="205"
+              width="29"
+              height="20"
+              rx="3"
+              fill={passed === 3 ? "#c9b98b" : "#807455"}
+              stroke="#d1bc83"
+            />
+          </g>
+          {passed === 3 && (
+            <rect
+              x="247"
+              y="216"
+              width="35"
+              height="28"
+              rx="3"
+              fill="#91836a"
+              stroke="#c3b390"
+              strokeWidth="2"
+            />
+          )}
+          <text x="9" y="20" fill="#c6ad76" fontSize="20">
+            {reverse ? "∴" : "☾"}
+          </text>
+          <text x="273" y="20" fill="#c6ad76" fontSize="20">
+            {reverse ? "☾" : "∴"}
+          </text>
+        </svg>
+      )}
+      {model && active && (
+        <>
+          <button
+            className={"transport-end " + (reverse ? "end-back" : "end-front")}
+            aria-label="三日月の端から見本を送る"
+            onClick={() => {
+              setFromBack(false);
+              setDemo([0, 0]);
+            }}
+          />
+          <button
+            className={"transport-end " + (reverse ? "end-front" : "end-back")}
+            aria-label="三つの鋲の端から見本を送る"
+            onClick={() => {
+              setFromBack(true);
+              setDemo([0, 0]);
+            }}
+          />
+        </>
+      )}
+      {[0, 1].map((i) => (
+        <div
+          key={i}
+          className="transport-slider"
+          style={{
+            left: (i ? 76 : 24) + "%",
+            top: 72.3 - current[i] * 5.4 + "%",
+          }}
+        >
+          <div className="transport-lever" />
+          {active && (
+            <button
+              aria-label={(i ? "右" : "左") + "の案内軸"}
+              onClick={() => adjust(i)}
+            />
+          )}
+        </div>
+      ))}
+      <div
+        className="transport-ratchet"
+        style={{ transform: `rotate(${attempts.length * 90}deg)` }}
+        aria-hidden="true"
+      >
+        <i />
+        <i />
+        <i />
+      </div>
+      {(model || installed) && (
+        <div className="transport-crank">
+          <span
+            key={turnTick}
+            className={"crank-motion" + (turnTick !== null ? " turning" : "")}
+          >
+            <span className="crank-arm" />
+            <span className="crank-grip" />
+          </span>
+          {active && <button aria-label="送りハンドルを回す" onClick={send} />}
+        </div>
+      )}
+      {active && !model && !installed && (
+        <button
+          className="transport-socket"
+          aria-label="送りハンドルを取り付ける"
+          onClick={props.onInstall}
+        />
+      )}
+      {active && installed && !model && (
+        <button
+          className="transport-detach"
+          aria-label="送りハンドルを外す"
+          onClick={props.onDetach}
+        />
+      )}
+      {active && (
+        <button
+          className="transport-reset"
+          aria-label="送り装置を復帰させる"
+          onClick={() => (model ? setDemo([0, 0]) : props.onReset())}
+        />
+      )}
+      {!model && !opened && active && (
+        <button
+          className="transport-lid"
+          aria-label="取っ手を引く"
+          onClick={props.onOpen}
+        />
+      )}
+      {!model && opened && props.reward && (
+        <div className="transport-reward">
+          <Photo asset={itemPortrait(props.reward)} />
+          {active && (
+            <button
+              aria-label={ITEMS[props.reward].name + "を拾う"}
+              onClick={props.onTake}
+            />
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

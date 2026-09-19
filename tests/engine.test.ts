@@ -5,7 +5,15 @@ function solved(s: E.State, id: string) {
   const p = PUZZLES[id];
   let next = { ...s, room: p.room };
   for (const item of p.items ?? []) next = E.install(next, id, item);
-  next = E.input(next, id, [...p.answer]);
+  if (p.kind === "feed") {
+    for (let i = 0; i < 6; i += 2) {
+      next = E.input(next, id, [
+        ...p.answer.slice(i, i + 2),
+        ...E.values(next, id).slice(2),
+      ]);
+      next = E.advanceFeed(next, id);
+    }
+  } else next = E.input(next, id, [...p.answer]);
   next = E.solve(next, id);
   expect(next.solved).toContain(id);
   expect(next.inventory).toEqual(
@@ -101,18 +109,12 @@ describe("写真館の状態と進行", () => {
     expect(E.move(s, 5, null)).toBe(s);
     expect(E.move(s, 4, null, true)).toBe(s);
   });
-  it("右の爪は左が引くまで動かない。裏室では逆", () => {
+  it("案内軸は道具も見本の履歴もなく動き、送りだけはハンドルを要する", () => {
     let s = { ...E.fresh(), room: 1 };
-    expect(E.feedStep(s, "feed", 1)).toEqual([0, 0]);
-    s.values.feed = [2, 0];
-    expect(E.feedStep(s, "feed", 1)).toEqual([2, 1]);
-    s.values.backfeed = [0, 2];
-    expect(E.feedStep(s, "backfeed", 0)).toEqual([1, 2]);
-    s.values.feed = [2, 1];
-    expect(E.feedStep(s, "feed", 0)).toEqual([0, 0]);
-    expect(s.values.feed).toEqual([2, 1]);
-    s.values.backfeed = [1, 2];
-    expect(E.feedStep(s, "backfeed", 1)).toEqual([0, 0]);
+    s = E.input(s, "feed", E.feedStep(s, "feed", 1));
+    expect(s.values.feed).toEqual([0, 1]);
+    expect(E.advanceFeed(s, "feed")).toBe(s);
+    expect(s.seen).toEqual([]);
   });
   it("不正な並びと重複選択を保存しない", () => {
     expect(E.validValues("frames", [0, 0, 1, 2])).toBe(false);
@@ -151,7 +153,14 @@ it("送りハンドルは一台だけに付き、取り外し・開蓋後に再�
   s = E.detachCrank(s, "feed");
   expect(s.inventory.filter((x) => x === "crank")).toHaveLength(1);
   s = E.install(s, "feed", "crank");
-  s = E.open(E.solve(E.input(s, "feed", [2, 1]), "feed"), "feed");
+  for (let i = 0; i < 6; i += 2) {
+    s = E.input(s, "feed", [
+      ...PUZZLES.feed.answer.slice(i, i + 2),
+      ...E.values(s, "feed").slice(2),
+    ]);
+    s = E.advanceFeed(s, "feed");
+  }
+  s = E.open(s, "feed");
   expect(s.opened).toContain("feed");
   expect(s.installed.feed).not.toContain("crank");
   expect(s.inventory).toContain("crank");
@@ -182,4 +191,43 @@ it("旧保存の二重設置を現在の部屋の一台へ整理する", () => {
   expect(done.inventory.filter((x) => x === "crank")).toHaveLength(1);
   expect(done.installed.feed).toEqual([]);
   expect(done.installed.backfeed).toEqual([]);
+});
+
+it("三段送りは各4096通りの中で物理的な通過列だけが成立する", () => {
+  for (const id of ["feed", "backfeed"]) {
+    let count = 0;
+    for (let n = 0; n < 4096; n++) {
+      const a = Array.from({ length: 6 }, (_, i) => (n >> (i * 2)) & 3);
+      let s = {
+        ...E.fresh(),
+        room: PUZZLES[id].room,
+        installed: { [id]: ["crank"] },
+      };
+      for (let i = 0; i < 6; i += 2) {
+        s = E.input(s, id, [...a.slice(i, i + 2), ...E.values(s, id).slice(2)]);
+        s = E.advanceFeed(s, id);
+        if (i < 4) expect(s.solved).not.toContain(id);
+      }
+      if (s.solved.includes(id)) count++;
+    }
+    expect(count).toBe(1);
+  }
+});
+it("途中失敗は三段終了まで入力を止めず、復帰してやり直せる", () => {
+  let s: E.State = {
+    ...E.fresh(),
+    started: true,
+    room: 1,
+    visited: [0, 1],
+    collected: ["crank"],
+    installed: { feed: ["crank"] },
+  };
+  s = E.advanceFeed(s, "feed");
+  s = E.advanceFeed(s, "feed");
+  expect(E.values(s, "feed")).toHaveLength(6);
+  expect(E.parse(JSON.stringify(s))?.values.feed).toEqual(s.values.feed);
+  s = E.advanceFeed(s, "feed");
+  expect(s.solved).toEqual([]);
+  s = E.resetFeed(s, "feed");
+  expect(E.values(s, "feed")).toEqual([0, 0]);
 });

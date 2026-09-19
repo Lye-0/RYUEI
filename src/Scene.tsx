@@ -1,3 +1,4 @@
+import { Transport } from "./FeedMachine";
 import {
   useEffect,
   useLayoutEffect,
@@ -199,8 +200,7 @@ export function Scene({
 }) {
   const ref = useRef<HTMLDivElement>(null),
     [width, setWidth] = useState(800),
-    [swap, setSwap] = useState<number | null>(null),
-    [demo, setDemo] = useState([0, 0]);
+    [swap, setSwap] = useState<number | null>(null);
   const boltSerial = useRef(0);
   const [boltMotion, setBoltMotion] = useState<{
     index: number;
@@ -409,12 +409,58 @@ export function Scene({
           <Patch id="gallery-retouch-entry" area={[75, 0, 25, 100]} />
         )}
         {key === "1:1" && documents}
+        {key === "1:3" && (
+          <Patch id="transport-clean-gallery" area={[69, 27, 28, 32]} />
+        )}
+        {key === "5:0" && (
+          <Patch id="transport-clean-backroom" area={[85, 11, 14, 33]} />
+        )}
+        {key === "2:0" && (
+          <Patch id="transport-clean-retouch" area={[49, 32, 21, 23]} />
+        )}
         {active.map(([id, m]) => {
           const p = PUZZLES[id],
             v = E.values(s, id),
             opened = s.opened.includes(id),
             solved = s.solved.includes(id),
             zoom = focus?.type === "puzzle" && focus.id === id;
+          if (p.kind === "feed")
+            return (
+              <div key={id} className="mechanism-layer" data-mechanism={id}>
+                <div style={{ position: "absolute", ...box(m.bounds) }}>
+                  <Transport
+                    values={v}
+                    active={zoom}
+                    reverse={id === "backfeed"}
+                    installed={!!s.installed[id]?.includes("crank")}
+                    opened={opened}
+                    reward={
+                      opened && !s.collected.includes(p.rewards![0])
+                        ? p.rewards![0]
+                        : undefined
+                    }
+                    onAdjust={(i) =>
+                      update(E.input(s, id, E.feedStep(s, id, i)))
+                    }
+                    onSend={() => {
+                      const next = E.advanceFeed(s, id);
+                      update(next);
+                      if (E.values(next, id).length === 8)
+                        notify(
+                          next.solved.includes(id)
+                            ? "ケースが届いた。"
+                            : "空回りする音がして、止まった。",
+                        );
+                    }}
+                    onReset={() => update(E.resetFeed(s, id))}
+                    onInstall={() => install(id, "crank")}
+                    onDetach={() => update(E.detachCrank(s, id))}
+                    onOpen={() => open(id)}
+                    onTake={() => update(E.take(s, id, p.rewards![0]))}
+                  />
+                </div>
+              </div>
+            );
           return (
             <div key={id} className="mechanism-layer" data-mechanism={id}>
               {id === "panel" &&
@@ -452,9 +498,6 @@ export function Scene({
               {id === "wall" && s.installed.wall?.includes("handle") && (
                 <Patch id="studio-wheel" area={[77, 39, 13, 14]} />
               )}
-              {id === "feed" && (
-                <Patch id="gallery-leverless" area={[71, 39, 28, 15]} />
-              )}
               {opened && m.state && (
                 <Patch
                   id={
@@ -482,39 +525,6 @@ export function Scene({
                       />
                     ),
                 )}
-              {id === "feed" && (
-                <>
-                  <Lever
-                    asset={photo("gallery-west")}
-                    r={[73, 43, 5, 10]}
-                    pivot={[40, 20]}
-                    angle={v[0] * 90}
-                  />
-                  <Lever
-                    asset={photo("gallery-west")}
-                    r={[87.5, 43.5, 5, 10]}
-                    pivot={[40, 20]}
-                    angle={-v[1] * 90}
-                  />
-                </>
-              )}
-              {id === "backfeed" && (
-                <>
-                  <Patch id="backroom-leverless" area={[86, 12, 11, 14]} />
-                  <Lever
-                    asset={photo("backroom-north")}
-                    r={[87.8, 13.3, 2.8, 11.5]}
-                    pivot={[50, 94]}
-                    angle={-v[0] * 90}
-                  />
-                  <Lever
-                    asset={photo("backroom-north")}
-                    r={[92.3, 13.3, 2.8, 11.5]}
-                    pivot={[50, 94]}
-                    angle={-v[1] * 90}
-                  />
-                </>
-              )}
               {p.kind === "order" &&
                 (!p.items || s.installed[id]?.length) &&
                 m.controls.map((r, i) => (
@@ -741,36 +751,6 @@ export function Scene({
                       />
                     ),
                 )}
-              {["feed", "backfeed"].includes(id) &&
-                s.installed[id]?.includes("crank") && (
-                  <>
-                    <Patch
-                      id={
-                        id === "feed"
-                          ? "gallery-crank-installed"
-                          : "backroom-crank-installed"
-                      }
-                      area={
-                        id === "feed"
-                          ? [71, 27, 15, 8]
-                          : [82.5, 26.5, 13.5, 6.8]
-                      }
-                    />
-                    {zoom && (
-                      <Target
-                        r={
-                          id === "feed" ? [72, 28, 13, 7] : [83, 27.4, 13, 5.6]
-                        }
-                        label="送りハンドルを外す"
-                        kind="fitting"
-                        click={() => {
-                          update(E.detachCrank(s, id));
-                          notify("送りハンドルを外した。");
-                        }}
-                      />
-                    )}
-                  </>
-                )}
               {zoom && (!opened || id === "beyond") && (
                 <Target
                   r={m.open}
@@ -824,44 +804,17 @@ export function Scene({
             </Surface>
           ))}
         {key === "2:0" && (
-          <>
-            <Patch id="retouch-model-leverless" area={[56, 33, 11, 14]} />
-            <Lever
-              asset={photo("retouch-north")}
-              r={[57.1, 33.6, 2.3, 12]}
-              pivot={[50, 94]}
-              angle={demo[0] * 90}
+          <div style={{ position: "absolute", ...box([49, 23, 24, 31]) }}>
+            <Transport
+              model
+              values={[0, 0]}
+              active={focus?.id === "model"}
+              installed
+              onAdjust={() => {}}
+              onSend={() => {}}
+              onReset={() => {}}
             />
-            <Lever
-              asset={photo("retouch-north")}
-              r={[63.2, 33.6, 2.3, 12]}
-              pivot={[50, 94]}
-              angle={demo[1] * 90}
-            />
-          </>
-        )}
-        {key === "2:0" && focus?.id === "model" && (
-          <>
-            <Target
-              r={
-                demo[0] === 0
-                  ? [56, 33, 5, 13]
-                  : demo[0] === 1
-                    ? [56, 43, 14, 5]
-                    : [56, 44, 5, 13]
-              }
-              label="見本の左軸"
-              click={() => setDemo([(demo[0] + 1) % 3, 0])}
-            />
-            <Target
-              r={demo[1] === 0 ? [62, 33, 5, 13] : [62, 43, 14, 5]}
-              label="見本の右軸"
-              click={() => {
-                if (demo[0] === 2) setDemo([2, 1 - demo[1]]);
-                else notify("左の爪に当たる。");
-              }}
-            />
-          </>
+          </div>
         )}
         {!focus &&
           nodes
