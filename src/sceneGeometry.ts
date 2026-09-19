@@ -311,7 +311,7 @@ export const CLUE_PLACEMENTS: Record<string, Record<string, Rect>> = {
     history: [41.5, 53.4, 10.8, 13.4],
   },
   "2:0": { model: [54.5, 32.8, 13.3, 21.6], cut: [18.7, 53.5, 11.5, 2.3] },
-  "2:1": { mirror: [5.3, 29.5, 4.3, 13], architecture: [66, 5, 10, 12] },
+  "2:1": { mirror: [4.85, 28, 5.75, 16.1], architecture: [66, 5, 10, 12] },
   "3:0": { bath: [23.5, 29.5, 53, 12] },
   "4:0": { memory: [46.5, 52, 15, 26] },
   "4:3": { layout: [55.9, 12.7, 9, 16.3] },
@@ -386,10 +386,10 @@ export const CLUE_SURFACES: Record<string, Quad> = {
     [18.6, 55.5],
   ],
   "2:1:mirror": [
-    [5.3, 29.5],
-    [9.6, 29.5],
-    [9.2, 42.5],
-    [5.1, 42.5],
+    [5.26, 29.5],
+    [10.05, 29.27],
+    [9.81, 42.03],
+    [5.1, 42.19],
   ],
 };
 export const CUT_SURFACES: Quad[] = [

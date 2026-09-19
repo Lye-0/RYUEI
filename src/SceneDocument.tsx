@@ -55,7 +55,7 @@ export function SceneDocument({
           className="paper-texture"
           asset={{ ...CLUES.mirror.image, crop: [2, 3, 11, 94] }}
         />
-        <Photo asset={CLUES.mirror.image} />
+        <Photo asset={{ ...CLUES.mirror.image, crop: [10, 5, 80, 68] }} />
       </div>
     );
   if (mounted && id === "bath")
