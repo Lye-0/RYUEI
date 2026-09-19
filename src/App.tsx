@@ -527,7 +527,10 @@ export default function App() {
                   if (!back && id) setS((g) => E.observe(g, id));
                 }}
               >
-                {back ? "表へ" : "裏返す"} ↻
+                <span className="flip-icon" aria-hidden="true">
+                  ↻
+                </span>
+                <span>{back ? "表へ" : "裏返す"}</span>
               </button>
             )}
             {!panel && (
