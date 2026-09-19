@@ -72,10 +72,12 @@ function Surface({
   q,
   width,
   children,
+  mounted = false,
 }: {
   q: Quad;
   width: number;
   children: ReactNode;
+  mounted?: boolean;
 }) {
   const [p0, p1, p2, p3] = q.map((p) => p.map((n) => n / 100));
   const dx1 = p1[0] - p2[0],
@@ -93,8 +95,11 @@ function Surface({
     e = p3[1] - p0[1] + h * p3[1];
   return (
     <div
-      className="world-surface"
+      className={"world-surface" + (mounted ? " mounted-document" : "")}
       style={{
+        filter: mounted
+          ? `sepia(.28) saturate(.6) brightness(.86) contrast(.88) blur(${(width * 0.00065) / Math.max(0.04, Math.abs(p1[0] - p0[0]))}px)`
+          : undefined,
         transform: `matrix3d(${a},${d},0,${g / width},${b},${e},0,${h / width},0,0,1,0,${width * p0[0]},${width * p0[1]},0,1)`,
       }}
     >
@@ -225,7 +230,9 @@ export function Scene({
   const crop = mech
     ? focusRect(mech.focus)
     : focused
-      ? focusRect(focused.rect)
+      ? focused.target === "old"
+        ? [45, 0, 24, 24]
+        : focusRect(focused.rect)
       : [0, 0, 100, 100];
   const key = `${s.room}:${s.face}`,
     master = MASTER[key];
@@ -722,7 +729,7 @@ export function Scene({
               !CLUES[n.target].requires?.some((x) => !s.solved.includes(x)),
           )
           .map((n) => (
-            <Surface key={n.id} q={quad(n.rect)} width={width}>
+            <Surface key={n.id} q={quad(n.rect)} width={width} mounted>
               <SceneDocument id={n.target} mounted />
             </Surface>
           ))}

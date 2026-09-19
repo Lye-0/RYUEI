@@ -79,7 +79,7 @@ export const MECHANISMS: Record<string, Mechanism> = {
   lamp: {
     room: 2,
     face: 0,
-    bounds: [15, 20, 32, 36],
+    bounds: [10, 24, 37, 34],
     focus: [7, 18, 86, 72],
     controls: [[20, 24, 26, 13]],
     open: [67, 63, 9, 4],
@@ -143,7 +143,7 @@ export const MECHANISMS: Record<string, Mechanism> = {
   camera: {
     room: 4,
     face: 3,
-    bounds: [28, 25, 33, 41],
+    bounds: [29, 25, 29, 33],
     focus: [26, 24, 39, 39],
     controls: [
       [33, 44, 2.8, 2.8],
@@ -303,8 +303,8 @@ export const MASTER: Record<string, string> = {
   "5:1": "backroom-east",
 };
 export const CLUE_PLACEMENTS: Record<string, Record<string, Rect>> = {
-  "0:1": { position: [8, 12, 27, 36], outside: [48, 20, 25, 30] },
-  "0:3": { old: [51, 1.5, 9, 9] },
+  "0:1": { position: [8.2, 10.8, 29.2, 38], outside: [48, 20, 25, 30] },
+  "0:3": { old: [53, 4.5, 7.2, 9.4] },
   "4:1": { shutter: [25, 10, 10, 48] },
   "4:2": { history: [4, 21, 15, 22], architecture: [80, 23, 17, 20] },
   "5:1": { printProcess: [40, 6.5, 32, 24] },
@@ -353,6 +353,7 @@ export function sceneNodes(room: number, face: number) {
       if (room === 1 && face === 2) n.rect = [30, 5, 42, 81];
       if (room === 2 && face === 2) n.rect = [6, 5, 44, 86];
       if (room === 3 && face === 2) n.rect = [31, 6, 38, 83];
+      if (room === 4 && face === 0) n.rect = [43, 20, 21, 49];
       if (room === 4 && face === 2) n.rect = [28, 11, 41, 84];
       if (room === 5 && face === 2) n.rect = [28, 7, 42, 78];
     }

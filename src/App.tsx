@@ -18,6 +18,7 @@ import {
 } from "./data";
 import * as E from "./engine";
 import { Photo } from "./Photo";
+import { PuzzlePicker } from "./PuzzlePicker";
 import { Scene } from "./Scene";
 import { SceneDocument, itemPortrait as itemPhoto } from "./SceneDocument";
 import { ambience, tick } from "./audio";
@@ -445,6 +446,19 @@ export default function App() {
         </div>
         <div className="header-tools">
           <button
+            className="icon target-toggle"
+            aria-label="拡大できる場所を表示"
+            aria-pressed={marks}
+            title="拡大できる場所を表示"
+            onClick={() => setMarks((value) => !value)}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+              <circle cx="10.5" cy="10.5" r="3.5" />
+              <path d="m13 13 4 4" />
+            </svg>
+          </button>
+          <button
             className="icon"
             aria-label="設定"
             title="設定"
@@ -768,21 +782,11 @@ export default function App() {
           )}
           {menu === "hints" && (
             <>
-              <label className="hint-picker">
-                調べているもの
-                <select
-                  value={hintId}
-                  onChange={(e) => setHintId(e.target.value)}
-                >
-                  {Object.values(PUZZLES)
-                    .filter((p) => s.visited.includes(p.room))
-                    .map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {ROOMS[p.room].name} / {p.name}
-                      </option>
-                    ))}
-                </select>
-              </label>
+              <PuzzlePicker
+                value={hintId}
+                visited={s.visited}
+                onChange={setHintId}
+              />
               <Hint key={hintId} p={PUZZLES[hintId]} s={s} update={setS} />
             </>
           )}
